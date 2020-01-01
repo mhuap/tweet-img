@@ -1,0 +1,177 @@
+$color-grey: #657786;
+$color-dark: #14171a;
+$color-blue: #1DA1F2;
+$color-darkblue: #0071EB;
+$color-extralightgrey: #E1E8ED;
+$border-radius: 0.25rem;
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:800&display=swap');
+
+
+html {
+  font-size: 12px;
+  // border: solid 1px red;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $color-dark;
+}
+
+h1, h2, h3 {
+  font-family: Poppins, sans-serif;
+}
+
+#container {
+  margin: 0 auto;
+  max-width: 500px;
+  text-align: center;
+
+  & > button {
+    display: block;
+    margin: 1rem auto;
+
+  }
+}
+
+form {
+  margin-bottom: 1rem;
+}
+
+#form-input {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+button {
+  background-color: $color-darkblue;
+  // border: solid 1px $color-blue;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: $border-radius;
+  color: white;
+  font-size: 1rem;
+  letter-spacing: 0.25px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+label {
+  display: block;
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+input {
+  padding: 0.75rem 0.75rem;
+  border-radius: $border-radius;
+  border: solid 1px $color-extralightgrey;
+  flex-grow: 1;
+  margin-right: 1rem;
+
+  &:focus {
+    border: solid 1px $color-blue;
+    border-radius: $border-radius;
+    box-shadow: 0 0 0 0.2rem rgba(29, 161, 242,.25);
+    outline: none;
+  }
+}
+
+#tweet-container-container {
+  margin: 0 auto;
+  border: solid 1px black;
+}
+
+#tweet-container:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+  float: left;
+}
+
+#tweet-container {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #14171a;
+}
+
+#tweet {
+  text-align: left;
+  min-width: 75%;
+  margin: 20px;
+  background-color: white;
+  padding: 24px;
+  position: relative;
+
+  .avatar {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    float: left;
+    margin-right: 10px;
+  }
+
+  .account-group, ._timestamp {
+    font-size: 14px;
+  }
+
+  .FullNameGroup {
+    display: flex;
+  }
+
+  .js-tweet-text-container {
+    margin-top: 13px;
+  }
+
+  .tweet-text {
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .username, ._timestamp {
+    color: $color-grey;
+  }
+
+  .username b {
+    font-weight: normal;
+  }
+
+  ._timestamp:before {
+    content: ' · '
+  }
+
+  img#logo {
+    width: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 24px;
+  }
+
+  img#badge {
+    width: 1rem;
+    display: inline;
+    padding-left: 4px;
+  }
+
+  & > img{
+    width: 100%;
+    display: block;
+  }
+
+}

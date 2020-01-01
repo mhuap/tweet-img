@@ -1,0 +1,125 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:800&display=swap);
+@charset "UTF-8";
+html {
+  font-size: 12px; }
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px; } }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #14171a; }
+
+h1, h2, h3 {
+  font-family: Poppins, sans-serif; }
+
+#container {
+  margin: 0 auto;
+  max-width: 500px;
+  text-align: center; }
+  #container > button {
+    display: block;
+    margin: 1rem auto; }
+
+form {
+  margin-bottom: 1rem; }
+
+#form-input {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; }
+
+button {
+  background-color: #0071EB;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.25rem;
+  color: white;
+  font-size: 1rem;
+  letter-spacing: 0.25px; }
+  button:focus {
+    outline: none; }
+
+label {
+  display: block;
+  text-align: left;
+  margin-bottom: 0.5rem; }
+
+input {
+  padding: 0.75rem 0.75rem;
+  border-radius: 0.25rem;
+  border: solid 1px #E1E8ED;
+  flex-grow: 1;
+  margin-right: 1rem; }
+  input:focus {
+    border: solid 1px #1DA1F2;
+    border-radius: 0.25rem;
+    box-shadow: 0 0 0 0.2rem rgba(29, 161, 242, 0.25);
+    outline: none; }
+
+#tweet-container-container {
+  margin: 0 auto;
+  border: solid 1px black; }
+
+#tweet-container:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+  float: left; }
+
+#tweet-container {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #14171a; }
+
+#tweet {
+  text-align: left;
+  min-width: 75%;
+  margin: 20px;
+  background-color: white;
+  padding: 24px;
+  position: relative; }
+  #tweet .avatar {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    float: left;
+    margin-right: 10px; }
+  #tweet .account-group, #tweet ._timestamp {
+    font-size: 14px; }
+  #tweet .FullNameGroup {
+    display: flex; }
+  #tweet .js-tweet-text-container {
+    margin-top: 13px; }
+  #tweet .tweet-text {
+    margin: 0;
+    line-height: 1.4; }
+  #tweet .username, #tweet ._timestamp {
+    color: #657786; }
+  #tweet .username b {
+    font-weight: normal; }
+  #tweet ._timestamp:before {
+    content: ' \B7   '; }
+  #tweet img#logo {
+    width: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 24px; }
+  #tweet img#badge {
+    width: 1rem;
+    display: inline;
+    padding-left: 4px; }
+  #tweet > img {
+    width: 100%;
+    display: block; }
+
+
+/*# sourceMappingURL=styles.chunk.css.map*/
