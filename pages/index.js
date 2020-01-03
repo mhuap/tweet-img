@@ -1,97 +1,105 @@
 import React from "react";
 import axios from 'axios';
+const errormsg = '400: Invalid URL';
+
 // import { useRouter } from 'next/router'
 // import SEO from "../components/seo"
+import Result from '../components/result';
 import '../scss/index.scss';
 // import logosrc from '../images/Twitter_Logo_Blue.svg'
 
 
 class IndexPage extends React.Component {
-  // const router = useRouter()
-  // const { tweeturl } = router.query
+
   constructor(props) {
     super(props);
     this.state = {
-        url: '',
+        loading: false,
+        // url: '',
+        blank: true,
+        tweet: ''
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.urlInput = React.createRef();
+    // this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(e){
-    e.preventDefault();
+  createTweet(url){
+    console.log('axios');
+
     this.setState({
-        url: e.target.value,
-    });
+      loading: true
+    })
+    console.log('loading')
+
+    axios.post('/api', {
+      url: url
+    })
+    .then(response => {
+      console.log('response')
+      // console.log(response.data)
+
+      this.setState({
+        tweet: response.data,
+        loading: false
+      });
+
+      console.log('not loading')
+
+      // this.genCanvas()
+
+    })
+    .catch(error => {
+      console.log(error)
+      this.setState({
+        tweet: errormsg,
+        loading: false
+      });
+
+      console.log('not loading')
+    })
+
   }
 
   handleSubmit(e){
     e.preventDefault();
-    //making a post request with the fetch API
-    axios.post('/api', {
-      url: this.state.url
-    })
-    .then(response => {
-      // console.log(response.data)
-      const div = document.getElementById('tweet');
-      div.innerHTML = response.data;
 
-      let logo = document.createElement('img');
-      logo.id = 'logo';
-      logo.src = '/Twitter_Logo_Blue.png';
-      document.getElementById('tweet').appendChild(logo);
+    console.log('Submitted');
+    this.setState({
+        blank: false
+    }, () => this.createTweet(this.urlInput.current.value));
 
-      let ver = document.querySelector('.u-hiddenVisually');
-      if (ver){
-        let badge = document.createElement('img');
-        badge.id = 'badge';
-        badge.src = '/verified.png';
-        ver.parentNode.replaceChild(badge, ver);
-      }
-      // this.genCanvas()
-    })
-    .catch(error => console.log(error))
   }
 
-  genCanvas(){
-    const html2canvas = require('html2canvas');
-    html2canvas(document.querySelector("#tweet-container"), {allowTaint: true}).then(function(canvas) {
-      // document.querySelector('#container').appendChild(canvas);
-      let tweetContainer = document.getElementById('tweet-container-container');
-      tweetContainer.parentNode.replaceChild(canvas, tweetContainer);
-    });
-  }
 
   render(){
+    var res;
+    if (this.state.blank){
+      res = null;
+    } else if (this.state.loading){
+      res = <p>Loading...</p>;
+    } else {
+      res = <Result tweet={this.state.tweet}/>;
+    }
     return (
       <div id='container'>
-        <h1>tweet-img</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label>Enter Tweet URL</label>
-          <div id='form-input'>
-            <input id='url-input'type='text' onChange={this.handleChange} name='url' placeholder='twitter.com/status/tweeturl'/>
-            <button>Generate Image</button>
-          </div>
-        </form>
-
-        <div id='tweet-container-container'>
-          <div id='tweet-container'>
-            <div id='tweet'></div>
-          </div>
+        <div id='form-wrapper'>
+          <h1>tweet-img</h1>
+          <form onSubmit={this.handleSubmit}>
+            <label>Enter Tweet URL</label>
+            <div id='form-input'>
+              <input id='url-input'type='text' ref={this.urlInput} name='url' placeholder='twitter.com/status/tweeturl'/>
+              <button>&#8594;</button>
+            </div>
+          </form>
         </div>
 
-        <button onClick={this.genCanvas}>Save Image</button>
+        {res}
 
       </div>
     );
   }
 }
-
-// IndexPage.getInitialProps = async ({ req }) => {
-//   const res = await axios.post('/');
-//   const json = await res.json();
-//   return { tweeturl: json.url };
-// }
 
 export default IndexPage

@@ -1,6 +1,6 @@
 const cheerio = require("cheerio");
 const axios = require("axios");
-// const url = 'https://publish.twitter.com/?query=https%3A%2F%2Ftwitter.com%2FSciShow%2Fstatus%2F1208767945813442564&widget=Tweet'
+// https://twitter.com/dog_feelings
 // const url = 'https://twitter.com/SciShow/status/1208767945813442564'
 // const url = 'https://publish.twitter.com/#'
 // https://twitter.com/redditships/status/1210309670654664719
@@ -27,7 +27,7 @@ const str3 = `<a class="account-group js-account-group js-action-profile js-user
   <p class="TweetTextSize TweetTextSize--jumbo js-tweet-text tweet-text" lang="en" data-aria-label-part="0">the human keeps a picture of me. on the front of their little computer. so they can show everyone they meet. wherever they go. just how beautiful i am</p>
 </div>`
 
-const dev = true;
+const dev = false;
 
 const parse = (result) => {
   result.find(
@@ -40,13 +40,17 @@ const parse = (result) => {
   img.removeAttr('style')
   result.find('.AdaptiveMediaOuterContainer').replaceWith(img);
 
+  result.find('.account-group').after("<img id='logo' src='/Twitter_Logo_Blue.png'/>");
+
   let accountInfo = result.find('.account-group, .js-short-timestamp');
   accountInfo.removeAttr('href');
   accountInfo.removeAttr('data-user-id');
   result.find('.content.clearfix').replaceWith(accountInfo);
 
   let verified = result.find('.u-hiddenVisually');
-  result.find('.UserBadges').replaceWith(verified);
+  if (verified.length){
+    verified.replaceWith("<img id='badge' src='/verified.png'/>");
+  }
 
   // console.log(result.html().trim());
   return result.html();
@@ -56,7 +60,8 @@ const getTweet = async (siteUrl) => {
   if (dev){
     const $ = cheerio.load(str3);
     let tweet = $('*');
-    return parse(tweet);
+
+    return parse(tweet).trim();
   }
   return await
   axios.get(siteUrl)
@@ -70,7 +75,7 @@ const getTweet = async (siteUrl) => {
   })
   .catch(error => {
     // console.log(error);
-    return 'Invalid URL';
+    return error;
   });
 
 };

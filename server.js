@@ -18,7 +18,11 @@ app.prepare().then(() => {
   server.post('/api', async (req, res) => {
     const result = await getTweet(req.body.url);
     // console.log(result);
-    res.send(result);
+    if (result.errno) {
+      res.sendStatus(400);
+    } else {
+      res.send(result);
+    }
   })
 
   server.get('*', (req, res) => {
