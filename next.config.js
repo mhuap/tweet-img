@@ -6,5 +6,5 @@ module.exports = withSass({
   exportPathMap: () => ({
     '/': { page: '/' },
   }),
-  assetPrefix: isProd ? '/your-repository-name' : '',
+  assetPrefix: isProd ? '/tweet-img' : '',
 })
