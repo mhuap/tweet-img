@@ -16,13 +16,19 @@ app.prepare().then(() => {
   server.use(bodyParser.json());
 
   server.post('/api', async (req, res) => {
-    const result = await getTweet(req.body.url);
-    // console.log(result);
-    if (result.errno) {
-      res.sendStatus(400);
+    if (req.body.url) {
+      const result = await getTweet(req.body.url);
+      // console.log(result);
+      if (result.errno) {
+        res.sendStatus(400);
+      } else {
+        res.send(result);
+      }
     } else {
-      res.send(result);
+      res.sendStatus(400);
     }
+
+
   })
 
   server.get('*', (req, res) => {

@@ -20,6 +20,8 @@
     "next": "^9.1.6",
     "node-sass": "^4.13.0",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-color": "^2.17.3",
+    "react-dom": "^16.12.0",
+    "react-scroll": "^1.7.15"
   }
 }

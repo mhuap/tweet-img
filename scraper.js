@@ -4,6 +4,8 @@ const axios = require("axios");
 // const url = 'https://twitter.com/SciShow/status/1208767945813442564'
 // const url = 'https://publish.twitter.com/#'
 // https://twitter.com/redditships/status/1210309670654664719
+const twitterLogo = require('./components/twitter-logo.js');
+const verifiedBadge = require('./components/verified.js');
 
 const str2 = `<a class="account-group js-account-group js-action-profile js-user-profile-link js-nav" href="/ProBirdRights" data-user-id="448476934">
       <img class="avatar js-action-profile-avatar" src="https://pbs.twimg.com/profile_images/684212991714131972/15IGSMB2_bigger.jpg" alt>
@@ -41,6 +43,7 @@ const parse = (result) => {
   result.find('.AdaptiveMediaOuterContainer').replaceWith(img);
 
   result.find('.account-group').after("<img id='logo' src='/Twitter_Logo_Blue.png'/>");
+  // result.find('.account-group').after(twitterLogo);
 
   let accountInfo = result.find('.account-group, .js-short-timestamp');
   accountInfo.removeAttr('href');
@@ -50,6 +53,7 @@ const parse = (result) => {
   let verified = result.find('.u-hiddenVisually');
   if (verified.length){
     verified.replaceWith("<img id='badge' src='/verified.png'/>");
+    // verified.replaceWith(verifiedBadge);
   }
 
   // console.log(result.html().trim());
@@ -60,6 +64,10 @@ const getTweet = async (siteUrl) => {
   if (dev){
     const $ = cheerio.load(str3);
     let tweet = $('*');
+    let allImgs = $('img').each(function(i, elem) {
+      $(this).attr('crossorigin', '*');
+      // console.log($(this).attr('crossorigin'));
+    })
 
     return parse(tweet).trim();
   }
@@ -69,6 +77,11 @@ const getTweet = async (siteUrl) => {
     if(response.status === 200){
       const $ = cheerio.load(response.data);
       let tweet = $('.permalink-tweet');
+
+      let allImgs = $('.permalink-tweet img').each(function(i, elem) {
+        // console.log(result.findthis.html());
+        $(this).attr('crossorigin', 'anonymous');
+      })
 
       return parse(tweet).trim();
     }

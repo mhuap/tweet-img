@@ -1,13 +1,12 @@
 import React from "react";
 import axios from 'axios';
-const errormsg = '400: Invalid URL';
+import { scroller } from 'react-scroll';
 
-// import { useRouter } from 'next/router'
+const errormsg = '400: Invalid URL';
 // import SEO from "../components/seo"
 import Result from '../components/result';
+import Arrow from '../components/arrow.js';
 import '../scss/index.scss';
-// import logosrc from '../images/Twitter_Logo_Blue.svg'
-
 
 class IndexPage extends React.Component {
 
@@ -20,8 +19,8 @@ class IndexPage extends React.Component {
         tweet: ''
     };
 
+    this.result = React.createRef();
     this.urlInput = React.createRef();
-    // this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -47,7 +46,6 @@ class IndexPage extends React.Component {
 
       console.log('not loading')
 
-      // this.genCanvas()
 
     })
     .catch(error => {
@@ -65,6 +63,10 @@ class IndexPage extends React.Component {
   handleSubmit(e){
     e.preventDefault();
 
+    scroller.scrollTo('result-wrapper', {
+      smooth: true,
+    })
+
     console.log('Submitted');
     this.setState({
         blank: false
@@ -80,24 +82,32 @@ class IndexPage extends React.Component {
     } else if (this.state.loading){
       res = <p>Loading...</p>;
     } else {
-      res = <Result tweet={this.state.tweet}/>;
+      res = <Result blank={this.state.blank} tweet={this.state.tweet}/>;
     }
     return (
-      <div id='container'>
-        <div id='form-wrapper'>
-          <h1>tweet-img</h1>
-          <form onSubmit={this.handleSubmit}>
-            <label>Enter Tweet URL</label>
-            <div id='form-input'>
-              <input id='url-input'type='text' ref={this.urlInput} name='url' placeholder='twitter.com/status/tweeturl'/>
-              <button>&#8594;</button>
-            </div>
-          </form>
+      <>
+        <div id='container'>
+          <div id='form-wrapper'>
+            <h1>tweet-img</h1>
+            <p>Tested on tweets with text only, at most 1 image, OR a link.</p>
+            <form id='top-form' onSubmit={this.handleSubmit}>
+              <label>Enter Tweet URL</label>
+              <div id='form-input'>
+                <input id='url-input'type='text' ref={this.urlInput} name='url' placeholder='twitter.com/status/tweeturl'/>
+                <button><Arrow/></button>
+              </div>
+            </form>
+          </div>
+
+          <div id='result-wrapper' ref={this.result}>
+            {res}
+          </div>
+
         </div>
-
-        {res}
-
-      </div>
+        <footer>
+          <small>Created by <a href='https://twitter.com/matias_huapaya'>Matias Huapaya</a></small>
+        </footer>
+      </>
     );
   }
 }

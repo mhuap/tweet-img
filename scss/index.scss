@@ -5,19 +5,17 @@ $color-darkblue: #0071EB;
 $color-extralightgrey: #E1E8ED;
 $border-radius: 0.25rem;
 $width: 500px;
+$box-shadow: 0 2px 28px 0 rgba(0,0,0,0.12);
 
-@import url('https://fonts.googleapis.com/css?family=Poppins:800&display=swap');
+$breakpoint-lg: 768px;
+$breakpoint-sm: 475px;
+
+@import url('https://fonts.googleapis.com/css?family=Lato:700,900&display=swap');
 
 
 html {
   font-size: 12px;
   // border: solid 1px red;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
 }
 
 body {
@@ -29,14 +27,52 @@ body {
   color: $color-dark;
 }
 
+#__next {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
+}
+
 h1, h2, h3 {
-  font-family: Poppins, sans-serif;
+  font-family: Lato, sans-serif;
+  // font-family: Poppins, sans-serif;
+}
+
+h1 {
+  font-weight: 900;
+  font-size: 32px;
+}
+
+h3 {
+  text-align: left;
+}
+
+a, a:visited {
+  color: $color-blue;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  // width: inherit;
+  margin: 1rem 0;
+  text-align: center;
+  color: $color-grey;
 }
 
 #container {
   margin: 0 auto;
-  width: 80vw;
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   & > button {
     display: block;
@@ -45,43 +81,59 @@ h1, h2, h3 {
 }
 
 #form-wrapper {
-  max-width: $width;
+  width: 100%;
   margin: 0 auto;
+  margin-bottom: 4rem;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  h1 {
+    margin-bottom: 1rem;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 2rem;
+    color: $color-grey;
+  }
 }
 
 #form-input {
   position: relative;
-  // display: flex;
-  // justify-content: space-between;
   width: 100%;
-}
 
-#form-input button {
-  font-weight: bold;
-  font-size: 2rem;
-  line-height: 0;
-  padding: 0.5rem;
-  position: absolute;
-  right: 0;
-  top: 0;
-  box-sizing: border-box;
-  height: 100%;
-  background: none;
-  color: $color-darkblue;
-}
+  button {
+    font-size: 2rem;
+    line-height: 0;
+    padding: 0 0.5rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    box-sizing: border-box;
+    height: 100%;
+    background: none;
+    color: $color-darkblue;
+  }
 
-button {
-  background-color: $color-darkblue;
-  border: solid 1px $color-blue;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  // border-radius: $border-radius;
-  color: white;
-  font-size: 1rem;
-  letter-spacing: 0.25px;
+  svg {
+    height: 100%;
+    fill: $color-darkblue;
+  }
 
-  &:focus {
-    outline: none;
+  input {
+    padding: 0.75rem 0.75rem;
+    border: solid 1px $color-extralightgrey;
+    width: 100%;
+    box-sizing: border-box;
+    background: none;
+
+    &:focus {
+      border: solid 1px $color-blue;
+      box-shadow: 0 0 0 0.2rem rgba(29, 161, 242,.25);
+      outline: none;
+    }
   }
 }
 
@@ -91,98 +143,139 @@ label {
   margin-bottom: 0.5rem;
 }
 
-input {
-  padding: 0.75rem 0.75rem;
-  // border-radius: $border-radius;
-  border: solid 1px $color-extralightgrey;
-  // flex-grow: 1;
-  width: 100%;
-  margin-right: 1rem;
-  box-sizing: border-box;
+button {
+  background-color: $color-darkblue;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  color: white;
+  font-size: 1rem;
+  letter-spacing: 0.25px;
 
   &:focus {
-    border: solid 1px $color-blue;
-    // border-radius: $border-radius;
-    box-shadow: 0 0 0 0.2rem rgba(29, 161, 242,.25);
     outline: none;
   }
 }
 
 #result {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
+  margin-bottom: 2rem;
 }
 
 .tweet-container-container {
   margin: 0 auto;
-  border: solid 1px black;
-  width: $width;
+  // border: solid 1px black;
+  box-shadow: $box-shadow;
+  width: 100%;
+  margin-bottom: 1rem;
 }
 
-#tweet-container:before {
+.twitter-picker {
+  box-shadow: none !important;
+  width: 100% !important;
+  background: none !important;
+}
+
+.twitter-picker div div {
+  // clear: left
+}
+
+.tweet-container:before {
   content: "";
   display: block;
   padding-top: 100%;
   float: left;
 }
 
-#tweet-container {
+.tweet-container {
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #14171a;
 }
 
 #canvas {
   display: flex;
   flex-direction: column;
+
+  > img {
+    width: $width;
+    box-shadow: $box-shadow;
+  }
 }
 
-#canvas .tweet-container-container {
+#canvas-bar {
   display: flex;
-  justify-content: center;
+  // justify-content: space-between;
   align-items: center;
-  width: $width;
-  flex-grow: 1;
-}
 
-h2 {
-  text-align: left;
+  h3 {
+    display: inline;
+    margin-right: 1rem;
+  }
+
+  #refresh, #refresh:disabled {
+    background: none;
+    padding: 0;
+    font-family: inherit;
+  }
+
+  #refresh {
+    color: $color-darkblue;
+  }
+
+  #refresh:disabled {
+    color: $color-extralightgrey;
+  }
+
+  #refresh span {
+    font-size: 2rem;
+    position: relative;
+    top: 0.2rem;
+    line-height: 0;
+  }
+
 }
 
 #tweet {
   text-align: left;
   min-width: 75%;
-  margin: 20px;
+  margin: 1.25rem;
   background-color: white;
-  padding: 24px;
+  padding: 1.5rem;
   position: relative;
 
   .avatar {
     border-radius: 50%;
-    width: 36px;
-    height: 36px;
+    width: 2.25rem;
+    height: 2.25rem;
     float: left;
-    margin-right: 10px;
+    margin-right: 0.625rem;
   }
 
   .account-group, ._timestamp {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 
   .FullNameGroup {
     display: flex;
+    align-items: center;
   }
 
   .js-tweet-text-container {
-    margin-top: 13px;
+    margin-top: 0.8125rem;
   }
 
   .tweet-text {
     margin: 0;
     line-height: 1.4;
+    font-size: 1rem;
+
+    a, a:visited {
+      color: $color-blue;
+      text-decoration: none;
+    }
   }
 
   .username, ._timestamp {
@@ -197,23 +290,64 @@ h2 {
     content: ' · '
   }
 
-  img#logo {
-    width: 20px;
+  #logo {
+    width: 1.25rem;
     position: absolute;
     top: 0;
     right: 0;
-    padding: 24px;
+    padding: 1.5rem;
   }
 
-  img#badge {
+  #badge {
     width: 1rem;
+    height: 1rem;
     display: inline;
-    padding-left: 4px;
+    padding-left: 0.25rem;
+  }
+
+  svg .icon {
+    // put fill here
   }
 
   & > img{
     width: 100%;
     display: block;
+    margin-top: 1rem;
+  }
+
+}
+
+
+@media (min-width: $breakpoint-sm) {
+  html {
+    font-size: 16px;
+  }
+
+  #container {
+    max-width: 550px;
+  }
+
+}
+
+@media (min-width: $breakpoint-lg) {
+
+  #container {
+    max-width: none;
+  }
+  .tweet-container-container {
+    width: $width;
+  }
+
+  #form-wrapper {
+    width: $width;
+  }
+
+  #result {
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
 }
