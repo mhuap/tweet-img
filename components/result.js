@@ -96,7 +96,7 @@ class Result extends React.Component {
 
     let bgStyle = {backgroundColor: this.state.bg}
 
-    console.log(this.props.tweet);
+    // console.log(this.props.tweet);
     if (this.props.tweet === errormsg){
       return <p>{errormsg}</p>
     }
