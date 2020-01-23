@@ -4,7 +4,7 @@ import axios from 'axios';
 import { TwitterPicker } from 'react-color';
 import { scroller } from 'react-scroll';
 
-const errormsg = '400: Invalid URL';
+const errormsg = 'Error: 404 Invalid URL';
 
 class Result extends React.Component {
 
@@ -96,6 +96,7 @@ class Result extends React.Component {
 
     let bgStyle = {backgroundColor: this.state.bg}
 
+    console.log(this.props.tweet);
     if (this.props.tweet === errormsg){
       return <p>{errormsg}</p>
     }

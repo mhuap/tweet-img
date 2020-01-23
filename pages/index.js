@@ -1,12 +1,13 @@
 import React from "react";
 import axios from 'axios';
 import { scroller } from 'react-scroll';
-
-const errormsg = '400: Invalid URL';
+const getTweet = require("../scraper-client.js");
 // import SEO from "../components/seo"
 import Result from '../components/result';
 import Arrow from '../components/arrow.js';
 import '../scss/index.scss';
+
+const errormsg = 'Error: 404 Invalid URL';
 
 class IndexPage extends React.Component {
 
@@ -32,24 +33,25 @@ class IndexPage extends React.Component {
     })
     console.log('loading')
 
-    axios.post('/api', {
-      url: url
-    })
+    // axios.post('/api', {
+    //   url: url
+    // })
+    // console.log(getTweet(url));
+    getTweet(url)
     .then(response => {
       console.log('response')
-      // console.log(response.data)
+      // console.log(response)
 
       this.setState({
-        tweet: response.data,
+        tweet: response,
         loading: false
       });
 
       console.log('not loading')
 
-
     })
     .catch(error => {
-      console.log(error)
+
       this.setState({
         tweet: errormsg,
         loading: false
@@ -89,7 +91,7 @@ class IndexPage extends React.Component {
         <div id='container'>
           <div id='form-wrapper'>
             <h1>tweet-img</h1>
-            <p>Tested on tweets with text only, at most 1 image, OR a link.</p>
+            <p>Tested on tweets with text only, at most 1 image, or a link.</p>
             <form id='top-form' onSubmit={this.handleSubmit}>
               <label>Enter Tweet URL</label>
               <div id='form-input'>

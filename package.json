@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "next",
     "build": "next build",
     "start": "next start",
     "deploy": "next build && next export -o docs && git checkout -- docs/.nojekyll && git add docs && git commit -m \"regen site\" && git push origin master"
@@ -18,6 +18,7 @@
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.17.1",
     "html2canvas": "^1.0.0-rc.5",
+    "jquery": "^3.4.1",
     "next": "^9.1.6",
     "node-sass": "^4.13.0",
     "react": "^16.12.0",

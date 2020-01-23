@@ -48,20 +48,20 @@ h3 {
   text-align: left;
 }
 
-a, a:visited {
-  color: $color-blue;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
 footer {
   // width: inherit;
   margin: 1rem 0;
   text-align: center;
   color: $color-grey;
+
+  a, a:visited {
+    color: $color-blue;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
 }
 
 #container {
@@ -296,6 +296,7 @@ button {
     top: 0;
     right: 0;
     padding: 1.5rem;
+    margin-top: 0;
   }
 
   #badge {
