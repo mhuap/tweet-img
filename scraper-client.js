@@ -29,7 +29,7 @@ const str3 = `<div class="permalink-tweet"><a class="account-group js-account-gr
 
 const dev = false;
 
-const parse = (result) => {
+const parse = (result, assetPrefix) => {
   result.find(
     `.follow-bar, .ProfileTweet-action, .tweet-text .u-hidden,
     .permalink-footer, .stream-item-footer,
@@ -45,12 +45,12 @@ const parse = (result) => {
   accountInfo.removeAttr('data-user-id');
   result.find('.content.clearfix').replaceWith(accountInfo);
 
-  result.find('.account-group').after("<img id='logo' src='" + process.env.ASSET_PREFIX + "/twitterlogoblue.png'/>");
+  result.find('.account-group').after("<img id='logo' src='" + assetPrefix + "/twitterlogoblue.png'/>");
   // result.find('.account-group').after(twitterLogo);
 
   let verified = result.find('.u-hiddenVisually');
   if (verified.length){
-    verified.replaceWith("<img id='badge' src='" + process.env.ASSET_PREFIX + "/verified.png'/>");
+    verified.replaceWith("<img id='badge' src='" + assetPrefix + "/verified.png'/>");
     // verified.replaceWith(verifiedBadge);
   }
 
@@ -58,7 +58,7 @@ const parse = (result) => {
   return result.html();
 }
 
-const getTweet = (siteUrl) => {
+const getTweet = (siteUrl, assetPrefix) => {
   if (dev){
     // const $ = cheerio.load(str3);
     let $all = $(str3);
@@ -67,7 +67,7 @@ const getTweet = (siteUrl) => {
       $(this).attr('crossorigin', '*');
       // console.log(elem);
     })
-    let re = parse(tweet).trim();
+    let re = parse(tweet, assetPrefix);
       // console.log(re);
     return new Promise((resolve, reject) => {
       resolve(re);
@@ -89,7 +89,7 @@ const getTweet = (siteUrl) => {
         $(this).attr('crossorigin', 'anonymous');
       })
 
-      return parse(tweet);
+      return parse(tweet, assetPrefix);
     }
   })
   .catch(error => {
