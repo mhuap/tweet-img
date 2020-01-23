@@ -166,8 +166,7 @@ function (_React$Component) {
       console.log('render');
       var bgStyle = {
         backgroundColor: this.state.bg
-      };
-      console.log(this.props.tweet);
+      }; // console.log(this.props.tweet);
 
       if (this.props.tweet === errormsg) {
         return __jsx("p", {
@@ -41267,6 +41266,7 @@ var getTweet = __webpack_require__(/*! ../scraper-client.js */ "./scraper-client
 
 
 var errormsg = 'Error: 404 Invalid URL';
+var ASSET_PREFIX = '/tweet-img/';
 
 var IndexPage =
 /*#__PURE__*/
@@ -41305,7 +41305,7 @@ function (_React$Component) {
       // })
       // console.log(getTweet(url));
 
-      getTweet(url).then(function (response) {
+      getTweet(url, ASSET_PREFIX).then(function (response) {
         console.log('response'); // console.log(response)
 
         _this2.setState({
@@ -41350,7 +41350,7 @@ function (_React$Component) {
         res = __jsx("p", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 85
+            lineNumber: 86
           },
           __self: this
         }, "Loading...");
@@ -41360,7 +41360,7 @@ function (_React$Component) {
           tweet: this.state.tweet,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 87
+            lineNumber: 88
           },
           __self: this
         });
@@ -41370,26 +41370,26 @@ function (_React$Component) {
         id: "container",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 91
+          lineNumber: 92
         },
         __self: this
       }, __jsx("div", {
         id: "form-wrapper",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 92
+          lineNumber: 93
         },
         __self: this
       }, __jsx("h1", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 93
+          lineNumber: 94
         },
         __self: this
       }, "tweet-img"), __jsx("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 94
+          lineNumber: 95
         },
         __self: this
       }, "Tested on tweets with text only, at most 1 image, or a link."), __jsx("form", {
@@ -41397,20 +41397,20 @@ function (_React$Component) {
         onSubmit: this.handleSubmit,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 95
+          lineNumber: 96
         },
         __self: this
       }, __jsx("label", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 96
+          lineNumber: 97
         },
         __self: this
       }, "Enter Tweet URL"), __jsx("div", {
         id: "form-input",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 97
+          lineNumber: 98
         },
         __self: this
       }, __jsx("input", {
@@ -41421,19 +41421,19 @@ function (_React$Component) {
         placeholder: "twitter.com/status/tweeturl",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 98
+          lineNumber: 99
         },
         __self: this
       }), __jsx("button", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 99
+          lineNumber: 100
         },
         __self: this
       }, __jsx(_components_arrow_js__WEBPACK_IMPORTED_MODULE_10__["default"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 99
+          lineNumber: 100
         },
         __self: this
       }))))), __jsx("div", {
@@ -41441,26 +41441,26 @@ function (_React$Component) {
         ref: this.result,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 104
+          lineNumber: 105
         },
         __self: this
       }, res)), __jsx("footer", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 109
+          lineNumber: 110
         },
         __self: this
       }, __jsx("small", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 110
+          lineNumber: 111
         },
         __self: this
       }, "Created by ", __jsx("a", {
         href: "https://twitter.com/matias_huapaya",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 110
+          lineNumber: 111
         },
         __self: this
       }, "Matias Huapaya"))));
@@ -41500,7 +41500,7 @@ var str2 = "<div class=\"permalink-tweet\"><a class=\"account-group js-account-g
 var str3 = "<div class=\"permalink-tweet\"><a class=\"account-group js-account-group js-action-profile js-user-profile-link js-nav\">\n      <img class=\"avatar js-action-profile-avatar\" src=\"https://pbs.twimg.com/profile_images/1046968391389589507/_0r5bQLl_bigger.jpg\" alt>\n    <span class=\"FullNameGroup\">\n      <strong class=\"fullname show-popup-with-id u-textTruncate \" data-aria-label-part>Thoughts of Dog&#xAE;</strong><span>&#x200F;</span><span class=\"u-hiddenVisually\">Verified account</span><span class=\"UserNameBreak\">&#xA0;</span></span><span class=\"username u-dir u-textTruncate\" dir=\"ltr\" data-aria-label-part>@<b>dog_feelings</b></span></a><span class=\"_timestamp js-short-timestamp \" data-aria-label-part=\"last\" data-time=\"1572893428\" data-time-ms=\"1572893428000\" data-long-form=\"true\">Nov 4</span>\n        <div class=\"js-tweet-text-container\">\n  <p class=\"TweetTextSize TweetTextSize--jumbo js-tweet-text tweet-text\" lang=\"en\" data-aria-label-part=\"0\">the human keeps a picture of me. on the front of their little computer. so they can show everyone they meet. wherever they go. just how beautiful i am</p>\n</div></div>";
 var dev = false;
 
-var parse = function parse(result) {
+var parse = function parse(result, assetPrefix) {
   result.find(".follow-bar, .ProfileTweet-action, .tweet-text .u-hidden,\n    .permalink-footer, .stream-item-footer,\n    .js-machine-translated-tweet-container, .tweet-stats-container, .tweet-details-fixer").remove();
   var img = result.find('.AdaptiveMedia-container img');
   img.removeAttr('style');
@@ -41509,19 +41509,19 @@ var parse = function parse(result) {
   accountInfo.removeAttr('href');
   accountInfo.removeAttr('data-user-id');
   result.find('.content.clearfix').replaceWith(accountInfo);
-  accountInfo.after("<img id='logo' src='/twitterlogoblue.png'/>"); // result.find('.account-group').after(twitterLogo);
+  result.find('.account-group').after("<img id='logo' src='" + assetPrefix + "/twitterlogoblue.png'/>"); // result.find('.account-group').after(twitterLogo);
 
   var verified = result.find('.u-hiddenVisually');
 
   if (verified.length) {
-    verified.replaceWith("<img id='badge' src='/verified.png'/>"); // verified.replaceWith(verifiedBadge);
+    verified.replaceWith("<img id='badge' src='" + assetPrefix + "/verified.png'/>"); // verified.replaceWith(verifiedBadge);
   } // console.log(result.html())
 
 
   return result.html();
 };
 
-var getTweet = function getTweet(siteUrl) {
+var getTweet = function getTweet(siteUrl, assetPrefix) {
   if (dev) {
     // const $ = cheerio.load(str3);
     var $all = $(str3);
@@ -41529,7 +41529,7 @@ var getTweet = function getTweet(siteUrl) {
     var allImgs = tweet.find('img').each(function (i, elem) {
       $(this).attr('crossorigin', '*'); // console.log(elem);
     });
-    var re = parse(tweet).trim(); // console.log(re);
+    var re = parse(tweet, assetPrefix); // console.log(re);
 
     return new _Promise(function (resolve, reject) {
       resolve(re);
@@ -41540,8 +41540,7 @@ var getTweet = function getTweet(siteUrl) {
   return axios.get(anyoriginurl).then(function (response) {
     if (response.status === 200) {
       // const $ = cheerio.load(response.data);
-      console.log('hello');
-
+      // console.log('hello');
       var _$all = $(response.data);
 
       var _tweet = $(_$all).find('.permalink-tweet');
@@ -41551,7 +41550,7 @@ var getTweet = function getTweet(siteUrl) {
         $(this).attr('crossorigin', 'anonymous');
       });
 
-      return parse(_tweet);
+      return parse(_tweet, assetPrefix);
     }
   })["catch"](function (error) {
     console.log(error);
@@ -41563,7 +41562,7 @@ module.exports = getTweet;
 
 /***/ }),
 
-/***/ 0:
+/***/ 1:
 /*!******************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2FMatias%2FDocuments%2FImageTweet%2Ftweet-img%2Fpages%2Findex.js ***!
   \******************************************************************************************************************************************/
@@ -41586,5 +41585,5 @@ module.exports = dll_ef0ff7c60362f24a921f;
 
 /***/ })
 
-},[[0,"static/runtime/webpack.js","styles"]]]);
+},[[1,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=index.js.map
