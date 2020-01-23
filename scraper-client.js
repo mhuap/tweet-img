@@ -80,7 +80,7 @@ const getTweet = (siteUrl) => {
   .then((response) => {
     if(response.status === 200){
       // const $ = cheerio.load(response.data);
-      console.log('hello');
+      // console.log('hello');
       let $all = $(response.data);
       let tweet = $($all).find('.permalink-tweet');
 
