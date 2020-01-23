@@ -45,7 +45,7 @@ const parse = (result) => {
   accountInfo.removeAttr('data-user-id');
   result.find('.content.clearfix').replaceWith(accountInfo);
 
-  accountInfo.after("<img id='logo' src='${process.env.ASSET_PREFIX}/twitterlogoblue.png'/>");
+  accountInfo.after("<img id='logo' src='${process.env.ASSET_PREFIX}/tuitterlogoblue.png'/>");
   // result.find('.account-group').after(twitterLogo);
 
   let verified = result.find('.u-hiddenVisually');
