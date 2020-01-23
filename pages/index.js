@@ -37,6 +37,7 @@ class IndexPage extends React.Component {
     //   url: url
     // })
     // console.log(getTweet(url));
+    console.log(process.env.ASSET_PREFIX);
     getTweet(url, process.env.ASSET_PREFIX)
     .then(response => {
       console.log('response')
