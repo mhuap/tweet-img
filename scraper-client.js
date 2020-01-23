@@ -45,12 +45,12 @@ const parse = (result) => {
   accountInfo.removeAttr('data-user-id');
   result.find('.content.clearfix').replaceWith(accountInfo);
 
-  result.find('.account-group').after("<img id='logo' src='${process.env.ASSET_PREFIX}/tuitterlogoblue.png'/>");
+  result.find('.account-group').after("<img id='logo' src='" + process.env.ASSET_PREFIX + "/twitterlogoblue.png'/>");
   // result.find('.account-group').after(twitterLogo);
 
   let verified = result.find('.u-hiddenVisually');
   if (verified.length){
-    verified.replaceWith("<img id='badge' src='/verified.png'/>");
+    verified.replaceWith("<img id='badge' src='" + process.env.ASSET_PREFIX + "/verified.png'/>");
     // verified.replaceWith(verifiedBadge);
   }
 
