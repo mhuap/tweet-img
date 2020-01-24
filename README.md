@@ -21,3 +21,12 @@ npm run dev
 
 `components/result.js`
 - Handles tweet output after http request, including the conversion into a canvas and image.
+
+## Tweet support
+- [x] Text-only
+- [x] w/ 1 image
+- [x] Links
+- [ ] Emojis in text
+- [ ] w/ multiple images
+- [ ] Quote Tweets
+- [ ] Videos
