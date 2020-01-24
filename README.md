@@ -27,6 +27,6 @@ npm run dev
 - [x] w/ 1 image
 - [x] Links
 - [ ] Emojis in text
-- [ ] w/ multiple images
 - [ ] Quote Tweets
+- [ ] w/ multiple images
 - [ ] Videos
