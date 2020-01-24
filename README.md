@@ -26,7 +26,9 @@ npm run dev
 - [x] Text-only
 - [x] w/ 1 image
 - [x] Links
-- [ ] Emojis in text
+- [x] By verified accounts
+- [x] Emojis in text
+- [x] Emojis in names
 - [ ] Quote Tweets
 - [ ] w/ multiple images
 - [ ] Videos
