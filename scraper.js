@@ -42,13 +42,13 @@ const parse = (result) => {
   img.removeAttr('style')
   result.find('.AdaptiveMediaOuterContainer').replaceWith(img);
 
-  result.find('.account-group').after("<img id='logo' src='/Twitter_Logo_Blue.png'/>");
-  // result.find('.account-group').after(twitterLogo);
-
   let accountInfo = result.find('.account-group, .js-short-timestamp');
   accountInfo.removeAttr('href');
   accountInfo.removeAttr('data-user-id');
   result.find('.content.clearfix').replaceWith(accountInfo);
+
+  result.find('.account-group').after("<img id='logo' src='/twitterlogoblue.png'/>");
+  // result.find('.account-group').after(twitterLogo);
 
   let verified = result.find('.u-hiddenVisually');
   if (verified.length){
@@ -60,7 +60,7 @@ const parse = (result) => {
   return result.html();
 }
 
-const getTweet = async (siteUrl) => {
+const getTweet = (siteUrl) => {
   if (dev){
     const $ = cheerio.load(str3);
     let tweet = $('*');
@@ -71,8 +71,7 @@ const getTweet = async (siteUrl) => {
 
     return parse(tweet).trim();
   }
-  return await
-  axios.get(siteUrl)
+  return axios.get(siteUrl)
   .then((response) => {
     if(response.status === 200){
       const $ = cheerio.load(response.data);
