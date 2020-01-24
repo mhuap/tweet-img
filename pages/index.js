@@ -92,7 +92,7 @@ class IndexPage extends React.Component {
         <div id='container'>
           <div id='form-wrapper'>
             <h1>tweet-img</h1>
-            <p>Tested on tweets with text only, at most 1 image, or a link.</p>
+            <p>Only tested on some tweets. <a target='__blank' href='https://github.com/mhuap/tweet-img/blob/master/README.md#tweet-support'>See what kinds of tweets we support.</a></p>
             <form id='top-form' onSubmit={this.handleSubmit}>
               <label>Enter Tweet URL</label>
               <div id='form-input'>

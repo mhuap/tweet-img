@@ -41392,7 +41392,15 @@ function (_React$Component) {
           lineNumber: 95
         },
         __self: this
-      }, "Tested on tweets with text only, at most 1 image, or a link."), __jsx("form", {
+      }, "Only tested on some tweets. ", __jsx("a", {
+        target: "__blank",
+        href: "https://github.com/mhuap/tweet-img/blob/master/README.md#tweet-support",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 95
+        },
+        __self: this
+      }, "See what kinds of tweets we support.")), __jsx("form", {
         id: "top-form",
         onSubmit: this.handleSubmit,
         __source: {
@@ -41501,7 +41509,7 @@ var str3 = "<div class=\"permalink-tweet\"><a class=\"account-group js-account-g
 var dev = false;
 
 var parse = function parse(result, assetPrefix) {
-  result.find(".follow-bar, .ProfileTweet-action, .tweet-text .u-hidden,\n    .permalink-footer, .stream-item-footer,\n    .js-machine-translated-tweet-container, .tweet-stats-container, .tweet-details-fixer").remove();
+  result.find(".follow-bar, .ProfileTweet-action, .tweet-text .u-hidden,\n    .permalink-footer, .stream-item-footer,\n    .js-machine-translated-tweet-container, .tweet-stats-container, .tweet-details-fixer, .visuallyhidden").remove();
   var img = result.find('.AdaptiveMedia-container img');
   img.removeAttr('style');
   result.find('.AdaptiveMediaOuterContainer').replaceWith(img);
@@ -41562,7 +41570,7 @@ module.exports = getTweet;
 
 /***/ }),
 
-/***/ 1:
+/***/ 0:
 /*!******************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2FMatias%2FDocuments%2FImageTweet%2Ftweet-img%2Fpages%2Findex.js ***!
   \******************************************************************************************************************************************/
@@ -41585,5 +41593,5 @@ module.exports = dll_ef0ff7c60362f24a921f;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js","styles"]]]);
+},[[0,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=index.js.map

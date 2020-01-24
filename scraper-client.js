@@ -33,7 +33,7 @@ const parse = (result, assetPrefix) => {
   result.find(
     `.follow-bar, .ProfileTweet-action, .tweet-text .u-hidden,
     .permalink-footer, .stream-item-footer,
-    .js-machine-translated-tweet-container, .tweet-stats-container, .tweet-details-fixer`)
+    .js-machine-translated-tweet-container, .tweet-stats-container, .tweet-details-fixer, .visuallyhidden`)
     .remove();
 
   let img = result.find('.AdaptiveMedia-container img');

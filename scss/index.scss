@@ -98,6 +98,15 @@ footer {
     margin-bottom: 2rem;
     color: $color-grey;
   }
+
+  a, a:visited {
+    color: $color-blue;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
 }
 
 #form-input {
@@ -304,6 +313,19 @@ button {
     height: 1rem;
     display: inline;
     padding-left: 0.25rem;
+  }
+
+  span.Emoji--forLinks {
+    background-size: 1.25rem 1.25rem;
+    letter-spacing: 1.1rem;
+    background-repeat: no-repeat;
+  }
+
+  img.Emoji--forText {
+    height: 1.25em;
+    width: 1.25em;
+    padding: 0 .05em 0 .1em;
+    vertical-align: -0.2em;
   }
 
   svg .icon {

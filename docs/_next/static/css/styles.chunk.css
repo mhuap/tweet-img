@@ -64,6 +64,11 @@ footer {
     margin-top: 0;
     margin-bottom: 2rem;
     color: #657786; }
+  #form-wrapper a, #form-wrapper a:visited {
+    color: #1DA1F2;
+    text-decoration: none; }
+  #form-wrapper a:hover {
+    text-decoration: underline; }
 
 #form-input {
   position: relative;
@@ -209,6 +214,15 @@ button {
     height: 1rem;
     display: inline;
     padding-left: 0.25rem; }
+  #tweet span.Emoji--forLinks {
+    background-size: 1.25rem 1.25rem;
+    letter-spacing: 1.1rem;
+    background-repeat: no-repeat; }
+  #tweet img.Emoji--forText {
+    height: 1.25em;
+    width: 1.25em;
+    padding: 0 .05em 0 .1em;
+    vertical-align: -0.2em; }
   #tweet > img {
     width: 100%;
     display: block;
