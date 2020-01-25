@@ -41300,16 +41300,18 @@ function (_React$Component) {
       this.setState({
         loading: true
       });
-      console.log('loading'); // axios.post('/api', {
+      console.log('loading'); // SERVER-SIDE
+      // axios.post('/api', {
       //   url: url
       // })
-      // console.log(getTweet(url));
 
-      getTweet(url, ASSET_PREFIX).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_7___default.a.post('https://us-central1-tweet-img.cloudfunctions.net/scraper', {
+        url: url
+      }).then(function (response) {
         console.log('response'); // console.log(response)
 
         _this2.setState({
-          tweet: response,
+          tweet: response.data,
           loading: false
         });
 
@@ -41350,7 +41352,7 @@ function (_React$Component) {
         res = __jsx("p", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 86
+            lineNumber: 88
           },
           __self: this
         }, "Loading...");
@@ -41360,7 +41362,7 @@ function (_React$Component) {
           tweet: this.state.tweet,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 88
+            lineNumber: 90
           },
           __self: this
         });
@@ -41370,26 +41372,26 @@ function (_React$Component) {
         id: "container",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 92
+          lineNumber: 94
         },
         __self: this
       }, __jsx("div", {
         id: "form-wrapper",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 93
+          lineNumber: 95
         },
         __self: this
       }, __jsx("h1", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 94
+          lineNumber: 96
         },
         __self: this
       }, "tweet-img"), __jsx("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 95
+          lineNumber: 97
         },
         __self: this
       }, "Only tested on some tweets. ", __jsx("a", {
@@ -41397,7 +41399,7 @@ function (_React$Component) {
         href: "https://github.com/mhuap/tweet-img/blob/master/README.md#tweet-support",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 95
+          lineNumber: 97
         },
         __self: this
       }, "See what kinds of tweets we support.")), __jsx("form", {
@@ -41405,20 +41407,20 @@ function (_React$Component) {
         onSubmit: this.handleSubmit,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 96
+          lineNumber: 98
         },
         __self: this
       }, __jsx("label", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 97
+          lineNumber: 99
         },
         __self: this
       }, "Enter Tweet URL"), __jsx("div", {
         id: "form-input",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 98
+          lineNumber: 100
         },
         __self: this
       }, __jsx("input", {
@@ -41429,19 +41431,19 @@ function (_React$Component) {
         placeholder: "twitter.com/status/tweeturl",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 99
+          lineNumber: 101
         },
         __self: this
       }), __jsx("button", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 100
+          lineNumber: 102
         },
         __self: this
       }, __jsx(_components_arrow_js__WEBPACK_IMPORTED_MODULE_10__["default"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 100
+          lineNumber: 102
         },
         __self: this
       }))))), __jsx("div", {
@@ -41449,26 +41451,26 @@ function (_React$Component) {
         ref: this.result,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 105
+          lineNumber: 107
         },
         __self: this
       }, res)), __jsx("footer", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 110
+          lineNumber: 112
         },
         __self: this
       }, __jsx("small", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 111
+          lineNumber: 113
         },
         __self: this
       }, "Created by ", __jsx("a", {
         href: "https://twitter.com/matias_huapaya",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 111
+          lineNumber: 113
         },
         __self: this
       }, "Matias Huapaya"))));
