@@ -209,7 +209,7 @@ button {
   flex-direction: column;
 
   > img {
-    width: $width;
+    width: 100%;
     box-shadow: $box-shadow;
   }
 }
@@ -348,6 +348,12 @@ button {
 
   #container {
     max-width: 550px;
+  }
+
+  #canvas {
+    > img {
+      width: $width;
+    }
   }
 
 }

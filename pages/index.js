@@ -1,5 +1,6 @@
 import React from "react";
 import axios from 'axios';
+import Head from 'next/head';
 import { scroller } from 'react-scroll';
 const getTweet = require("../scraper-client.js");
 // import SEO from "../components/seo"
@@ -91,6 +92,15 @@ class IndexPage extends React.Component {
     }
     return (
       <>
+        <Head>
+          <title>tweet-img</title>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" key="viewport"/>
+          <meta name="description" content="Generate image from tweets"/>
+          <meta name="keywords" content="Twitter,Image,Background,Tweet,Instagram,Social,Media"/>
+          <meta name="author" content="Matias Huapaya"/>
+          <link rel="shortcut icon" href={ASSET_PREFIX + "/logo-bgwhite.png"} />
+        </Head>
         <div id='container'>
           <div id='form-wrapper'>
             <h1>tweet-img</h1>
