@@ -11,11 +11,11 @@ npm run dev
 ## Details
 `pages/index.js`
 - Main layout
-- Calls `getTweet` from `scraper-client.js`.
+- Uses axios to make http request to Google Cloud Functions
 
-`scraper-client.js`
+Google Cloud Functions: `googleCLoudFunctions/scraper.js`
 - Uses axios to make http request to twitter
-- Has a few string `const`s for quick and easy testing if `dev` is set to true.
+- Scrapes twitter and isolates tweet
 
 `components/result.js`
 - Handles tweet output after http request, including the conversion into a canvas and image.
