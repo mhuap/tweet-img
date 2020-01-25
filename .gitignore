@@ -10,4 +10,4 @@
 # misc
 .DS_Store
 npm-debug.log*
-/functions/Archive.zip
+/googleCloudFunctions/Archive.zip
