@@ -33,3 +33,4 @@ npm run dev
 - [ ] w/ multiple images
 - [ ] Videos
 - [ ] Sensitive content
+- [ ] Polls
