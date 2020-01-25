@@ -9,7 +9,7 @@ import Arrow from '../components/arrow.js';
 import '../scss/index.scss';
 
 const errormsg = 'Error: 404 Invalid URL';
-const ASSET_PREFIX = '/tweet-img/';
+const ASSET_PREFIX = '/tweet-img';
 
 class IndexPage extends React.Component {
 

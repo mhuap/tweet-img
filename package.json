@@ -1,7 +1,7 @@
 {
   "name": "tweet-img",
   "version": "1.0.0",
-  "description": "",
+  "description": "Generate image from tweets",
   "main": "index.js",
   "scripts": {
     "dev": "next",
@@ -9,8 +9,7 @@
     "start": "next start",
     "deploy": "next build && next export -o docs && git checkout -- docs/.nojekyll && git add docs && git commit -m \"regen site\" && git push origin master"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Matias Huapaya",
   "license": "ISC",
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
