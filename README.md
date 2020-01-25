@@ -13,7 +13,7 @@ npm run dev
 - Main layout
 - Uses axios to make http request to Google Cloud Functions
 
-Google Cloud Functions: `googleCLoudFunctions/scraper.js`
+Google Cloud Functions: `googleCloudFunctions/scraper.js`
 - Uses axios to make http request to twitter
 - Scrapes twitter and isolates tweet
 
