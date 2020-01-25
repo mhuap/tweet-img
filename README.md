@@ -4,7 +4,7 @@ Generate image from tweet.
 
 tweet URL -> HTML div -> HTML canvas -> image
 
-Built on Next.js > statically deployed
+Built on Next.js with scraping on Google Cloud Functions.
 
 ## Development
 ```
