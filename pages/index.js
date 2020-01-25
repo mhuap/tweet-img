@@ -34,15 +34,19 @@ class IndexPage extends React.Component {
     })
     console.log('loading')
 
-
-    // CLIENT-SIDE
-    getTweet(url, ASSET_PREFIX)
+    // SERVER-SIDE
+    // axios.post('/api', {
+    //   url: url
+    // })
+    axios.post('https://us-central1-tweet-img.cloudfunctions.net/scraper', {
+      url: url
+    })
     .then(response => {
       console.log('response')
       // console.log(response)
 
       this.setState({
-        tweet: response,
+        tweet: response.data,
         loading: false
       });
 
@@ -58,32 +62,6 @@ class IndexPage extends React.Component {
 
       console.log('not loading')
     })
-
-    // SERVER-SIDE
-    // axios.post('/api', {
-    //   url: url
-    // })
-    // .then(response => {
-    //   console.log('response')
-    //   // console.log(response)
-    //
-    //   this.setState({
-    //     tweet: response.data,
-    //     loading: false
-    //   });
-    //
-    //   console.log('not loading')
-    //
-    // })
-    // .catch(error => {
-    //
-    //   this.setState({
-    //     tweet: errormsg,
-    //     loading: false
-    //   });
-    //
-    //   console.log('not loading')
-    // })
 
   }
 

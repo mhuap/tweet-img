@@ -1,0 +1,13 @@
+{
+  "name": "tweet-img",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "Matias Huapaya",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  }
+}
