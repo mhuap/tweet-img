@@ -42827,30 +42827,78 @@ function (_React$Component) {
           lineNumber: 102
         },
         __self: this
+      }), __jsx("meta", {
+        property: "og:title",
+        content: "tweet-img",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 103
+        },
+        __self: this
+      }), __jsx("meta", {
+        property: "og:description",
+        content: "Offering tour packages for individuals or groups.",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 104
+        },
+        __self: this
+      }), __jsx("meta", {
+        property: "og:image",
+        content: ASSET_PREFIX + "/example.png",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 105
+        },
+        __self: this
+      }), __jsx("meta", {
+        property: "og:url",
+        content: "https://mhuap.github.io/tweet-img",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 106
+        },
+        __self: this
+      }), __jsx("meta", {
+        property: "og:site_name",
+        content: "tweet-img",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 107
+        },
+        __self: this
+      }), __jsx("meta", {
+        name: "twitter:card",
+        content: "summary_large_image",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 108
+        },
+        __self: this
       })), __jsx("div", {
         id: "container",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 104
+          lineNumber: 111
         },
         __self: this
       }, __jsx("div", {
         id: "form-wrapper",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 105
+          lineNumber: 112
         },
         __self: this
       }, __jsx("h1", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 106
+          lineNumber: 113
         },
         __self: this
       }, "tweet-img"), __jsx("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 107
+          lineNumber: 114
         },
         __self: this
       }, "Only tested on some tweets. ", __jsx("a", {
@@ -42858,7 +42906,7 @@ function (_React$Component) {
         href: "https://github.com/mhuap/tweet-img/blob/master/README.md#tweet-support",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 107
+          lineNumber: 114
         },
         __self: this
       }, "See what kinds of tweets we support.")), __jsx("form", {
@@ -42866,20 +42914,20 @@ function (_React$Component) {
         onSubmit: this.handleSubmit,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 108
+          lineNumber: 115
         },
         __self: this
       }, __jsx("label", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 109
+          lineNumber: 116
         },
         __self: this
       }, "Enter Tweet URL"), __jsx("div", {
         id: "form-input",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 110
+          lineNumber: 117
         },
         __self: this
       }, __jsx("input", {
@@ -42890,19 +42938,19 @@ function (_React$Component) {
         placeholder: "twitter.com/status/tweeturl",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 111
+          lineNumber: 118
         },
         __self: this
       }), __jsx("button", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 112
+          lineNumber: 119
         },
         __self: this
       }, __jsx(_components_arrow_js__WEBPACK_IMPORTED_MODULE_11__["default"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 112
+          lineNumber: 119
         },
         __self: this
       }))))), __jsx("div", {
@@ -42910,26 +42958,26 @@ function (_React$Component) {
         ref: this.result,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 117
+          lineNumber: 124
         },
         __self: this
       }, res)), __jsx("footer", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 122
+          lineNumber: 129
         },
         __self: this
       }, __jsx("small", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 123
+          lineNumber: 130
         },
         __self: this
       }, "Created by ", __jsx("a", {
         href: "https://twitter.com/matias_huapaya",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 123
+          lineNumber: 130
         },
         __self: this
       }, "Matias Huapaya"))));
