@@ -100,6 +100,13 @@ class IndexPage extends React.Component {
           <meta name="keywords" content="Twitter,Image,Background,Tweet,Instagram,Social,Media"/>
           <meta name="author" content="Matias Huapaya"/>
           <link rel="shortcut icon" href={ASSET_PREFIX + "/logo-bgwhite.png"} />
+          <meta property="og:title" content="tweet-img"/>
+          <meta property="og:description" content="Offering tour packages for individuals or groups."/>
+          <meta property="og:image" content={ASSET_PREFIX + "/example.png"}/>
+          <meta property="og:url" content="https://mhuap.github.io/tweet-img"/>
+          <meta property="og:site_name" content="tweet-img"/>
+          <meta name="twitter:card" content="summary_large_image"/>
+
         </Head>
         <div id='container'>
           <div id='form-wrapper'>
