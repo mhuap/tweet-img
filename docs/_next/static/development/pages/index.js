@@ -11,16 +11,27 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _jsxFileName = "/Users/Matias/Documents/ImageTweet/tweet-img/components/arrow.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 var Arrow = function Arrow() {
   return __jsx("svg", {
     xmlns: "http://www.w3.org/2000/svg",
-    viewBox: "0 0 46 72"
+    viewBox: "0 0 46 72",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 5
+    },
+    __self: this
   }, __jsx("path", {
     className: "icon",
-    d: "M6 39h24.757l-7.878 7.88a2.994 2.994 0 0 0 0 4.24 2.994 2.994 0 0 0 4.24 0l13-13a2.994 2.994 0 0 0 0-4.24l-13-13C26.537 20.292 25.77 20 25 20s-1.536.293-2.12.88a2.994 2.994 0 0 0 0 4.24L30.756 33H6a3 3 0 1 0 0 6z"
+    d: "M6 39h24.757l-7.878 7.88a2.994 2.994 0 0 0 0 4.24 2.994 2.994 0 0 0 4.24 0l13-13a2.994 2.994 0 0 0 0-4.24l-13-13C26.537 20.292 25.77 20 25 20s-1.536.293-2.12.88a2.994 2.994 0 0 0 0 4.24L30.756 33H6a3 3 0 1 0 0 6z",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 6
+    },
+    __self: this
   }));
 };
 
@@ -159,6 +170,10 @@ function (_React$Component) {
         var v = document.querySelector('.twitter-picker input');
         v.value = String(this.state.bg).toUpperCase().replace('#', '');
       }
+
+      react_scroll__WEBPACK_IMPORTED_MODULE_9__["scroller"].scrollTo('result-wrapper', {
+        smooth: true
+      });
     }
   }, {
     key: "render",
@@ -172,7 +187,7 @@ function (_React$Component) {
         return __jsx("p", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 101
+            lineNumber: 106
           },
           __self: this
         }, errormsg);
@@ -182,27 +197,27 @@ function (_React$Component) {
         id: "result",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 105
+          lineNumber: 110
         },
         __self: this
       }, __jsx("div", {
         id: "preview",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 107
+          lineNumber: 112
         },
         __self: this
       }, __jsx("h3", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 108
+          lineNumber: 113
         },
         __self: this
       }, "Preview"), __jsx("div", {
         className: "tweet-container-container",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 109
+          lineNumber: 114
         },
         __self: this
       }, __jsx("div", {
@@ -210,7 +225,7 @@ function (_React$Component) {
         style: bgStyle,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 110
+          lineNumber: 115
         },
         __self: this
       }, __jsx("div", {
@@ -220,7 +235,7 @@ function (_React$Component) {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 111
+          lineNumber: 116
         },
         __self: this
       }))), __jsx(react_color__WEBPACK_IMPORTED_MODULE_8__["TwitterPicker"], {
@@ -229,27 +244,27 @@ function (_React$Component) {
         colors: ['#E1E8ED', '#EB144C', '#FF8B00', '#ffd000', '#00D036', '#1DA1F2', '#ff40cf', '#7900f2'],
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 117
+          lineNumber: 122
         },
         __self: this
       })), __jsx("div", {
         id: "canvas",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 124
+          lineNumber: 129
         },
         __self: this
       }, __jsx("div", {
         id: "canvas-bar",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 125
+          lineNumber: 130
         },
         __self: this
       }, __jsx("h3", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 126
+          lineNumber: 131
         },
         __self: this
       }, "Image"), __jsx("button", {
@@ -258,35 +273,35 @@ function (_React$Component) {
         disabled: !this.state.isDiff || this.state.first,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 127
+          lineNumber: 132
         },
         __self: this
       }, __jsx("span", {
         className: "icon",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 128
+          lineNumber: 133
         },
         __self: this
       }, "\u21BB"), " Refresh")), __jsx("div", {
         className: "tweet-container-container",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 131
+          lineNumber: 136
         },
         __self: this
       }, __jsx("div", {
         className: "tweet-container",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 132
+          lineNumber: 137
         },
         __self: this
       }, __jsx("button", {
         onClick: this.imgClick,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 133
+          lineNumber: 138
         },
         __self: this
       }, "Create Image"))))));
@@ -1050,6 +1065,7 @@ module.exports = __webpack_require__(/*! ./lib/axios */ "./node_modules/axios/li
 var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 var settle = __webpack_require__(/*! ./../core/settle */ "./node_modules/axios/lib/core/settle.js");
 var buildURL = __webpack_require__(/*! ./../helpers/buildURL */ "./node_modules/axios/lib/helpers/buildURL.js");
+var buildFullPath = __webpack_require__(/*! ../core/buildFullPath */ "./node_modules/axios/lib/core/buildFullPath.js");
 var parseHeaders = __webpack_require__(/*! ./../helpers/parseHeaders */ "./node_modules/axios/lib/helpers/parseHeaders.js");
 var isURLSameOrigin = __webpack_require__(/*! ./../helpers/isURLSameOrigin */ "./node_modules/axios/lib/helpers/isURLSameOrigin.js");
 var createError = __webpack_require__(/*! ../core/createError */ "./node_modules/axios/lib/core/createError.js");
@@ -1072,7 +1088,8 @@ module.exports = function xhrAdapter(config) {
       requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
     }
 
-    request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), true);
+    var fullPath = buildFullPath(config.baseURL, config.url);
+    request.open(config.method.toUpperCase(), buildURL(fullPath, config.params, config.paramsSerializer), true);
 
     // Set the request timeout in MS
     request.timeout = config.timeout;
@@ -1133,7 +1150,11 @@ module.exports = function xhrAdapter(config) {
 
     // Handle timeout
     request.ontimeout = function handleTimeout() {
-      reject(createError('timeout of ' + config.timeout + 'ms exceeded', config, 'ECONNABORTED',
+      var timeoutErrorMessage = 'timeout of ' + config.timeout + 'ms exceeded';
+      if (config.timeoutErrorMessage) {
+        timeoutErrorMessage = config.timeoutErrorMessage;
+      }
+      reject(createError(timeoutErrorMessage, config, 'ECONNABORTED',
         request));
 
       // Clean up request
@@ -1147,7 +1168,7 @@ module.exports = function xhrAdapter(config) {
       var cookies = __webpack_require__(/*! ./../helpers/cookies */ "./node_modules/axios/lib/helpers/cookies.js");
 
       // Add xsrf header
-      var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
+      var xsrfValue = (config.withCredentials || isURLSameOrigin(fullPath)) && config.xsrfCookieName ?
         cookies.read(config.xsrfCookieName) :
         undefined;
 
@@ -1170,8 +1191,8 @@ module.exports = function xhrAdapter(config) {
     }
 
     // Add withCredentials to request if needed
-    if (config.withCredentials) {
-      request.withCredentials = true;
+    if (!utils.isUndefined(config.withCredentials)) {
+      request.withCredentials = !!config.withCredentials;
     }
 
     // Add responseType to request if needed
@@ -1450,7 +1471,15 @@ Axios.prototype.request = function request(config) {
   }
 
   config = mergeConfig(this.defaults, config);
-  config.method = config.method ? config.method.toLowerCase() : 'get';
+
+  // Set config.method
+  if (config.method) {
+    config.method = config.method.toLowerCase();
+  } else if (this.defaults.method) {
+    config.method = this.defaults.method.toLowerCase();
+  } else {
+    config.method = 'get';
+  }
 
   // Hook up interceptors middleware
   var chain = [dispatchRequest, undefined];
@@ -1567,6 +1596,38 @@ module.exports = InterceptorManager;
 
 /***/ }),
 
+/***/ "./node_modules/axios/lib/core/buildFullPath.js":
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/core/buildFullPath.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var isAbsoluteURL = __webpack_require__(/*! ../helpers/isAbsoluteURL */ "./node_modules/axios/lib/helpers/isAbsoluteURL.js");
+var combineURLs = __webpack_require__(/*! ../helpers/combineURLs */ "./node_modules/axios/lib/helpers/combineURLs.js");
+
+/**
+ * Creates a new URL by combining the baseURL with the requestedURL,
+ * only when the requestedURL is not already an absolute URL.
+ * If the requestURL is absolute, this function returns the requestedURL untouched.
+ *
+ * @param {string} baseURL The base URL
+ * @param {string} requestedURL Absolute or relative URL to combine
+ * @returns {string} The combined full path
+ */
+module.exports = function buildFullPath(baseURL, requestedURL) {
+  if (baseURL && !isAbsoluteURL(requestedURL)) {
+    return combineURLs(baseURL, requestedURL);
+  }
+  return requestedURL;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/axios/lib/core/createError.js":
 /*!****************************************************!*\
   !*** ./node_modules/axios/lib/core/createError.js ***!
@@ -1611,8 +1672,6 @@ var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/util
 var transformData = __webpack_require__(/*! ./transformData */ "./node_modules/axios/lib/core/transformData.js");
 var isCancel = __webpack_require__(/*! ../cancel/isCancel */ "./node_modules/axios/lib/cancel/isCancel.js");
 var defaults = __webpack_require__(/*! ../defaults */ "./node_modules/axios/lib/defaults.js");
-var isAbsoluteURL = __webpack_require__(/*! ./../helpers/isAbsoluteURL */ "./node_modules/axios/lib/helpers/isAbsoluteURL.js");
-var combineURLs = __webpack_require__(/*! ./../helpers/combineURLs */ "./node_modules/axios/lib/helpers/combineURLs.js");
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -1632,11 +1691,6 @@ function throwIfCancellationRequested(config) {
 module.exports = function dispatchRequest(config) {
   throwIfCancellationRequested(config);
 
-  // Support baseURL config
-  if (config.baseURL && !isAbsoluteURL(config.url)) {
-    config.url = combineURLs(config.baseURL, config.url);
-  }
-
   // Ensure headers exist
   config.headers = config.headers || {};
 
@@ -1651,7 +1705,7 @@ module.exports = function dispatchRequest(config) {
   config.headers = utils.merge(
     config.headers.common || {},
     config.headers[config.method] || {},
-    config.headers || {}
+    config.headers
   );
 
   utils.forEach(
@@ -1774,13 +1828,23 @@ module.exports = function mergeConfig(config1, config2) {
   config2 = config2 || {};
   var config = {};
 
-  utils.forEach(['url', 'method', 'params', 'data'], function valueFromConfig2(prop) {
+  var valueFromConfig2Keys = ['url', 'method', 'params', 'data'];
+  var mergeDeepPropertiesKeys = ['headers', 'auth', 'proxy'];
+  var defaultToConfig2Keys = [
+    'baseURL', 'url', 'transformRequest', 'transformResponse', 'paramsSerializer',
+    'timeout', 'withCredentials', 'adapter', 'responseType', 'xsrfCookieName',
+    'xsrfHeaderName', 'onUploadProgress', 'onDownloadProgress',
+    'maxContentLength', 'validateStatus', 'maxRedirects', 'httpAgent',
+    'httpsAgent', 'cancelToken', 'socketPath'
+  ];
+
+  utils.forEach(valueFromConfig2Keys, function valueFromConfig2(prop) {
     if (typeof config2[prop] !== 'undefined') {
       config[prop] = config2[prop];
     }
   });
 
-  utils.forEach(['headers', 'auth', 'proxy'], function mergeDeepProperties(prop) {
+  utils.forEach(mergeDeepPropertiesKeys, function mergeDeepProperties(prop) {
     if (utils.isObject(config2[prop])) {
       config[prop] = utils.deepMerge(config1[prop], config2[prop]);
     } else if (typeof config2[prop] !== 'undefined') {
@@ -1792,13 +1856,25 @@ module.exports = function mergeConfig(config1, config2) {
     }
   });
 
-  utils.forEach([
-    'baseURL', 'transformRequest', 'transformResponse', 'paramsSerializer',
-    'timeout', 'withCredentials', 'adapter', 'responseType', 'xsrfCookieName',
-    'xsrfHeaderName', 'onUploadProgress', 'onDownloadProgress', 'maxContentLength',
-    'validateStatus', 'maxRedirects', 'httpAgent', 'httpsAgent', 'cancelToken',
-    'socketPath'
-  ], function defaultToConfig2(prop) {
+  utils.forEach(defaultToConfig2Keys, function defaultToConfig2(prop) {
+    if (typeof config2[prop] !== 'undefined') {
+      config[prop] = config2[prop];
+    } else if (typeof config1[prop] !== 'undefined') {
+      config[prop] = config1[prop];
+    }
+  });
+
+  var axiosKeys = valueFromConfig2Keys
+    .concat(mergeDeepPropertiesKeys)
+    .concat(defaultToConfig2Keys);
+
+  var otherKeys = Object
+    .keys(config2)
+    .filter(function filterAxiosKeys(key) {
+      return axiosKeys.indexOf(key) === -1;
+    });
+
+  utils.forEach(otherKeys, function otherKeysDefaultToConfig2(prop) {
     if (typeof config2[prop] !== 'undefined') {
       config[prop] = config2[prop];
     } else if (typeof config1[prop] !== 'undefined') {
@@ -1906,13 +1982,12 @@ function setContentTypeIfUnset(headers, value) {
 
 function getDefaultAdapter() {
   var adapter;
-  // Only Node.JS has a process variable that is of [[Class]] process
-  if (typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]') {
-    // For node use HTTP adapter
-    adapter = __webpack_require__(/*! ./adapters/http */ "./node_modules/axios/lib/adapters/xhr.js");
-  } else if (typeof XMLHttpRequest !== 'undefined') {
+  if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
     adapter = __webpack_require__(/*! ./adapters/xhr */ "./node_modules/axios/lib/adapters/xhr.js");
+  } else if (typeof process !== 'undefined' && Object.prototype.toString.call(process) === '[object process]') {
+    // For node use HTTP adapter
+    adapter = __webpack_require__(/*! ./adapters/http */ "./node_modules/axios/lib/adapters/xhr.js");
   }
   return adapter;
 }
@@ -2434,7 +2509,6 @@ module.exports = function spread(callback) {
 
 
 var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
-var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/axios/node_modules/is-buffer/index.js");
 
 /*global toString:true*/
 
@@ -2450,6 +2524,27 @@ var toString = Object.prototype.toString;
  */
 function isArray(val) {
   return toString.call(val) === '[object Array]';
+}
+
+/**
+ * Determine if a value is undefined
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if the value is undefined, otherwise false
+ */
+function isUndefined(val) {
+  return typeof val === 'undefined';
+}
+
+/**
+ * Determine if a value is a Buffer
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Buffer, otherwise false
+ */
+function isBuffer(val) {
+  return val !== null && !isUndefined(val) && val.constructor !== null && !isUndefined(val.constructor)
+    && typeof val.constructor.isBuffer === 'function' && val.constructor.isBuffer(val);
 }
 
 /**
@@ -2506,16 +2601,6 @@ function isString(val) {
  */
 function isNumber(val) {
   return typeof val === 'number';
-}
-
-/**
- * Determine if a value is undefined
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if the value is undefined, otherwise false
- */
-function isUndefined(val) {
-  return typeof val === 'undefined';
 }
 
 /**
@@ -2765,28 +2850,6 @@ module.exports = {
   extend: extend,
   trim: trim
 };
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/node_modules/is-buffer/index.js":
-/*!************************************************************!*\
-  !*** ./node_modules/axios/node_modules/is-buffer/index.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/*!
- * Determine if an object is a Buffer
- *
- * @author   Feross Aboukhadijeh <https://feross.org>
- * @license  MIT
- */
-
-module.exports = function isBuffer (obj) {
-  return obj != null && obj.constructor != null &&
-    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
-}
 
 
 /***/ }),
@@ -33222,7 +33285,8 @@ var Chrome = exports.Chrome = function Chrome(_ref) {
       _ref$styles = _ref.styles,
       passedStyles = _ref$styles === undefined ? {} : _ref$styles,
       _ref$className = _ref.className,
-      className = _ref$className === undefined ? '' : _ref$className;
+      className = _ref$className === undefined ? '' : _ref$className,
+      defaultView = _ref.defaultView;
 
   var styles = (0, _reactcss2.default)((0, _merge2.default)({
     'default': {
@@ -33366,6 +33430,7 @@ var Chrome = exports.Chrome = function Chrome(_ref) {
         rgb: rgb,
         hsl: hsl,
         hex: hex,
+        view: defaultView,
         onChange: onChange,
         disableAlpha: disableAlpha
       })
@@ -33376,7 +33441,8 @@ var Chrome = exports.Chrome = function Chrome(_ref) {
 Chrome.propTypes = {
   width: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
   disableAlpha: _propTypes2.default.bool,
-  styles: _propTypes2.default.object
+  styles: _propTypes2.default.object,
+  defaultView: _propTypes2.default.oneOf(["hex", "rgb", "hsl"])
 };
 
 Chrome.defaultProps = {
@@ -33435,20 +33501,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var ChromeFields = exports.ChromeFields = function (_React$Component) {
   _inherits(ChromeFields, _React$Component);
 
-  function ChromeFields() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
+  function ChromeFields(props) {
     _classCallCheck(this, ChromeFields);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+    var _this = _possibleConstructorReturn(this, (ChromeFields.__proto__ || Object.getPrototypeOf(ChromeFields)).call(this));
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ChromeFields.__proto__ || Object.getPrototypeOf(ChromeFields)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      view: ''
-    }, _this.toggleViews = function () {
+    _this.toggleViews = function () {
       if (_this.state.view === 'hex') {
         _this.setState({ view: 'rgb' });
       } else if (_this.state.view === 'rgb') {
@@ -33460,7 +33518,9 @@ var ChromeFields = exports.ChromeFields = function (_React$Component) {
           _this.setState({ view: 'rgb' });
         }
       }
-    }, _this.handleChange = function (data, e) {
+    };
+
+    _this.handleChange = function (data, e) {
       if (data.hex) {
         _color2.default.isValidHex(data.hex) && _this.props.onChange({
           hex: data.hex,
@@ -33503,30 +33563,29 @@ var ChromeFields = exports.ChromeFields = function (_React$Component) {
           source: 'hsl'
         }, e);
       }
-    }, _this.showHighlight = function (e) {
+    };
+
+    _this.showHighlight = function (e) {
       e.currentTarget.style.background = '#eee';
-    }, _this.hideHighlight = function (e) {
+    };
+
+    _this.hideHighlight = function (e) {
       e.currentTarget.style.background = 'transparent';
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    };
+
+    if (props.hsl.a !== 1 && props.view === "hex") {
+      _this.state = {
+        view: "rgb"
+      };
+    } else {
+      _this.state = {
+        view: props.view
+      };
+    }
+    return _this;
   }
 
   _createClass(ChromeFields, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      if (this.props.hsl.a === 1 && this.state.view !== 'hex') {
-        this.setState({ view: 'hex' });
-      } else if (this.state.view !== 'rgb' && this.state.view !== 'hsl') {
-        this.setState({ view: 'rgb' });
-      }
-    }
-  }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(nextProps) {
-      if (nextProps.hsl.a !== 1 && this.state.view === 'hex') {
-        this.setState({ view: 'rgb' });
-      }
-    }
-  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
@@ -33736,10 +33795,22 @@ var ChromeFields = exports.ChromeFields = function (_React$Component) {
         )
       );
     }
+  }], [{
+    key: 'getDerivedStateFromProps',
+    value: function getDerivedStateFromProps(nextProps, state) {
+      if (nextProps.hsl.a !== 1 && state.view === 'hex') {
+        return { view: 'rgb' };
+      }
+      return null;
+    }
   }]);
 
   return ChromeFields;
 }(_react2.default.Component);
+
+ChromeFields.defaultProps = {
+  view: "hex"
+};
 
 exports.default = ChromeFields;
 
@@ -34349,11 +34420,6 @@ var ColorWrap = exports.ColorWrap = function ColorWrap(Picker) {
     }
 
     _createClass(ColorPicker, [{
-      key: 'componentWillReceiveProps',
-      value: function componentWillReceiveProps(nextProps) {
-        this.setState(_extends({}, _color2.default.toState(nextProps.color, this.state.oldHue)));
-      }
-    }, {
       key: 'render',
       value: function render() {
         var optionalEvents = {};
@@ -34364,6 +34430,11 @@ var ColorWrap = exports.ColorWrap = function ColorWrap(Picker) {
         return _react2.default.createElement(Picker, _extends({}, this.props, this.state, {
           onChange: this.handleChange
         }, optionalEvents));
+      }
+    }], [{
+      key: 'getDerivedStateFromProps',
+      value: function getDerivedStateFromProps(nextProps, state) {
+        return _extends({}, _color2.default.toState(nextProps.color, state.oldHue));
       }
     }]);
 
@@ -34508,14 +34579,13 @@ var EditableInput = exports.EditableInput = function (_ref) {
   }
 
   _createClass(EditableInput, [{
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(nextProps) {
-      var input = this.input;
-      if (nextProps.value !== this.state.value) {
-        if (input === document.activeElement) {
-          this.setState({ blurValue: String(nextProps.value).toUpperCase() });
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (this.props.value !== this.state.value && (prevProps.value !== this.props.value || prevState.value !== this.state.value)) {
+        if (this.input === document.activeElement) {
+          this.setState({ blurValue: String(this.props.value).toUpperCase() });
         } else {
-          this.setState({ value: String(nextProps.value).toUpperCase(), blurValue: !this.state.blurValue && String(nextProps.value).toUpperCase() });
+          this.setState({ value: String(this.props.value).toUpperCase(), blurValue: !this.state.blurValue && String(this.props.value).toUpperCase() });
         }
       }
     }
@@ -34537,7 +34607,7 @@ var EditableInput = exports.EditableInput = function (_ref) {
   }, {
     key: 'setUpdatedValue',
     value: function setUpdatedValue(value, e) {
-      var onChangeValue = this.props.label !== null ? this.getValueObjectWithLabel(value) : value;
+      var onChangeValue = this.props.label ? this.getValueObjectWithLabel(value) : value;
       this.props.onChange && this.props.onChange(onChangeValue, e);
 
       var isPercentage = getIsPercentage(e.target.value);
@@ -38665,14 +38735,16 @@ var calculateChange = exports.calculateChange = function calculateChange(e, hsl,
     left = 0;
   } else if (left > containerWidth) {
     left = containerWidth;
-  } else if (top < 0) {
+  }
+
+  if (top < 0) {
     top = 0;
   } else if (top > containerHeight) {
     top = containerHeight;
   }
 
-  var saturation = left * 100 / containerWidth;
-  var bright = -(top * 100 / containerHeight) + 100;
+  var saturation = left / containerWidth;
+  var bright = 1 - top / containerHeight;
 
   return {
     h: hsl.h,
@@ -40824,20 +40896,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var pushHash = function pushHash(hash) {
-  hash = hash ? hash.indexOf('#') === 0 ? hash : '#' + hash : '';
+  hash = hash ? hash.indexOf("#") === 0 ? hash : "#" + hash : "";
 
   if (history.pushState) {
     var loc = window.location;
-    history.pushState(null, null, hash ? loc.pathname + loc.search + hash
-    // remove hash
-    : loc.pathname + loc.search);
+    history.pushState(null, null, hash ? loc.pathname + loc.search + hash : // remove hash
+    loc.pathname + loc.search);
   } else {
     location.hash = hash;
   }
 };
 
 var getHash = function getHash() {
-  return window.location.hash.replace(/^#/, '');
+  return window.location.hash.replace(/^#/, "");
 };
 
 var filterElementInContainer = function filterElementInContainer(container) {
@@ -40846,14 +40917,9 @@ var filterElementInContainer = function filterElementInContainer(container) {
   };
 };
 
-var calculatingOffsetParent = function calculatingOffsetParent(c, t) {
-  return t.offsetParent.isEqualNode(c) ? t.offsetTop : t.offsetTop + calculatingOffsetParent(c, t.offsetParent);
-};
-
 var scrollOffset = function scrollOffset(c, t) {
-  return c === document ? t.getBoundingClientRect().top + (window.scrollY || window.pageYOffset) : getComputedStyle(c).position !== 'static' ? calculatingOffsetParent(c, t) : calculatingOffsetParent(c.offsetParent, t.offsetParent) - c.offsetTop;
+  return c === document ? t.getBoundingClientRect().top + (window.scrollY || window.pageYOffset) : getComputedStyle(c).position !== "static" ? t.offsetTop : t.offsetTop - c.offsetTop;
 };
-
 exports.default = {
   pushHash: pushHash,
   getHash: getHash,
@@ -42731,9 +42797,6 @@ function (_React$Component) {
       var _this3 = this;
 
       e.preventDefault();
-      react_scroll__WEBPACK_IMPORTED_MODULE_9__["scroller"].scrollTo('result-wrapper', {
-        smooth: true
-      });
       console.log('Submitted');
       var validatedUrl = this.validate(this.urlInput.current.value);
 
@@ -42784,7 +42847,7 @@ function (_React$Component) {
         res = __jsx("p", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 124
+            lineNumber: 120
           },
           __self: this
         }, "Loading...");
@@ -42794,7 +42857,7 @@ function (_React$Component) {
           tweet: this.state.tweet,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 126
+            lineNumber: 122
           },
           __self: this
         });
@@ -42803,20 +42866,20 @@ function (_React$Component) {
       return __jsx(react__WEBPACK_IMPORTED_MODULE_6___default.a.Fragment, null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_8___default.a, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 131
+          lineNumber: 127
         },
         __self: this
       }, __jsx("title", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 132
+          lineNumber: 128
         },
         __self: this
       }, "tweet-img"), __jsx("meta", {
         charSet: "utf-8",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 133
+          lineNumber: 129
         },
         __self: this
       }), __jsx("meta", {
@@ -42825,7 +42888,7 @@ function (_React$Component) {
         key: "viewport",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 134
+          lineNumber: 130
         },
         __self: this
       }), __jsx("meta", {
@@ -42833,7 +42896,7 @@ function (_React$Component) {
         content: "Generate image from tweets",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 135
+          lineNumber: 131
         },
         __self: this
       }), __jsx("meta", {
@@ -42841,7 +42904,7 @@ function (_React$Component) {
         content: "Twitter,Image,Background,Tweet,Instagram,Social,Media",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 136
+          lineNumber: 132
         },
         __self: this
       }), __jsx("meta", {
@@ -42849,7 +42912,7 @@ function (_React$Component) {
         content: "Matias Huapaya",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 137
+          lineNumber: 133
         },
         __self: this
       }), __jsx("link", {
@@ -42857,7 +42920,7 @@ function (_React$Component) {
         href: ASSET_PREFIX + "/logo-bgwhite.png",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 138
+          lineNumber: 134
         },
         __self: this
       }), __jsx("meta", {
@@ -42865,7 +42928,7 @@ function (_React$Component) {
         content: "tweet-img",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 139
+          lineNumber: 135
         },
         __self: this
       }), __jsx("meta", {
@@ -42873,7 +42936,7 @@ function (_React$Component) {
         content: "Offering tour packages for individuals or groups.",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 140
+          lineNumber: 136
         },
         __self: this
       }), __jsx("meta", {
@@ -42881,7 +42944,7 @@ function (_React$Component) {
         content: "https://mhuap.github.io/tweet-img/example.png",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 141
+          lineNumber: 137
         },
         __self: this
       }), __jsx("meta", {
@@ -42889,7 +42952,7 @@ function (_React$Component) {
         content: "https://mhuap.github.io/tweet-img",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 142
+          lineNumber: 138
         },
         __self: this
       }), __jsx("meta", {
@@ -42897,7 +42960,7 @@ function (_React$Component) {
         content: "tweet-img",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 143
+          lineNumber: 139
         },
         __self: this
       }), __jsx("meta", {
@@ -42905,34 +42968,34 @@ function (_React$Component) {
         content: "summary_large_image",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 144
+          lineNumber: 140
         },
         __self: this
       })), __jsx("div", {
         id: "container",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 147
+          lineNumber: 143
         },
         __self: this
       }, __jsx("div", {
         id: "form-wrapper",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 148
+          lineNumber: 144
         },
         __self: this
       }, __jsx("h1", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 149
+          lineNumber: 145
         },
         __self: this
       }, "tweet-img"), __jsx("p", {
         id: "support",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 150
+          lineNumber: 146
         },
         __self: this
       }, "Only tested on some tweets. ", __jsx("a", {
@@ -42940,7 +43003,7 @@ function (_React$Component) {
         href: "https://github.com/mhuap/tweet-img/blob/master/README.md#tweet-support",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 150
+          lineNumber: 146
         },
         __self: this
       }, "See what kinds of tweets we support.")), __jsx("form", {
@@ -42948,13 +43011,13 @@ function (_React$Component) {
         onSubmit: this.handleSubmit,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 151
+          lineNumber: 147
         },
         __self: this
       }, __jsx("label", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 152
+          lineNumber: 148
         },
         __self: this
       }, "Enter Tweet URL"), __jsx("div", {
@@ -42962,7 +43025,7 @@ function (_React$Component) {
         className: this.state.error ? 'error' : '',
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 153
+          lineNumber: 149
         },
         __self: this
       }, __jsx("input", {
@@ -42973,47 +43036,47 @@ function (_React$Component) {
         placeholder: "twitter.com/status/tweeturl",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 154
+          lineNumber: 150
         },
         __self: this
       }), __jsx("button", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 155
+          lineNumber: 151
         },
         __self: this
       }, __jsx(_components_arrow_js__WEBPACK_IMPORTED_MODULE_11__["default"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 155
+          lineNumber: 151
         },
         __self: this
       }))), this.state.error ? __jsx("p", {
         id: "error",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 157
+          lineNumber: 153
         },
         __self: this
-      }, "Not a twitter URL") : null)), __jsx("div", {
+      }, "Not a tweet URL") : null)), __jsx("div", {
         id: "result-wrapper",
         ref: this.result,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 161
+          lineNumber: 157
         },
         __self: this
       }, res)), __jsx("footer", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 166
+          lineNumber: 162
         },
         __self: this
       }, "Created by ", __jsx("a", {
         href: "https://twitter.com/matias_huapaya",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 167
+          lineNumber: 163
         },
         __self: this
       }, "Matias Huapaya")));
