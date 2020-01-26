@@ -2,9 +2,7 @@
  
 Generate image from tweet.
 
-tweet URL -> HTML div -> HTML canvas -> image
-
-Built on Next.js > statically deployed
+Built on Next.js with scraping on Google Cloud Functions.
 
 ## Development
 ```
@@ -13,11 +11,11 @@ npm run dev
 ## Details
 `pages/index.js`
 - Main layout
-- Calls `getTweet` from `scraper-client.js`.
+- Uses axios to make http request to Google Cloud Functions
 
-`scraper-client.js`
+Google Cloud Functions: `googleCloudFunctions/scraper.js`
 - Uses axios to make http request to twitter
-- Has a few string `const`s for quick and easy testing if `dev` is set to true.
+- Scrapes twitter and isolates tweet
 
 `components/result.js`
 - Handles tweet output after http request, including the conversion into a canvas and image.
@@ -33,3 +31,4 @@ npm run dev
 - [ ] w/ multiple images
 - [ ] Videos
 - [ ] Sensitive content
+- [ ] Polls
