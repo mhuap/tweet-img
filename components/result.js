@@ -54,6 +54,7 @@ class Result extends React.Component {
     });
 
     scroller.scrollTo('canvas')
+
   }
 
   imgClick(){
@@ -89,6 +90,10 @@ class Result extends React.Component {
       let v = document.querySelector('.twitter-picker input');
       v.value = String(this.state.bg).toUpperCase().replace('#','');
     }
+
+    scroller.scrollTo('result-wrapper', {
+      smooth: true,
+    })
   }
 
   render(){

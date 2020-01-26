@@ -70,10 +70,6 @@ class IndexPage extends React.Component {
   handleSubmit(e){
     e.preventDefault();
 
-    scroller.scrollTo('result-wrapper', {
-      smooth: true,
-    })
-
     console.log('Submitted');
 
     const validatedUrl = this.validate(this.urlInput.current.value);
