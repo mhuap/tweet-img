@@ -17,14 +17,15 @@ class IndexPage extends React.Component {
     super(props);
     this.state = {
         loading: false,
-        // url: '',
         blank: true,
-        tweet: ''
+        tweet: '',
+        error: false
     };
 
     this.result = React.createRef();
     this.urlInput = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.validate = this.validate.bind(this);
   }
 
   createTweet(url){
@@ -74,9 +75,43 @@ class IndexPage extends React.Component {
     })
 
     console.log('Submitted');
-    this.setState({
-        blank: false
-    }, () => this.createTweet(this.urlInput.current.value));
+
+    const validatedUrl = this.validate(this.urlInput.current.value);
+    if (validatedUrl == 0){
+      this.setState({
+        blank: true,
+        error: true
+      });
+    } else {
+      this.setState({
+          blank: false,
+          error: false
+      }, () => {
+        this.createTweet(validatedUrl);
+      });
+    }
+
+  }
+
+  validate(urlInput){
+    const regexMobile = /(https:\/\/)?mobile.twitter.com\/([a-z]|[A-Z]|\d|_){0,15}\/status\/\d{19}/g
+    const regexGen = /(https:\/\/)?(www)?twitter.com\/([a-z]|[A-Z]|\d|_){0,15}\/status\/\d{19}/g
+
+    let newInput;
+    const mobile = regexMobile.exec(urlInput);
+    if (mobile) {
+      newInput = urlInput.replace('mobile', 'www');
+    } else {
+      const valid = regexGen.exec(urlInput);
+
+      if(valid){
+        newInput = urlInput;
+      } else {
+        newInput = 0;
+      }
+    }
+
+    return newInput;
 
   }
 
@@ -90,6 +125,7 @@ class IndexPage extends React.Component {
     } else {
       res = <Result blank={this.state.blank} tweet={this.state.tweet}/>;
     }
+
     return (
       <>
         <Head>
@@ -106,18 +142,19 @@ class IndexPage extends React.Component {
           <meta property="og:url" content="https://mhuap.github.io/tweet-img"/>
           <meta property="og:site_name" content="tweet-img"/>
           <meta name="twitter:card" content="summary_large_image"/>
-
         </Head>
+
         <div id='container'>
           <div id='form-wrapper'>
             <h1>tweet-img</h1>
-            <p>Only tested on some tweets. <a target='__blank' href='https://github.com/mhuap/tweet-img/blob/master/README.md#tweet-support'>See what kinds of tweets we support.</a></p>
+            <p id='support'>Only tested on some tweets. <a target='__blank' href='https://github.com/mhuap/tweet-img/blob/master/README.md#tweet-support'>See what kinds of tweets we support.</a></p>
             <form id='top-form' onSubmit={this.handleSubmit}>
               <label>Enter Tweet URL</label>
-              <div id='form-input'>
+              <div id='form-input' className={this.state.error ? 'error' : ''}>
                 <input id='url-input'type='text' ref={this.urlInput} name='url' placeholder='twitter.com/status/tweeturl'/>
                 <button><Arrow/></button>
               </div>
+              {this.state.error ? <p id='error'>Not a tweet URL</p> : null}
             </form>
           </div>
 
@@ -127,7 +164,7 @@ class IndexPage extends React.Component {
 
         </div>
         <footer>
-          <small>Created by <a href='https://twitter.com/matias_huapaya'>Matias Huapaya</a></small>
+          Created by <a href='https://twitter.com/matias_huapaya'>Matias Huapaya</a>
         </footer>
       </>
     );

@@ -3,6 +3,8 @@ $color-dark: #14171a;
 $color-blue: #1DA1F2;
 $color-darkblue: #0071EB;
 $color-extralightgrey: #E1E8ED;
+$color-red: #dc3545;
+
 $border-radius: 0.25rem;
 $width: 500px;
 $box-shadow: 0 2px 28px 0 rgba(0,0,0,0.12);
@@ -53,6 +55,7 @@ footer {
   margin: 1rem 0;
   text-align: center;
   color: $color-grey;
+  font-size: 0.75rem;
 
   a, a:visited {
     color: $color-blue;
@@ -93,10 +96,11 @@ footer {
     margin-bottom: 1rem;
   }
 
-  p {
+  p#support {
     margin-top: 0;
     margin-bottom: 2rem;
     color: $color-grey;
+    font-size: 0.75rem;
   }
 
   a, a:visited {
@@ -106,6 +110,13 @@ footer {
 
   a:hover {
     text-decoration: underline;
+  }
+
+  #error {
+    text-align: left;
+    color: $color-red;
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
   }
 }
 
@@ -137,10 +148,24 @@ footer {
     width: 100%;
     box-sizing: border-box;
     background: none;
+    font-size: 1rem;
 
     &:focus {
       border: solid 1px $color-blue;
-      box-shadow: 0 0 0 0.2rem rgba(29, 161, 242,.25);
+      box-shadow: 0 0 0 0.2rem rgba(29, 161, 242, .25);
+      outline: none;
+    }
+  }
+
+}
+
+#form-input.error {
+
+  input {
+    border: solid 1px $color-red;
+
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, .25);
       outline: none;
     }
   }
