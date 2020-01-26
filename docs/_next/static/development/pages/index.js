@@ -42665,7 +42665,7 @@ var getTweet = __webpack_require__(/*! ../scraper-client.js */ "./scraper-client
 
 
 var errormsg = 'Error: 404 Invalid URL';
-var ASSET_PREFIX = '/tweet-img/';
+var ASSET_PREFIX = '/tweet-img';
 
 var IndexPage =
 /*#__PURE__*/
@@ -42680,13 +42680,14 @@ function (_React$Component) {
     _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__["default"])(this, Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__["default"])(IndexPage).call(this, props));
     _this.state = {
       loading: false,
-      // url: '',
       blank: true,
-      tweet: ''
+      tweet: '',
+      error: false
     };
     _this.result = react__WEBPACK_IMPORTED_MODULE_6___default.a.createRef();
     _this.urlInput = react__WEBPACK_IMPORTED_MODULE_6___default.a.createRef();
     _this.handleSubmit = _this.handleSubmit.bind(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this));
+    _this.validate = _this.validate.bind(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this));
     return _this;
   }
 
@@ -42734,11 +42735,43 @@ function (_React$Component) {
         smooth: true
       });
       console.log('Submitted');
-      this.setState({
-        blank: false
-      }, function () {
-        return _this3.createTweet(_this3.urlInput.current.value);
-      });
+      var validatedUrl = this.validate(this.urlInput.current.value);
+
+      if (validatedUrl == 0) {
+        this.setState({
+          blank: true,
+          error: true
+        });
+      } else {
+        this.setState({
+          blank: false,
+          error: false
+        }, function () {
+          _this3.createTweet(validatedUrl);
+        });
+      }
+    }
+  }, {
+    key: "validate",
+    value: function validate(urlInput) {
+      var regexMobile = /(https:\/\/)?mobile.twitter.com\/([a-z]|[A-Z]|\d|_){0,15}\/status\/\d{19}/g;
+      var regexGen = /(https:\/\/)?(www)?twitter.com\/([a-z]|[A-Z]|\d|_){0,15}\/status\/\d{19}/g;
+      var newInput;
+      var mobile = regexMobile.exec(urlInput);
+
+      if (mobile) {
+        newInput = urlInput.replace('mobile', 'www');
+      } else {
+        var valid = regexGen.exec(urlInput);
+
+        if (valid) {
+          newInput = urlInput;
+        } else {
+          newInput = 0;
+        }
+      }
+
+      return newInput;
     }
   }, {
     key: "render",
@@ -42751,7 +42784,7 @@ function (_React$Component) {
         res = __jsx("p", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 89
+            lineNumber: 124
           },
           __self: this
         }, "Loading...");
@@ -42761,7 +42794,7 @@ function (_React$Component) {
           tweet: this.state.tweet,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 91
+            lineNumber: 126
           },
           __self: this
         });
@@ -42770,20 +42803,20 @@ function (_React$Component) {
       return __jsx(react__WEBPACK_IMPORTED_MODULE_6___default.a.Fragment, null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_8___default.a, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 95
+          lineNumber: 131
         },
         __self: this
       }, __jsx("title", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 96
+          lineNumber: 132
         },
         __self: this
       }, "tweet-img"), __jsx("meta", {
         charSet: "utf-8",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 97
+          lineNumber: 133
         },
         __self: this
       }), __jsx("meta", {
@@ -42792,7 +42825,7 @@ function (_React$Component) {
         key: "viewport",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 98
+          lineNumber: 134
         },
         __self: this
       }), __jsx("meta", {
@@ -42800,7 +42833,7 @@ function (_React$Component) {
         content: "Generate image from tweets",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 99
+          lineNumber: 135
         },
         __self: this
       }), __jsx("meta", {
@@ -42808,7 +42841,7 @@ function (_React$Component) {
         content: "Twitter,Image,Background,Tweet,Instagram,Social,Media",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 100
+          lineNumber: 136
         },
         __self: this
       }), __jsx("meta", {
@@ -42816,7 +42849,7 @@ function (_React$Component) {
         content: "Matias Huapaya",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 101
+          lineNumber: 137
         },
         __self: this
       }), __jsx("link", {
@@ -42824,7 +42857,7 @@ function (_React$Component) {
         href: ASSET_PREFIX + "/logo-bgwhite.png",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 102
+          lineNumber: 138
         },
         __self: this
       }), __jsx("meta", {
@@ -42832,7 +42865,7 @@ function (_React$Component) {
         content: "tweet-img",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 103
+          lineNumber: 139
         },
         __self: this
       }), __jsx("meta", {
@@ -42840,15 +42873,15 @@ function (_React$Component) {
         content: "Offering tour packages for individuals or groups.",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 104
+          lineNumber: 140
         },
         __self: this
       }), __jsx("meta", {
         property: "og:image",
-        content: ASSET_PREFIX + "/example.png",
+        content: "https://mhuap.github.io/tweet-img/example.png",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 105
+          lineNumber: 141
         },
         __self: this
       }), __jsx("meta", {
@@ -42856,7 +42889,7 @@ function (_React$Component) {
         content: "https://mhuap.github.io/tweet-img",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 106
+          lineNumber: 142
         },
         __self: this
       }), __jsx("meta", {
@@ -42864,7 +42897,7 @@ function (_React$Component) {
         content: "tweet-img",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 107
+          lineNumber: 143
         },
         __self: this
       }), __jsx("meta", {
@@ -42872,33 +42905,34 @@ function (_React$Component) {
         content: "summary_large_image",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 108
+          lineNumber: 144
         },
         __self: this
       })), __jsx("div", {
         id: "container",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 111
+          lineNumber: 147
         },
         __self: this
       }, __jsx("div", {
         id: "form-wrapper",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 112
+          lineNumber: 148
         },
         __self: this
       }, __jsx("h1", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 113
+          lineNumber: 149
         },
         __self: this
       }, "tweet-img"), __jsx("p", {
+        id: "support",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 114
+          lineNumber: 150
         },
         __self: this
       }, "Only tested on some tweets. ", __jsx("a", {
@@ -42906,7 +42940,7 @@ function (_React$Component) {
         href: "https://github.com/mhuap/tweet-img/blob/master/README.md#tweet-support",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 114
+          lineNumber: 150
         },
         __self: this
       }, "See what kinds of tweets we support.")), __jsx("form", {
@@ -42914,20 +42948,21 @@ function (_React$Component) {
         onSubmit: this.handleSubmit,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 115
+          lineNumber: 151
         },
         __self: this
       }, __jsx("label", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 116
+          lineNumber: 152
         },
         __self: this
       }, "Enter Tweet URL"), __jsx("div", {
         id: "form-input",
+        className: this.state.error ? 'error' : '',
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 117
+          lineNumber: 153
         },
         __self: this
       }, __jsx("input", {
@@ -42938,49 +42973,50 @@ function (_React$Component) {
         placeholder: "twitter.com/status/tweeturl",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 118
+          lineNumber: 154
         },
         __self: this
       }), __jsx("button", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 119
+          lineNumber: 155
         },
         __self: this
       }, __jsx(_components_arrow_js__WEBPACK_IMPORTED_MODULE_11__["default"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 119
+          lineNumber: 155
         },
         __self: this
-      }))))), __jsx("div", {
+      }))), this.state.error ? __jsx("p", {
+        id: "error",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 157
+        },
+        __self: this
+      }, "Not a twitter URL") : null)), __jsx("div", {
         id: "result-wrapper",
         ref: this.result,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 124
+          lineNumber: 161
         },
         __self: this
       }, res)), __jsx("footer", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 129
-        },
-        __self: this
-      }, __jsx("small", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 130
+          lineNumber: 166
         },
         __self: this
       }, "Created by ", __jsx("a", {
         href: "https://twitter.com/matias_huapaya",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 130
+          lineNumber: 167
         },
         __self: this
-      }, "Matias Huapaya"))));
+      }, "Matias Huapaya")));
     }
   }]);
 
@@ -43079,7 +43115,7 @@ module.exports = getTweet;
 
 /***/ }),
 
-/***/ 0:
+/***/ 1:
 /*!******************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2FMatias%2FDocuments%2FImageTweet%2Ftweet-img%2Fpages%2Findex.js ***!
   \******************************************************************************************************************************************/
@@ -43102,5 +43138,5 @@ module.exports = dll_ef0ff7c60362f24a921f;
 
 /***/ })
 
-},[[0,"static/runtime/webpack.js","styles"]]]);
+},[[1,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=index.js.map

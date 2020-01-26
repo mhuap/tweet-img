@@ -30,7 +30,8 @@ h3 {
 footer {
   margin: 1rem 0;
   text-align: center;
-  color: #657786; }
+  color: #657786;
+  font-size: 0.75rem; }
   footer a, footer a:visited {
     color: #1DA1F2;
     text-decoration: none; }
@@ -60,15 +61,21 @@ footer {
   justify-content: flex-end; }
   #form-wrapper h1 {
     margin-bottom: 1rem; }
-  #form-wrapper p {
+  #form-wrapper p#support {
     margin-top: 0;
     margin-bottom: 2rem;
-    color: #657786; }
+    color: #657786;
+    font-size: 0.75rem; }
   #form-wrapper a, #form-wrapper a:visited {
     color: #1DA1F2;
     text-decoration: none; }
   #form-wrapper a:hover {
     text-decoration: underline; }
+  #form-wrapper #error {
+    text-align: left;
+    color: #dc3545;
+    margin-top: 0.5rem;
+    font-size: 0.75rem; }
 
 #form-input {
   position: relative;
@@ -88,15 +95,22 @@ footer {
     height: 100%;
     fill: #0071EB; }
   #form-input input {
-    padding: 0.75rem 0.75rem;
+    padding: 0.75rem 2.5rem 0.75rem 0.75rem;
     border: solid 1px #E1E8ED;
     width: 100%;
     box-sizing: border-box;
-    background: none; }
+    background: none;
+    font-size: 1rem; }
     #form-input input:focus {
       border: solid 1px #1DA1F2;
       box-shadow: 0 0 0 0.2rem rgba(29, 161, 242, 0.25);
       outline: none; }
+
+#form-input.error input {
+  border: solid 1px #dc3545; }
+  #form-input.error input:focus {
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+    outline: none; }
 
 label {
   display: block;
