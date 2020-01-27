@@ -90,8 +90,8 @@ class IndexPage extends React.Component {
   }
 
   validate(urlInput){
-    const regexMobile = /(https:\/\/)?mobile.twitter.com\/([a-z]|[A-Z]|\d|_){0,15}\/status\/\d{19}/g
-    const regexGen = /(https:\/\/)?(www)?twitter.com\/([a-z]|[A-Z]|\d|_){0,15}\/status\/\d{19}/g
+    const regexMobile = /(https:\/\/)?mobile.twitter.com\/([a-z]|[A-Z]|\d|_){0,15}\/status\/\d{1,19}/g
+    const regexGen = /(https:\/\/)?(www)?twitter.com\/([a-z]|[A-Z]|\d|_){0,15}\/status\/\d{1,19}/g
 
     let newInput;
     const mobile = regexMobile.exec(urlInput);
