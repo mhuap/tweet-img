@@ -27,7 +27,11 @@ class Result extends React.Component {
 
   genCanvas(){
     const html2canvas = require('html2canvas');
-    window.scrollTo(0,0)
+    window.scrollTo(0,0);
+
+    // Hide scrollbar to fix bug with html2canvas which adds extra whitespace to image if scrollbar is present
+    document.documentElement.style.overflow = 'hidden';
+
     html2canvas(document.querySelector("#preview .tweet-container"), {allowTaint: true, useCORS: true})
     .then((canvas) => {
 
@@ -52,6 +56,9 @@ class Result extends React.Component {
         });
       }
     });
+
+    // Un-hide scrollbar
+    document.documentElement.style.overflow = '';
 
     scroller.scrollTo('canvas')
 
