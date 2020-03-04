@@ -305,6 +305,7 @@ button {
     margin: 0;
     line-height: 1.4;
     font-size: 1rem;
+    white-space: pre-wrap;
 
     a, a:visited {
       color: $color-blue;
