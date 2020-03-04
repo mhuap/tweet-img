@@ -206,7 +206,8 @@ button {
   #tweet .tweet-text {
     margin: 0;
     line-height: 1.4;
-    font-size: 1rem; }
+    font-size: 1rem;
+    white-space: pre-wrap; }
     #tweet .tweet-text a, #tweet .tweet-text a:visited {
       color: #1DA1F2;
       text-decoration: none; }

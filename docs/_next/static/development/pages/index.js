@@ -108,7 +108,9 @@ function (_React$Component) {
 
       var html2canvas = __webpack_require__(/*! html2canvas */ "./node_modules/html2canvas/dist/html2canvas.js");
 
-      window.scrollTo(0, 0);
+      window.scrollTo(0, 0); // Hide scrollbar to fix bug with html2canvas which adds extra whitespace to image if scrollbar is present
+
+      document.documentElement.style.overflow = 'hidden';
       html2canvas(document.querySelector("#preview .tweet-container"), {
         allowTaint: true,
         useCORS: true
@@ -130,7 +132,9 @@ function (_React$Component) {
             first: false
           });
         }
-      });
+      }); // Un-hide scrollbar
+
+      document.documentElement.style.overflow = '';
       react_scroll__WEBPACK_IMPORTED_MODULE_9__["scroller"].scrollTo('canvas');
     }
   }, {
@@ -187,7 +191,7 @@ function (_React$Component) {
         return __jsx("p", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 106
+            lineNumber: 113
           },
           __self: this
         }, errormsg);
@@ -197,27 +201,27 @@ function (_React$Component) {
         id: "result",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 110
+          lineNumber: 117
         },
         __self: this
       }, __jsx("div", {
         id: "preview",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 112
+          lineNumber: 119
         },
         __self: this
       }, __jsx("h3", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 113
+          lineNumber: 120
         },
         __self: this
       }, "Preview"), __jsx("div", {
         className: "tweet-container-container",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 114
+          lineNumber: 121
         },
         __self: this
       }, __jsx("div", {
@@ -225,7 +229,7 @@ function (_React$Component) {
         style: bgStyle,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 115
+          lineNumber: 122
         },
         __self: this
       }, __jsx("div", {
@@ -235,7 +239,7 @@ function (_React$Component) {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 116
+          lineNumber: 123
         },
         __self: this
       }))), __jsx(react_color__WEBPACK_IMPORTED_MODULE_8__["TwitterPicker"], {
@@ -244,27 +248,27 @@ function (_React$Component) {
         colors: ['#E1E8ED', '#EB144C', '#FF8B00', '#ffd000', '#00D036', '#1DA1F2', '#ff40cf', '#7900f2'],
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 122
+          lineNumber: 129
         },
         __self: this
       })), __jsx("div", {
         id: "canvas",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 129
+          lineNumber: 136
         },
         __self: this
       }, __jsx("div", {
         id: "canvas-bar",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 130
+          lineNumber: 137
         },
         __self: this
       }, __jsx("h3", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 131
+          lineNumber: 138
         },
         __self: this
       }, "Image"), __jsx("button", {
@@ -273,35 +277,35 @@ function (_React$Component) {
         disabled: !this.state.isDiff || this.state.first,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 132
+          lineNumber: 139
         },
         __self: this
       }, __jsx("span", {
         className: "icon",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 133
+          lineNumber: 140
         },
         __self: this
       }, "\u21BB"), " Refresh")), __jsx("div", {
         className: "tweet-container-container",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 136
+          lineNumber: 143
         },
         __self: this
       }, __jsx("div", {
         className: "tweet-container",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 137
+          lineNumber: 144
         },
         __self: this
       }, __jsx("button", {
         onClick: this.imgClick,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 138
+          lineNumber: 145
         },
         __self: this
       }, "Create Image"))))));
@@ -42817,8 +42821,8 @@ function (_React$Component) {
   }, {
     key: "validate",
     value: function validate(urlInput) {
-      var regexMobile = /(https:\/\/)?mobile.twitter.com\/([a-z]|[A-Z]|\d|_){0,15}\/status\/\d{19}/g;
-      var regexGen = /(https:\/\/)?(www)?twitter.com\/([a-z]|[A-Z]|\d|_){0,15}\/status\/\d{19}/g;
+      var regexMobile = /(https:\/\/)?mobile.twitter.com\/([a-z]|[A-Z]|\d|_){0,15}\/status\/\d{1,19}/g;
+      var regexGen = /(https:\/\/)?(www)?twitter.com\/([a-z]|[A-Z]|\d|_){0,15}\/status\/\d{1,19}/g;
       var newInput;
       var mobile = regexMobile.exec(urlInput);
 
