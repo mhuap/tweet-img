@@ -32,3 +32,9 @@ Google Cloud Functions: `googleCloudFunctions/scraper.js`
 - [ ] Videos
 - [ ] Sensitive content
 - [ ] Polls
+
+## Features
+- [x] Solid color background
+- [ ] Gradient background
+- [ ] Upload photo background
+- [ ] No white box (content only)
