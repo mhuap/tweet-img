@@ -1,8 +1,12 @@
 {
   "name": "tweet-img",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Generate image from tweets",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git:https://github.com/mhuap/tweet-img"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
