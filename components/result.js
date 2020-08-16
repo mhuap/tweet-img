@@ -1,8 +1,8 @@
 import React from "react";
 
-import axios from 'axios';
 import { TwitterPicker } from 'react-color';
 import { scroller } from 'react-scroll';
+import Tweet from '../components/tweet';
 
 const errormsg = 'Error: 404 Invalid URL';
 
@@ -16,7 +16,6 @@ class Result extends React.Component {
       isDiff: false, // is the image different from the preview
       first: true // is this the first image to be generated
     }
-
 
     this.handleColorChange = this.handleColorChange.bind(this);
     this.genCanvas = this.genCanvas.bind(this);
@@ -120,9 +119,10 @@ class Result extends React.Component {
             <h3>Preview</h3>
             <div className='tweet-container-container'>
               <div className='tweet-container' style={bgStyle}>
-                <div id='tweet' dangerouslySetInnerHTML={{__html: this.props.tweet}}>
-
-                </div>
+                <Tweet
+                  tweet={this.props.tweet}
+                  user={this.props.user}
+                />
               </div>
             </div>
 

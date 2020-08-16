@@ -18,8 +18,20 @@ class IndexPage extends React.Component {
     this.state = {
         loading: false,
         blank: true,
-        tweet: '',
-        error: false
+        error: false,
+        tweet: {
+          text: '',
+          date: null,
+          media: null,
+          urls: null,
+          other: null,
+        },
+        user: {
+          username: '',
+          name: '',
+          verified: false,
+          img: null,
+        },
     };
 
     this.result = React.createRef();
@@ -40,15 +52,72 @@ class IndexPage extends React.Component {
     // axios.post('/api', {
     //   url: url
     // })
-    axios.post('https://us-central1-tweet-img.cloudfunctions.net/scraper', {
-      url: url
+    axios.post('/api/tweet', {
+      tweetId: url
     })
     .then(response => {
       console.log('response')
       // console.log(response)
+      const tweet = response.data.data[0];
+
+      let media;
+      if (tweet.attachments){
+        media = response.data.includes.media[0].url;
+      } else {
+        media = null;
+      }
+
+      // console.log(media)
+
+      const user = response.data.includes.users[0];
+
+      const tweetUrls = {};
+      const other = [];
+
+      if (tweet.entities){
+
+        // URLs
+        if (tweet.entities.urls){
+          const urls = tweet.entities.urls;
+          for (let i = 0; i < urls.length; i++){
+            if (!urls[i].display_url.includes('pic.twitter.com')){
+              tweetUrls[urls[i].url] = urls[i].display_url;
+            }
+          }
+        }
+
+        if (tweet.entities.mentions){
+          const mentions = tweet.entities.mentions;
+          for (let i = 0; i < mentions.length; i++){
+            other.push('@' + mentions[i].username);
+          }
+        }
+
+        if (tweet.entities.hashtags){
+          const hashtags = tweet.entities.hashtags;
+          for (let i = 0; i < hashtags.length; i++){
+            other.push('#' + hashtags[i].tag);
+          }
+        }
+
+      }
+
+      // console.log(tweetUrls);
 
       this.setState({
-        tweet: response.data,
+        tweet: {
+          text: tweet.text,
+          date: tweet.created_at,
+          media: media,
+          urls: tweetUrls,
+          other: other,
+        },
+        user: {
+          username: user.username,
+          name: user.name,
+          verified: user.verified,
+          img: user.profile_image_url,
+        },
         loading: false
       });
 
@@ -72,8 +141,8 @@ class IndexPage extends React.Component {
 
     console.log('Submitted');
 
-    const validatedUrl = this.validate(this.urlInput.current.value);
-    if (validatedUrl == 0){
+    const tweetId = this.validate(this.urlInput.current.value);
+    if (tweetId == 0){
       this.setState({
         blank: true,
         error: true
@@ -83,25 +152,25 @@ class IndexPage extends React.Component {
           blank: false,
           error: false
       }, () => {
-        this.createTweet(validatedUrl);
+        this.createTweet(tweetId);
       });
     }
 
   }
 
   validate(urlInput){
-    const regexMobile = /(https:\/\/)?mobile.twitter.com\/([a-z]|[A-Z]|\d|_){0,15}\/status\/\d{1,19}/g
-    const regexGen = /(https:\/\/)?(www)?twitter.com\/([a-z]|[A-Z]|\d|_){0,15}\/status\/\d{1,19}/g
+    const regexMobile = /(https:\/\/)?mobile.twitter.com\/([a-z]|[A-Z]|\d|_){0,15}\/status\/(\d{1,19})/g
+    const regexGen = /(https:\/\/)?(www)?twitter.com\/([a-z]|[A-Z]|\d|_){0,15}\/status\/(\d{1,19})/g
 
     let newInput;
     const mobile = regexMobile.exec(urlInput);
     if (mobile) {
-      newInput = urlInput.replace('mobile', 'www');
+      newInput = mobile[3];
     } else {
       const valid = regexGen.exec(urlInput);
 
       if(valid){
-        newInput = urlInput;
+        newInput = valid[4];
       } else {
         newInput = 0;
       }
@@ -119,7 +188,8 @@ class IndexPage extends React.Component {
     } else if (this.state.loading){
       res = <p>Loading...</p>;
     } else {
-      res = <Result blank={this.state.blank} tweet={this.state.tweet}/>;
+      res = <Result blank={this.state.blank} tweet={this.state.tweet} user={this.state.user}/>;
+      // res = this.state.tweet.text;
     }
 
     return (

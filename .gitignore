@@ -6,6 +6,7 @@
 /build
 /.next
 /.next-export
+/.env.local
 
 # misc
 .DS_Store

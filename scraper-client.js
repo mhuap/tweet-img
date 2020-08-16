@@ -5,8 +5,8 @@ const $ = require("jquery");
 // const url = 'https://twitter.com/SciShow/status/1208767945813442564'
 // const url = 'https://publish.twitter.com/#'
 // https://twitter.com/redditships/status/1210309670654664719
-const twitterLogo = require('./components/twitter-logo.js');
-const verifiedBadge = require('./components/verified.js');
+// const twitterLogo = require('./components/twitter-logo.js');
+// const verifiedBadge = require('./components/verified.js');
 
 const str2 = `<div class="permalink-tweet"><a class="account-group js-account-group js-action-profile js-user-profile-link js-nav" href="/ProBirdRights" data-user-id="448476934">
       <img class="avatar js-action-profile-avatar" src="https://pbs.twimg.com/profile_images/684212991714131972/15IGSMB2_bigger.jpg" alt>
