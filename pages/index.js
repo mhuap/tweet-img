@@ -8,7 +8,7 @@ import Result from '../components/result';
 import Arrow from '../components/arrow.js';
 import '../scss/index.scss';
 
-const errormsg = 'Error: 404 Invalid URL';
+const serverErrorMsg = 'Server Error';
 const ASSET_PREFIX = '/tweet-img';
 
 class IndexPage extends React.Component {
@@ -41,23 +41,19 @@ class IndexPage extends React.Component {
   }
 
   createTweet(url){
-    console.log('axios');
+    // console.log('axios');
 
     this.setState({
       loading: true
     })
-    console.log('loading')
+    // console.log('loading')
 
     // SERVER-SIDE
-    // axios.post('/api', {
-    //   url: url
-    // })
     axios.post('/api/tweet', {
       tweetId: url
     })
     .then(response => {
-      console.log('response')
-      // console.log(response)
+      // console.log('response')
       const tweet = response.data.data[0];
 
       let media;
@@ -121,7 +117,7 @@ class IndexPage extends React.Component {
         loading: false
       });
 
-      console.log('not loading')
+      // console.log('not loading')
 
     })
     .catch(error => {
@@ -131,7 +127,7 @@ class IndexPage extends React.Component {
         loading: false
       });
 
-      console.log('not loading')
+      // console.log('not loading')
     })
 
   }
@@ -139,7 +135,7 @@ class IndexPage extends React.Component {
   handleSubmit(e){
     e.preventDefault();
 
-    console.log('Submitted');
+    // console.log('Submitted');
 
     const tweetId = this.validate(this.urlInput.current.value);
     if (tweetId == 0){
@@ -213,7 +209,8 @@ class IndexPage extends React.Component {
         <div id='container'>
           <div id='form-wrapper'>
             <h1>tweet-img</h1>
-            <p id='support'>Only tested on some tweets. <a target='__blank' href='https://github.com/mhuap/tweet-img/blob/master/README.md#tweet-support'>See what kinds of tweets we support.</a></p>
+            {/* <p id='support'>Only tested on some tweets. <a target='__blank' href='https://github.com/mhuap/tweet-img/blob/master/README.md#tweet-support'>See what kinds of tweets we support.</a></p> */}
+            <p style={{color:"#dc3545"}}>Currently down because Twitter obfuscated its CSS. Working on integrating with the official Twitter API.</p>
             <form id='top-form' onSubmit={this.handleSubmit}>
               <label>Enter Tweet URL</label>
               <div id='form-input' className={this.state.error ? 'error' : ''}>
