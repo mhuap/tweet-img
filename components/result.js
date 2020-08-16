@@ -4,7 +4,7 @@ import { TwitterPicker } from 'react-color';
 import { scroller } from 'react-scroll';
 import Tweet from '../components/tweet';
 
-const errormsg = 'Error: 404 Invalid URL';
+const serverErrorMsg = 'Server Error';
 
 class Result extends React.Component {
 
@@ -92,7 +92,7 @@ class Result extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.tweet !== errormsg){
+    if (this.props.tweet !== serverErrorMsg){
       let v = document.querySelector('.twitter-picker input');
       v.value = String(this.state.bg).toUpperCase().replace('#','');
     }
@@ -108,8 +108,8 @@ class Result extends React.Component {
     let bgStyle = {backgroundColor: this.state.bg}
 
     // console.log(this.props.tweet);
-    if (this.props.tweet === errormsg){
-      return <p>{errormsg}</p>
+    if (this.props.tweet === serverErrorMsg){
+      return <p>{serverErrorMsg}</p>
     }
     return (
       <>

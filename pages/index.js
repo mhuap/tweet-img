@@ -9,10 +9,7 @@ import Arrow from '../components/arrow.js';
 import '../scss/index.scss';
 
 const serverErrorMsg = 'Server Error';
-let ASSET_PREFIX = ''
-if (process.env.NODE_ENV === 'production'){
-  ASSET_PREFIX = '/tweet-img';
-}
+let ASSET_PREFIX = '';
 
 class IndexPage extends React.Component {
 
