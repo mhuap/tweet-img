@@ -123,7 +123,7 @@ class IndexPage extends React.Component {
     .catch(error => {
 
       this.setState({
-        tweet: errormsg,
+        tweet: serverErrorMsg,
         loading: false
       });
 
