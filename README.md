@@ -1,6 +1,6 @@
 # tweet-img
  
-Generate image from tweet.
+Generate image from tweet
 
 Built on Next.js with scraping on Google Cloud Functions.
 
