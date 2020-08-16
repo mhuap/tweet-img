@@ -9,7 +9,10 @@ import Arrow from '../components/arrow.js';
 import '../scss/index.scss';
 
 const serverErrorMsg = 'Server Error';
-const ASSET_PREFIX = '/tweet-img';
+let ASSET_PREFIX = ''
+if (process.env.NODE_ENV === 'production'){
+  ASSET_PREFIX = '/tweet-img';
+}
 
 class IndexPage extends React.Component {
 
@@ -49,7 +52,7 @@ class IndexPage extends React.Component {
     // console.log('loading')
 
     // SERVER-SIDE
-    axios.post('/api/tweet', {
+    axios.post(ASSET_PREFIX + '/api/tweet', {
       tweetId: url
     })
     .then(response => {
