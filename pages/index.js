@@ -9,7 +9,6 @@ import Arrow from '../components/arrow.js';
 import '../scss/index.scss';
 
 const serverErrorMsg = 'Server Error';
-let ASSET_PREFIX = '';
 
 class IndexPage extends React.Component {
 
@@ -49,7 +48,7 @@ class IndexPage extends React.Component {
     // console.log('loading')
 
     // SERVER-SIDE
-    axios.post(ASSET_PREFIX + '/api/tweet', {
+    axios.post('/api/tweet', {
       tweetId: url
     })
     .then(response => {
@@ -197,7 +196,7 @@ class IndexPage extends React.Component {
           <meta name="description" content="Generate image from tweets"/>
           <meta name="keywords" content="Twitter,Image,Background,Tweet,Instagram,Social,Media"/>
           <meta name="author" content="Matias Huapaya"/>
-          <link rel="shortcut icon" href={ASSET_PREFIX + "/logo-bgwhite.png"} />
+          <link rel="shortcut icon" href="/logo-bgwhite.png"/>
           <meta property="og:title" content="tweet-img"/>
           <meta property="og:description" content="Offering tour packages for individuals or groups."/>
           <meta property="og:image" content="https://mhuap.github.io/tweet-img/example.png"/>
@@ -209,15 +208,14 @@ class IndexPage extends React.Component {
         <div id='container'>
           <div id='form-wrapper'>
             <h1>tweet-img</h1>
-            {/* <p id='support'>Only tested on some tweets. <a target='__blank' href='https://github.com/mhuap/tweet-img/blob/master/README.md#tweet-support'>See what kinds of tweets we support.</a></p> */}
-            <p style={{color:"#dc3545"}}>Currently down because Twitter obfuscated its CSS. Working on integrating with the official Twitter API.</p>
+            <p id='support'>Only tested on some kinds of tweets. <a target='__blank' href='https://github.com/mhuap/tweet-img/blob/master/README.md#tweet-support'>See what kinds of tweets we support.</a></p>
             <form id='top-form' onSubmit={this.handleSubmit}>
               <label>Enter Tweet URL</label>
               <div id='form-input' className={this.state.error ? 'error' : ''}>
                 <input id='url-input'type='text' ref={this.urlInput} name='url' placeholder='twitter.com/status/tweeturl'/>
                 <button><Arrow/></button>
               </div>
-              {this.state.error ? <p id='error'>Not a tweet URL</p> : null}
+              <p id='error'>{this.state.error ? 'Not a tweet URL' : ''}</p>
             </form>
           </div>
 
@@ -227,7 +225,7 @@ class IndexPage extends React.Component {
 
         </div>
         <footer>
-          Created by <a href='https://twitter.com/matias_huapaya'>Matias Huapaya</a>
+          Created by <a href='https://twitter.com/matias_huapaya'>Matias Huapaya</a>. Not officially affiliated with Twitter.
         </footer>
       </>
     );

@@ -13,93 +13,61 @@ class Result extends React.Component {
 
     this.state = {
       bg: '#E1E8ED',
-      isDiff: false, // is the image different from the preview
-      first: true // is this the first image to be generated
+      img: null,
     }
 
     this.handleColorChange = this.handleColorChange.bind(this);
     this.genCanvas = this.genCanvas.bind(this);
     this.imgClick = this.imgClick.bind(this);
-    this.refresh = this.refresh.bind(this);
 
   }
 
   genCanvas(){
     const html2canvas = require('html2canvas');
-    window.scrollTo(0,0);
+
+    // necessary for proper image creation with html2canvas
+    window.scrollTo({ top: 0})
 
     // Hide scrollbar to fix bug with html2canvas which adds extra whitespace to image if scrollbar is present
     document.documentElement.style.overflow = 'hidden';
 
-    html2canvas(document.querySelector("#preview .tweet-container"), {allowTaint: true, useCORS: true})
+    return html2canvas(document.querySelector("#preview .sq-container"), {allowTaint: true, useCORS: true})
     .then((canvas) => {
+      scroller.scrollTo('result-wrapper', {
+        smooth: false,
+      })
 
-      canvas.className = 'tweet-container-container';
-      let img = document.createElement('img');
-      img.src = canvas.toDataURL();
+      // Un-hide scrollbar
+      document.documentElement.style.overflow = '';
 
-      if (this.state.first){
-        let div = document.querySelector('#canvas .tweet-container-container');
-        div.parentNode.replaceChild(img, div);
-      } else {
-        let old = document.querySelector('#canvas > img');
-
-        old.parentNode.replaceChild(img, old);
-      }
-
+      const src = canvas.toDataURL();
+      return src;
     })
-    .then(() => {
-      if (this.state.first){
-        this.setState({
-          first: false
-        });
-      }
-    });
 
-    // Un-hide scrollbar
-    document.documentElement.style.overflow = '';
-
-    scroller.scrollTo('canvas')
 
   }
 
-  imgClick(){
-    this.genCanvas()
-  }
-
-  refresh(){
+  async imgClick(){
+    const img = await this.genCanvas();
     this.setState({
-      isDiff: false
+      img: img
     });
-    this.genCanvas();
   }
+
 
   handleColorChange(color, event){
-    if (this.state.first){
-      this.setState({
-        bg: color.hex
-      });
-    } else {
-      this.setState({
-        bg: color.hex,
-        isDiff: true
-      });
-    }
-
-    let v = document.querySelector('.twitter-picker input');
-    v.value = String(color.hex).toUpperCase().replace('#','');
+    this.setState({
+      bg: color.hex
+    });
 
   }
 
   componentDidMount() {
-    if (this.props.tweet !== serverErrorMsg){
-      let v = document.querySelector('.twitter-picker input');
-      v.value = String(this.state.bg).toUpperCase().replace('#','');
-    }
 
     scroller.scrollTo('result-wrapper', {
       smooth: true,
     })
+
   }
 
   render(){
@@ -111,42 +79,40 @@ class Result extends React.Component {
     if (this.props.tweet === serverErrorMsg){
       return <p>{serverErrorMsg}</p>
     }
+
+    let content;
+
+    if (this.state.img){
+      content = <img className='tweet-img' src={this.state.img}/>
+    } else {
+      content = <>
+        <div id='preview'>
+          <h3>Preview</h3>
+          <div className='sq-container-container'>
+            <div className='sq-container' style={bgStyle}>
+              <Tweet
+                tweet={this.props.tweet}
+                user={this.props.user}
+              />
+            </div>
+          </div>
+
+          <TwitterPicker
+            triangle='hide'
+            onChangeComplete={this.handleColorChange}
+            colors={['#E1E8ED', '#EB144C', '#FF8B00', '#ffd000', '#00D036', '#1DA1F2', '#ff40cf', '#7900f2']}
+            color={this.state.bg}/>
+
+        </div>
+
+        <button onClick={this.imgClick}>Create Image</button>
+      </>
+    }
+
     return (
       <>
         <div id='result'>
-
-          <div id='preview'>
-            <h3>Preview</h3>
-            <div className='tweet-container-container'>
-              <div className='tweet-container' style={bgStyle}>
-                <Tweet
-                  tweet={this.props.tweet}
-                  user={this.props.user}
-                />
-              </div>
-            </div>
-
-            <TwitterPicker
-              triangle='hide'
-              onChangeComplete={this.handleColorChange}
-              colors={['#E1E8ED', '#EB144C', '#FF8B00', '#ffd000', '#00D036', '#1DA1F2', '#ff40cf', '#7900f2']}/>
-
-          </div>
-
-          <div id='canvas'>
-            <div id='canvas-bar'>
-              <h3>Image</h3>
-              <button id='refresh' onClick={this.refresh} disabled={!this.state.isDiff || this.state.first}>
-                <span className='icon'>&#8635;</span> Refresh
-              </button>
-            </div>
-            <div className='tweet-container-container'>
-              <div className='tweet-container'>
-                <button onClick={this.imgClick}>Create Image</button>
-              </div>
-            </div>
-          </div>
-
+        {content}
         </div>
       </>
     );

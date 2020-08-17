@@ -10,9 +10,9 @@ $width: 500px;
 $box-shadow: 0 2px 28px 0 rgba(0,0,0,0.12);
 
 $breakpoint-lg: 768px;
-$breakpoint-sm: 475px;
+$breakpoint-sm: 532px;
 
-@import url('https://fonts.googleapis.com/css?family=Lato:700,900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans:700,900&display=swap');
 
 
 html {
@@ -37,8 +37,7 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: Lato, sans-serif;
-  // font-family: Poppins, sans-serif;
+  font-family: 'PT Sans', sans-serif;
 }
 
 h1 {
@@ -86,8 +85,7 @@ footer {
 #form-wrapper {
   width: 100%;
   margin: 0 auto;
-  margin-bottom: 4rem;
-  height: 50vh;
+  height: 40vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -117,6 +115,7 @@ footer {
     color: $color-red;
     margin-top: 0.5rem;
     font-size: 0.75rem;
+    height: 0.75rem;
   }
 }
 
@@ -184,25 +183,24 @@ button {
   color: white;
   font-size: 1rem;
   letter-spacing: 0.25px;
+  width: max-content;
+  margin: auto;
 
   &:focus {
     outline: none;
   }
 }
 
+
+// RESULT --
 #result {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin-bottom: 2rem;
 }
 
-.tweet-container-container {
+.sq-container-container {
   margin: 0 auto;
-  // border: solid 1px black;
-  box-shadow: $box-shadow;
-  width: 100%;
-  margin-bottom: 1rem;
 }
 
 .twitter-picker {
@@ -215,62 +213,26 @@ button {
   // clear: left
 }
 
-.tweet-container:before {
+.sq-container:before {
   content: "";
   display: block;
   padding-top: 100%;
   float: left;
 }
 
-.tweet-container {
+.sq-container {
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#canvas {
-  display: flex;
-  flex-direction: column;
-
-  > img {
-    width: 100%;
-    box-shadow: $box-shadow;
-  }
+.tweet-img {
+  width: 100%;
+  // box-shadow: $box-shadow;
 }
 
-#canvas-bar {
-  display: flex;
-  // justify-content: space-between;
-  align-items: center;
-
-  h3 {
-    display: inline;
-    margin-right: 1rem;
-  }
-
-  #refresh, #refresh:disabled {
-    background: none;
-    padding: 0;
-    font-family: inherit;
-  }
-
-  #refresh {
-    color: $color-darkblue;
-  }
-
-  #refresh:disabled {
-    color: $color-extralightgrey;
-  }
-
-  #refresh span {
-    font-size: 2rem;
-    position: relative;
-    top: 0.2rem;
-    line-height: 0;
-  }
-
-}
+// TWEET
 
 #tweet {
   text-align: left;
@@ -367,10 +329,10 @@ button {
     max-width: 550px;
   }
 
-  #canvas {
-    > img {
-      width: $width;
-    }
+  // RESULT
+
+  #result {
+    width: $width;
   }
 
 }
@@ -380,18 +342,15 @@ button {
   #container {
     max-width: none;
   }
-  .tweet-container-container {
-    width: $width;
-  }
 
   #form-wrapper {
     width: $width;
   }
 
+  // RESULT
+
   #result {
-    flex-direction: row;
-    flex-wrap: wrap;
-    max-width: 80%;
+    // max-width: 80%;
     margin-left: auto;
     margin-right: auto;
   }
