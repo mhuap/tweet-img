@@ -1,8 +1,8 @@
 # tweet-img
  
-Generate image from tweet
+Generate an image from tweet.
 
-Built on Next.js with scraping on Google Cloud Functions.
+Built on Next.js using Twitter API and deployed on Vercel.
 
 ## Development
 ```
@@ -11,11 +11,11 @@ npm run dev
 ## Details
 `pages/index.js`
 - Main layout
-- Uses axios to make http request to Google Cloud Functions
+- Uses axios to make request to `api/tweet`
+- parses through JSON from Twitter API
 
-Google Cloud Functions: `googleCloudFunctions/scraper.js`
-- Uses axios to make http request to twitter
-- Scrapes twitter and isolates tweet
+`api/tweet`
+- Uses axios to make request to Twitter API
 
 `components/result.js`
 - Handles tweet output after http request, including the conversion into a canvas and image.
