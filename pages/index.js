@@ -196,11 +196,11 @@ class IndexPage extends React.Component {
           <meta name="description" content="Generate image from tweets"/>
           <meta name="keywords" content="Twitter,Image,Background,Tweet,Instagram,Social,Media"/>
           <meta name="author" content="Matias Huapaya"/>
-          <link rel="shortcut icon" href="/logo-bgwhite.png"/>
+          <link rel="shortcut icon" href="https://tweet-img.vercel.app/logo-bgwhite.png"/>
           <meta property="og:title" content="tweet-img"/>
           <meta property="og:description" content="Generate images from tweets."/>
-          <meta property="og:image" content="/example.png"/>
-          <meta property="og:url" content="https://mhuap.github.io/tweet-img"/>
+          <meta property="og:image" content="	https://tweet-img.vercel.app/example.png"/>
+          <meta property="og:url" content="	https://tweet-img.vercel.app/tweet-img"/>
           <meta property="og:site_name" content="tweet-img"/>
           <meta name="twitter:card" content="summary_large_image"/>
         </Head>
