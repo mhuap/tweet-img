@@ -200,7 +200,7 @@ class IndexPage extends React.Component {
           <meta property="og:title" content="tweet-img"/>
           <meta property="og:description" content="Generate images from tweets."/>
           <meta property="og:image" content="	https://tweet-img.vercel.app/example.png"/>
-          <meta property="og:url" content="	https://tweet-img.vercel.app/tweet-img"/>
+          <meta property="og:url" content="	https://tweet-img.vercel.app"/>
           <meta property="og:site_name" content="tweet-img"/>
           <meta name="twitter:card" content="summary_large_image"/>
         </Head>
