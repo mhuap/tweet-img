@@ -25,12 +25,10 @@ Google Cloud Functions: `googleCloudFunctions/scraper.js`
 - [x] w/ 1 image
 - [x] Links
 - [x] By verified accounts
-- [x] Emojis in text
-- [x] Emojis in names
+- [x] Mentions
 - [ ] Quote Tweets
 - [ ] w/ multiple images
 - [ ] Videos
-- [ ] Sensitive content
 - [ ] Polls
 
 ## Features
