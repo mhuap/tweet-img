@@ -199,7 +199,7 @@ class IndexPage extends React.Component {
           <link rel="shortcut icon" href="/logo-bgwhite.png"/>
           <meta property="og:title" content="tweet-img"/>
           <meta property="og:description" content="Generate images from tweets."/>
-          <meta property="og:image" content="https://mhuap.github.io/tweet-img/example.png"/>
+          <meta property="og:image" content="/example.png"/>
           <meta property="og:url" content="https://mhuap.github.io/tweet-img"/>
           <meta property="og:site_name" content="tweet-img"/>
           <meta name="twitter:card" content="summary_large_image"/>
