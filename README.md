@@ -1,5 +1,5 @@
 # tweet-img
- 
+
 Generate an image from tweet.
 
 Built on Next.js using Twitter API and deployed on Vercel.
@@ -7,6 +7,13 @@ Built on Next.js using Twitter API and deployed on Vercel.
 ## Development
 ```
 npm run dev
+```
+push to master to update build
+
+using [npm-check-updates](https://www.npmjs.com/package/npm-check-updates)
+```
+ncu -x html2canvas
+npm install
 ```
 ## Details
 `pages/index.js`
@@ -36,3 +43,7 @@ npm run dev
 - [ ] Gradient background
 - [ ] Upload photo background
 - [ ] No white box (content only)
+
+## Future adaptations
+- twitter bot
+- app

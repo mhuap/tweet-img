@@ -7,6 +7,7 @@
 /.next
 /.next-export
 /.env.local
+/package-lock.json
 
 # misc
 .DS_Store
