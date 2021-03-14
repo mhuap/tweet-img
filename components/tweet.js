@@ -11,7 +11,7 @@ const verifiedIcon = <img id='badge' src='/verified.png'/>
 const twitterLogo = <img id='logo' src='/twitterlogoblue.png'/>
 
 function Tweet(props){
-  const media = props.tweet.media ? <img src={props.tweet.media}/> : null;
+  const media = props.tweet.media ? <img crossorigin="*" src={props.tweet.media}/> : null;
 
   const iso = new Date(props.tweet.date);
   const month = monthNames[iso.getMonth()]
@@ -70,7 +70,7 @@ function Tweet(props){
   return (
     <div id='tweet'>
       <div>
-        <img className='avatar' src={props.user.img} />
+        <img className='avatar' crossorigin='*' src={props.user.img} />
         <div className='account-group'>
           <div className='name'>
             <span><b>{props.user.name}</b></span>

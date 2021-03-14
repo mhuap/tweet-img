@@ -31,7 +31,7 @@ class Result extends React.Component {
     // Hide scrollbar to fix bug with html2canvas which adds extra whitespace to image if scrollbar is present
     document.documentElement.style.overflow = 'hidden';
 
-    return html2canvas(document.querySelector("#preview .sq-container"), {allowTaint: true, useCORS: true})
+    return html2canvas(document.querySelector("#preview .sq-container"), {allowTaint: false, useCORS: true})
     .then((canvas) => {
       scroller.scrollTo('result-wrapper', {
         smooth: false,
