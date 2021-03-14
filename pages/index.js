@@ -6,7 +6,6 @@ const getTweet = require("../scraper-client.js");
 // import SEO from "../components/seo"
 import Result from '../components/result';
 import Arrow from '../components/arrow.js';
-import '../scss/index.scss';
 
 const serverErrorMsg = 'Server Error';
 
