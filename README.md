@@ -33,10 +33,11 @@ npm install
 - [x] Links
 - [x] By verified accounts
 - [x] Mentions
-- [ ] Quote Tweets
+- [ ] Private accounts
 - [ ] w/ multiple images
 - [ ] Videos
 - [ ] Polls
+- [ ] Quote Tweets
 
 ## Features
 - [x] Solid color background

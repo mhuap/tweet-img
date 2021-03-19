@@ -8,7 +8,6 @@ import regexifyString from "regexify-string";
 var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const verifiedIcon = <img id='badge' src='/verified.png'/>
-const twitterLogo = <img id='logo' src='/twitterlogoblue.png'/>
 
 function Tweet(props){
   const media = props.tweet.media ? <img crossorigin="*" src={props.tweet.media}/> : null;
@@ -83,8 +82,6 @@ function Tweet(props){
       <div className='media'>
         {media}
       </div>
-
-      {twitterLogo}
       <div className='date'>{fullDate}</div>
     </div>
   )

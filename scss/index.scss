@@ -288,20 +288,12 @@ button {
     margin-top: 1.5rem;
   }
 
-  #logo {
-    width: 1.75rem;
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 1.5rem;
-    margin-top: 0;
-  }
-
   #badge {
     width: 1rem;
     height: 1rem;
     display: inline;
     padding-left: 0.25rem;
+    align-self: center;
   }
 
   svg .icon {

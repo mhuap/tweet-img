@@ -2,7 +2,6 @@ import React from "react";
 import axios from 'axios';
 import Head from 'next/head';
 import { scroller } from 'react-scroll';
-const getTweet = require("../scraper-client.js");
 // import SEO from "../components/seo"
 import Result from '../components/result';
 import Arrow from '../components/arrow.js';
