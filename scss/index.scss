@@ -2,12 +2,17 @@ $color-grey: #657786;
 $color-dark: #14171a;
 $color-blue: #1DA1F2;
 $color-darkblue: #0071EB;
-$color-extralightgrey: #E1E8ED;
+$color-extralightgrey: #d3dade;
 $color-red: #dc3545;
 
 $border-radius: 0.25rem;
+$border-extralightgrey: solid 1px $color-extralightgrey;
+
+$rounded-radius: 10px;
+$rounded-padding: 0 16px 0 32px;
+$rounded-height: 46px;
+
 $width: 500px;
-$box-shadow: 0 2px 28px 0 rgba(0,0,0,0.12);
 
 $breakpoint-lg: 768px;
 $breakpoint-sm: 532px;
@@ -66,6 +71,22 @@ footer {
   }
 }
 
+input {
+  padding: 0.75rem 2.5rem 0.75rem 0.75rem;
+  border: $border-extralightgrey;
+  border-radius: $rounded-radius;
+  width: 100%;
+  box-sizing: border-box;
+  background: none;
+  font-size: 1rem;
+
+  &:focus {
+    border: solid 1px $color-blue;
+    box-shadow: 0 0 0 0.2rem rgba(29, 161, 242, .25);
+    outline: none;
+  }
+}
+
 #container {
   margin: 0 auto;
   width: 100%;
@@ -98,7 +119,6 @@ footer {
     margin-top: 0;
     margin-bottom: 2rem;
     color: $color-grey;
-    font-size: 0.75rem;
   }
 
   a, a:visited {
@@ -113,7 +133,7 @@ footer {
   #error {
     text-align: left;
     color: $color-red;
-    margin-top: 0.5rem;
+    margin-bottom: 0;
     font-size: 0.75rem;
     height: 0.75rem;
   }
@@ -134,26 +154,12 @@ footer {
     height: 100%;
     background: none;
     color: $color-darkblue;
+    width: max-content;
   }
 
   svg {
     height: 100%;
     fill: $color-darkblue;
-  }
-
-  input {
-    padding: 0.75rem 2.5rem 0.75rem 0.75rem;
-    border: solid 1px $color-extralightgrey;
-    width: 100%;
-    box-sizing: border-box;
-    background: none;
-    font-size: 1rem;
-
-    &:focus {
-      border: solid 1px $color-blue;
-      box-shadow: 0 0 0 0.2rem rgba(29, 161, 242, .25);
-      outline: none;
-    }
   }
 
 }
@@ -178,17 +184,23 @@ label {
 
 button {
   background-color: $color-darkblue;
+  border-radius: $rounded-radius;
   border: none;
-  padding: 0.75rem 1.5rem;
+  padding: 0 16px;
   color: white;
-  font-size: 1rem;
   letter-spacing: 0.25px;
-  width: max-content;
-  margin: auto;
+  margin: 0;
+  height: $rounded-height;
 
   &:focus {
     outline: none;
   }
+}
+
+#loading {
+  font-size: 1rem;
+  font-weight: bold;
+  color: $color-grey;
 }
 
 
@@ -197,6 +209,15 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+
+  label {
+    font-size: 12px;
+    font-weight: bold;
+    color: $color-grey;
+    text-align: left;
+    text-transform: uppercase;
+    padding-top: 16px;
+  }
 }
 
 .sq-container-container {
@@ -213,6 +234,135 @@ button {
   // clear: left
 }
 
+#row-color {
+  display: flex;
+  text-align: left;
+  justify-content: space-between;
+  padding: 0;
+
+  button {
+    width: 48%;
+  }
+}
+
+#colorpicker {
+  padding: 0;
+  text-align: left;
+  width: 48%;
+
+  #inputgroup {
+    position: relative;
+
+    input {
+      border-radius: 10px;
+      height: $rounded-height;
+      padding: $rounded-padding;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    i {
+      line-height: 0;
+      position: absolute;
+      left: 16px;
+      top: 48%;
+    }
+
+    #inputgroup-swatch {
+      border-radius: 6px;
+      box-shadow: inset rgba(0,0,0,0.11) 0 0 0 1px;
+      position: absolute;
+      line-height: 0;
+      top: 8px;
+      height: 30px;
+      width: 30px;
+      right: 10px;
+      cursor: pointer;
+    }
+
+    [data-tooltip]:before {
+      position : absolute;
+      content : attr(data-tooltip);
+      opacity : 0;
+      transition: opacity 0.5s;
+      width: max-content;
+      left: -100%;
+      top: 150%;
+      margin-left: -4px;
+      margin-top: 1px;
+      background: black;
+      color: white;
+      padding: 12px;
+      line-height: normal;
+      border-radius: 8px;
+    }
+
+    // triangle
+
+    [data-tooltip]:after {
+      position: absolute;
+      opacity : 0;
+      transition: opacity 0.5s;
+      bottom: 0;
+      left: 50%;
+      margin-bottom: -16px;
+      margin-left: -10px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 10px 10px 10px;
+      border-color: transparent transparent black transparent;
+      content: " ";
+      font-size: 0;
+      line-height: 0;
+    }
+
+    // ----
+
+    [data-tooltip]:hover:before, [data-tooltip]:hover:after{
+      opacity : 1;
+    }
+  }
+
+
+  #colorpicker-group {
+    position: relative;
+    padding: 8px;
+    background: white;
+    // border: $border-extralightgrey;
+    border-radius: 4px;
+    width: 150px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 20px;
+    margin-left: auto;
+    bottom: 185px;
+  }
+
+  #saturation-picker {
+    position: relative;
+    height: 100px;
+  }
+
+  #hue-picker {
+    height: 10px;
+    position: relative;
+    margin-top: 8px;
+  }
+
+  .circle {
+    border-radius: 50%;
+    cursor: pointer;
+    width: 10px;
+    height: 10px;
+    border: white solid 5px;
+    margin-left: -10px;
+    margin-top: -5px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
+  }
+
+}
+
+
+
 .sq-container:before {
   content: "";
   display: block;
@@ -225,6 +375,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: inset rgba(0,0,0,.11) 0 0 0 1px;
 }
 
 .tweet-img {

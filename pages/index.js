@@ -179,7 +179,7 @@ class IndexPage extends React.Component {
     if (this.state.blank){
       res = null;
     } else if (this.state.loading){
-      res = <p>Loading...</p>;
+      res = <p id="loading">Loading...</p>;
     } else {
       res = <Result blank={this.state.blank} tweet={this.state.tweet} user={this.state.user}/>;
       // res = this.state.tweet.text;
@@ -223,7 +223,7 @@ class IndexPage extends React.Component {
 
         </div>
         <footer>
-          Created by <a href='https://twitter.com/matias_huapaya'>Matias Huapaya</a>. Not officially affiliated with Twitter.
+          Created by <a href='https://twitter.com/matias_huapaya'>Matias Huapaya</a>.
         </footer>
       </>
     );

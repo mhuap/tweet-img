@@ -3,6 +3,7 @@ import React from "react";
 import { TwitterPicker } from 'react-color';
 import { scroller } from 'react-scroll';
 import Tweet from '../components/tweet';
+import ColorPicker from '../components/colorPicker';
 
 const serverErrorMsg = 'Server Error';
 
@@ -80,6 +81,14 @@ class Result extends React.Component {
       return <p>{serverErrorMsg}</p>
     }
 
+    // const color = <>
+    //     <TwitterPicker
+    //       triangle='hide'
+    //       onChangeComplete={this.handleColorChange}
+    //       colors={['#E1E8ED', '#EB144C', '#FF8B00', '#ffd000', '#00D036', '#1DA1F2', '#ff40cf', '#7900f2']}
+    //       color={this.state.bg}/>
+    //   </>
+
     let content;
 
     if (this.state.img){
@@ -87,7 +96,7 @@ class Result extends React.Component {
     } else {
       content = <>
         <div id='preview'>
-          <h3>Preview</h3>
+          <label>Preview</label>
           <div className='sq-container-container'>
             <div className='sq-container' style={bgStyle}>
               <Tweet
@@ -97,15 +106,19 @@ class Result extends React.Component {
             </div>
           </div>
 
-          <TwitterPicker
-            triangle='hide'
-            onChangeComplete={this.handleColorChange}
-            colors={['#E1E8ED', '#EB144C', '#FF8B00', '#ffd000', '#00D036', '#1DA1F2', '#ff40cf', '#7900f2']}
-            color={this.state.bg}/>
+          <label>Background Color</label>
+          <div id="row-color">
+            <ColorPicker
+              onChange = {this.handleColorChange}
+              color={this.state.bg}
+            />
+
+            <button onClick={this.imgClick}>Create Image</button>
+
+          </div>
 
         </div>
 
-        <button onClick={this.imgClick}>Create Image</button>
       </>
     }
 
