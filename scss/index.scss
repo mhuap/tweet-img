@@ -9,13 +9,13 @@ $border-radius: 0.25rem;
 $border-extralightgrey: solid 1px $color-extralightgrey;
 
 $rounded-radius: 10px;
-$rounded-padding: 0 16px 0 32px;
 $rounded-height: 46px;
 
 $width: 500px;
 
 $breakpoint-lg: 768px;
 $breakpoint-sm: 532px;
+$breakpoint-xs: 375px;
 
 @import url('https://fonts.googleapis.com/css?family=PT+Sans:700,900&display=swap');
 
@@ -119,6 +119,7 @@ input {
     margin-top: 0;
     margin-bottom: 2rem;
     color: $color-grey;
+    font-size: 1rem;
   }
 
   a, a:visited {
@@ -188,6 +189,7 @@ button {
   border: none;
   padding: 0 16px;
   color: white;
+  font-size: 1.2rem;
   letter-spacing: 0.25px;
   margin: 0;
   height: $rounded-height;
@@ -252,13 +254,15 @@ button {
 
   #inputgroup {
     position: relative;
+    font-size: 1.2rem;
 
     input {
       border-radius: 10px;
       height: $rounded-height;
-      padding: $rounded-padding;
+      padding: 0 16px 0 28px;
       width: 100%;
       box-sizing: border-box;
+      font-size: 1.2rem;
     }
 
     i {
@@ -295,6 +299,7 @@ button {
       padding: 12px;
       line-height: normal;
       border-radius: 8px;
+      font-size: 1rem;
     }
 
     // triangle
@@ -417,7 +422,7 @@ button {
   .tweet-text {
     margin-top: 1rem;
     line-height: 1.3;
-    font-size: 1.25rem;
+    font-size: 1rem;
     white-space: pre-wrap;
   }
 
@@ -462,14 +467,36 @@ button {
 
 }
 
+@media (min-width: $breakpoint-xs) {
+  #tweet .tweet-text {
+    font-size: 1.25rem;
+  }
+}
+
 
 @media (min-width: $breakpoint-sm) {
   html {
     font-size: 16px;
   }
 
+  button {
+    font-size: 1rem;
+  }
+
+  #colorpicker #inputgroup input {
+    padding: 0 16px 0 32px;
+    font-size: 1rem;
+  }
+
   #container {
     max-width: 550px;
+  }
+
+  #form-wrapper p#support {
+    margin-top: 0;
+    margin-bottom: 2rem;
+    color: $color-grey;
+    font-size: 0.75rem;
   }
 
   // RESULT
