@@ -87,6 +87,24 @@ input {
   }
 }
 
+button {
+  display: block;
+  height: $rounded-height;
+  background-color: $color-darkblue;
+  border-radius: $rounded-radius;
+  border: none;
+  padding: 0 16px;
+  color: white;
+  font-size: 1.2rem;
+  letter-spacing: 0.25px;
+  cursor: pointer;
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba(29, 161, 242, .25);
+    outline: none;
+  }
+}
+
 #container {
   margin: 0 auto;
   width: 100%;
@@ -96,11 +114,6 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  & > button {
-    display: block;
-    margin: 1rem auto;
-  }
 }
 
 #form-wrapper {
@@ -145,17 +158,9 @@ input {
   width: 100%;
 
   button {
-    font-size: 2rem;
-    line-height: 0;
     padding: 0 0.5rem;
     position: absolute;
-    right: 0;
-    top: 0;
-    box-sizing: border-box;
     height: 100%;
-    background: none;
-    color: $color-darkblue;
-    width: max-content;
   }
 
   svg {
@@ -163,6 +168,18 @@ input {
     fill: $color-darkblue;
   }
 
+}
+
+button.input-overlay {
+  background: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  &:focus {
+    box-shadow: inset 0 0 0 0.2rem rgba(211, 212, 213, .5);
+    border: none;
+  }
 }
 
 #form-input.error {
@@ -179,24 +196,13 @@ input {
 
 label {
   display: block;
+  font-size: 12px;
+  font-weight: bold;
+  color: $color-grey;
   text-align: left;
+  text-transform: uppercase;
+  padding-top: 16px;
   margin-bottom: 0.5rem;
-}
-
-button {
-  background-color: $color-darkblue;
-  border-radius: $rounded-radius;
-  border: none;
-  padding: 0 16px;
-  color: white;
-  font-size: 1.2rem;
-  letter-spacing: 0.25px;
-  margin: 0;
-  height: $rounded-height;
-
-  &:focus {
-    outline: none;
-  }
 }
 
 #loading {
@@ -211,15 +217,6 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-
-  label {
-    font-size: 12px;
-    font-weight: bold;
-    color: $color-grey;
-    text-align: left;
-    text-transform: uppercase;
-    padding-top: 16px;
-  }
 }
 
 .sq-container-container {
@@ -242,7 +239,7 @@ button {
   justify-content: space-between;
   padding: 0;
 
-  button {
+  & > button {
     width: 48%;
   }
 }
@@ -257,11 +254,8 @@ button {
     font-size: 1.2rem;
 
     input {
-      border-radius: 10px;
       height: $rounded-height;
       padding: 0 16px 0 28px;
-      width: 100%;
-      box-sizing: border-box;
       font-size: 1.2rem;
     }
 
@@ -272,16 +266,18 @@ button {
       top: 48%;
     }
 
-    #inputgroup-swatch {
-      border-radius: 6px;
-      box-shadow: inset rgba(0,0,0,0.11) 0 0 0 1px;
-      position: absolute;
-      line-height: 0;
-      top: 8px;
-      height: 30px;
-      width: 30px;
-      right: 10px;
-      cursor: pointer;
+    #swatch {
+      padding: 0 8px;
+      height: 100%;
+
+      div {
+        border-radius: 6px;
+        box-shadow: inset rgba(0,0,0,0.11) 0 0 0 1px;
+        top: 8px;
+        height: 30px;
+        width: 30px;
+        right: 10px;
+      }
     }
 
     [data-tooltip]:before {

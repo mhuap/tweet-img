@@ -40,11 +40,13 @@ class ColorPicker extends React.Component {
           value={ this.props.hex.substring(1) }
           onChange={ this.props.onChange }
           />
-          <div
-            style={colorStyle}
-            id="inputgroup-swatch"
-            data-tooltip={this.state.displayPanel ? undefined : "Pick color"}
-            onClick={this.handleSwatchClick}></div>
+          <button
+            id="swatch"
+            className="input-overlay"
+            onClick={this.handleSwatchClick}
+            >
+            <div style={colorStyle}></div>
+          </button>
           <i className="">#</i>
         </div>
 
@@ -67,6 +69,8 @@ class ColorPicker extends React.Component {
     )
   }
 }
+
+// data-tooltip={this.state.displayPanel ? undefined : "Pick color"}
 
 
 export default CustomPicker(ColorPicker);

@@ -211,7 +211,9 @@ class IndexPage extends React.Component {
               <label>Enter Tweet URL</label>
               <div id='form-input' className={this.state.error ? 'error' : ''}>
                 <input id='url-input'type='text' ref={this.urlInput} name='url' placeholder='twitter.com/status/tweeturl'/>
-                <button><Arrow/></button>
+                <button className='input-overlay'>
+                  <Arrow/>
+                </button>
               </div>
               <p id='error'>{this.state.error ? 'Not a tweet URL' : ''}</p>
             </form>
