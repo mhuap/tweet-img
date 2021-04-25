@@ -8,17 +8,18 @@ $color-red: #dc3545;
 $border-radius: 0.25rem;
 $border-extralightgrey: solid 1px $color-extralightgrey;
 
+$box-shadow-light: inset 0 0 0 0.2rem rgba(211, 212, 213, .5);
+
 $rounded-radius: 10px;
 $rounded-height: 46px;
 
-$width: 500px;
+$width: 600px;
 
 $breakpoint-lg: 768px;
 $breakpoint-sm: 532px;
 $breakpoint-xs: 375px;
 
 @import url('https://fonts.googleapis.com/css?family=PT+Sans:700,900&display=swap');
-
 
 html {
   font-size: 12px;
@@ -47,7 +48,7 @@ h1, h2, h3 {
 
 h1 {
   font-weight: 900;
-  font-size: 32px;
+  font-size: 34px;
 }
 
 h3 {
@@ -59,7 +60,7 @@ footer {
   margin: 1rem 0;
   text-align: center;
   color: $color-grey;
-  font-size: 0.75rem;
+  font-size: 1rem;
 
   a, a:visited {
     color: $color-blue;
@@ -72,13 +73,13 @@ footer {
 }
 
 input {
-  padding: 0.75rem 2.5rem 0.75rem 0.75rem;
   border: $border-extralightgrey;
   border-radius: $rounded-radius;
   width: 100%;
   box-sizing: border-box;
   background: none;
   font-size: 1rem;
+  height: 46px;
 
   &:focus {
     border: solid 1px $color-blue;
@@ -95,7 +96,7 @@ button {
   border: none;
   padding: 0 16px;
   color: white;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   letter-spacing: 0.25px;
   cursor: pointer;
 
@@ -123,10 +124,6 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-
-  h1 {
-    margin-bottom: 1rem;
-  }
 
   p#support {
     margin-top: 0;
@@ -157,10 +154,13 @@ button {
   position: relative;
   width: 100%;
 
+  input {
+    padding-left: 12px;
+    padding-right: 42px;
+  }
+
   button {
     padding: 0 0.5rem;
-    position: absolute;
-    height: 100%;
   }
 
   svg {
@@ -177,7 +177,7 @@ button.input-overlay {
   top: 0;
 
   &:focus {
-    box-shadow: inset 0 0 0 0.2rem rgba(211, 212, 213, .5);
+    box-shadow: $box-shadow-light;
     border: none;
   }
 }
@@ -223,31 +223,39 @@ label {
   margin: 0 auto;
 }
 
-.twitter-picker {
-  box-shadow: none !important;
-  width: 100% !important;
-  background: none !important;
-}
-
-.twitter-picker div div {
-  // clear: left
-}
+// .twitter-picker {
+//   box-shadow: none !important;
+//   width: 100% !important;
+//   background: none !important;
+// }
+//
+// .twitter-picker div div {
+//   // clear: left
+// }
 
 #row-color {
   display: flex;
   text-align: left;
   justify-content: space-between;
   padding: 0;
+  flex-direction: column;
 
-  & > button {
-    width: 48%;
+  & > * {
+    width: 100%;
   }
+}
+
+#tooltip-swatch > .tooltip-inner {
+
+}
+
+#tooltip-swatch > .arrow::before {
+
 }
 
 #colorpicker {
   padding: 0;
   text-align: left;
-  width: 48%;
 
   #inputgroup {
     position: relative;
@@ -279,85 +287,60 @@ label {
         right: 10px;
       }
     }
+  }
 
-    [data-tooltip]:before {
-      position : absolute;
-      content : attr(data-tooltip);
-      opacity : 0;
-      transition: opacity 0.5s;
-      width: max-content;
-      left: -100%;
-      top: 150%;
-      margin-left: -4px;
-      margin-top: 1px;
-      background: black;
-      color: white;
-      padding: 12px;
-      line-height: normal;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
-
-    // triangle
-
-    [data-tooltip]:after {
-      position: absolute;
-      opacity : 0;
-      transition: opacity 0.5s;
-      bottom: 0;
-      left: 50%;
-      margin-bottom: -16px;
-      margin-left: -10px;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 0 10px 10px 10px;
-      border-color: transparent transparent black transparent;
-      content: " ";
-      font-size: 0;
-      line-height: 0;
-    }
-
-    // ----
-
-    [data-tooltip]:hover:before, [data-tooltip]:hover:after{
-      opacity : 1;
-    }
+  .popover {
+    width: 150px;
   }
 
 
   #colorpicker-group {
-    position: relative;
+    margin: 24px auto;
     padding: 8px;
-    background: white;
-    // border: $border-extralightgrey;
-    border-radius: 4px;
-    width: 150px;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 20px;
-    margin-left: auto;
-    bottom: 185px;
+    border-radius: 10px;
+    border: $border-extralightgrey;
   }
 
   #saturation-picker {
     position: relative;
-    height: 100px;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+
+    .circle {
+      margin-top: -10px;
+    }
   }
 
   #hue-picker {
-    height: 10px;
+    height: 24px;
     position: relative;
-    margin-top: 8px;
+    margin-top: 12px;
+    border-radius: 12px;
+    overflow: hidden;
+
+    .circle {
+      margin-top: -3px;
+
+      &:focus {
+        box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.15) 0px 0px 8px;
+      }
+    }
   }
 
   .circle {
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     cursor: pointer;
-    width: 10px;
-    height: 10px;
-    border: white solid 5px;
+    border: white solid 6px;
     margin-left: -10px;
-    margin-top: -5px;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
+
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba(211, 212, 213, .5);
+      outline: none;
+    }
   }
 
 }
@@ -441,9 +424,7 @@ label {
   }
 
   #badge {
-    width: 1rem;
     height: 1rem;
-    display: inline;
     padding-left: 0.25rem;
     align-self: center;
   }
@@ -479,9 +460,50 @@ label {
     font-size: 1rem;
   }
 
+  h1 {
+    font-size: 44px;
+  }
+
   #colorpicker #inputgroup input {
     padding: 0 16px 0 32px;
     font-size: 1rem;
+  }
+
+  #colorpicker {
+
+    #colorpicker-group {
+      position: relative;
+      width: 80%;
+      margin-left: auto;
+      bottom: 250px;
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 20px;
+      background: white;
+      padding: 8px;
+      border-radius: 4px;
+      margin-right: 0;
+      border: none;
+    }
+
+    #saturation-picker {
+      height: 125px;
+      border-radius: 4px;
+    }
+
+    #hue-picker{
+      height: 16px;
+      margin-top: 10px;
+      border-radius: 8px;
+
+      .circle {
+        margin-top: -2px;
+      }
+    }
+
+    .circle {
+      width: 20px;
+      height: 20px;
+      border-width: 4px;
+    }
   }
 
   #container {
@@ -496,11 +518,12 @@ label {
   }
 
   // RESULT
-
-  #result {
-    width: $width;
+  #row-color {
+    flex-direction: row;
+    & > * {
+      width: 48%;
+    }
   }
-
 }
 
 @media (min-width: $breakpoint-lg) {
@@ -516,7 +539,7 @@ label {
   // RESULT
 
   #result {
-    // max-width: 80%;
+    width: $width;
     margin-left: auto;
     margin-right: auto;
   }

@@ -1,76 +1,109 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 
 import { CustomPicker } from 'react-color';
-import { EditableInput, Saturation, Hue } from 'react-color/lib/components/common'
+import { EditableInput, Saturation, Hue } from 'react-color/lib/components/common';
+import Overlay from 'react-bootstrap/Overlay';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
+import { useMediaQuery } from 'react-responsive'
+// import Popover from 'react-bootstrap/Popover';
+// import { cpGroup } from './popoverCSS';
+
 import ColorPointer from './colorPointer';
 
-class ColorPicker extends React.Component {
-  constructor(props){
-    super(props);
 
-    this.state = {
-      displayPanel: false,
+function ColorPicker(props) {
+  const [displayPanel, setdisplayPanel] = useState(false);
+  const [show, setShow] = useState(false);
+  const isBig = useMediaQuery({ minWidth: 532 });
+  const target = useRef(null);
+
+  const handleSwatchHover = () => {
+    setShow(!show);
+  };
+
+  const handleSwatchClick = () => {
+    setdisplayPanel(!displayPanel);
+  };
+
+  const colorStyle = {
+    backgroundColor: props.hex,
+  };
+
+  let panelStyle;
+  if (isBig){
+    panelStyle = {opacity: 0}
+    if (displayPanel) {
+      panelStyle = {opacity: 1}
     }
-
-    this.handleSwatchClick = this.handleSwatchClick.bind(this);
+  } else {
+    panelStyle = {opacity: 1}
   }
 
-  handleSwatchClick() {
-    console.log(this.state.displayPanel);
-    this.setState({
-      displayPanel: !this.state.displayPanel,
-    })
 
-  }
 
-  render() {
+  const popover = (
+    <div id='colorpicker-group'
+      style={panelStyle}
+      >
 
-    const colorStyle = {
-      backgroundColor: this.props.hex,
-    };
-
-    const panelStyle = this.state.displayPanel ? {opacity: 1} : {opacity: 0};
-
-    return (
-      <div id='colorpicker'>
-
-        <div id="inputgroup">
-          <EditableInput
-          label=""
-          value={ this.props.hex.substring(1) }
-          onChange={ this.props.onChange }
-          />
-          <button
-            id="swatch"
-            className="input-overlay"
-            onClick={this.handleSwatchClick}
-            >
-            <div style={colorStyle}></div>
-          </button>
-          <i className="">#</i>
-        </div>
-
-        <div id='colorpicker-group' style={panelStyle}>
-          <div id='saturation-picker'>
-            <Saturation
-              { ...this.props }
-              pointer={ ColorPointer }
-            />
-          </div>
-          <div id='hue-picker'>
-            <Hue
-              {...this.props}
-              onChange={ this.props.onChange }
-              direction={ 'horizontal' }
-              pointer={ ColorPointer } />
-          </div>
-        </div>
+      <div id='saturation-picker'>
+        <Saturation
+          { ...props }
+          pointer={ ColorPointer }
+        />
       </div>
-    )
-  }
-}
 
-// data-tooltip={this.state.displayPanel ? undefined : "Pick color"}
+      <div id='hue-picker'>
+        <Hue
+          {...props}
+          onChange={ props.onChange }
+          direction={ 'horizontal' }
+          pointer={ ColorPointer } />
+      </div>
+
+    </div>
+  );
+
+  return (
+    <div id='colorpicker'>
+
+      <div id="inputgroup">
+        <EditableInput
+          label=""
+          value={ props.hex.substring(1) }
+          onChange={ props.onChange }
+        />
+
+        <button
+          id="swatch"
+          className="input-overlay"
+          onClick={handleSwatchClick}
+          onMouseEnter={handleSwatchHover}
+          onMouseLeave={handleSwatchHover}
+        >
+          <div ref={target} style={colorStyle}></div>
+        </button>
+
+        <i className="">#</i>
+      </div>
+
+      {popover}
+
+      <Overlay
+        target={isBig ? target.current : null}
+        show={show}
+        placement='bottom'
+      >
+        {(props) => (
+          <Tooltip id={`tooltip-swatch`} {...props}>
+            Pick color
+          </Tooltip>
+        )}
+      </Overlay>
+    </div>
+  )
+}
 
 
 export default CustomPicker(ColorPicker);

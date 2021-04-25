@@ -27,7 +27,7 @@ class Result extends React.Component {
     const html2canvas = require('html2canvas');
 
     // necessary for proper image creation with html2canvas
-    window.scrollTo({ top: 0})
+    // window.scrollTo({ top: 0})
 
     // Hide scrollbar to fix bug with html2canvas which adds extra whitespace to image if scrollbar is present
     document.documentElement.style.overflow = 'hidden';
@@ -39,13 +39,12 @@ class Result extends React.Component {
         backgroundColor: null
       })
     .then((canvas) => {
-      scroller.scrollTo('result-wrapper', {
-        smooth: false,
-      })
+      // scroller.scrollTo('result-wrapper', {
+      //   smooth: false,
+      // })
 
       // Un-hide scrollbar
       document.documentElement.style.overflow = '';
-      document.body.appendChild(canvas);
 
       const src = canvas.toDataURL();
       return src;
@@ -78,8 +77,6 @@ class Result extends React.Component {
   }
 
   render(){
-    console.log('render');
-
     let bgStyle = {backgroundColor: this.state.bg}
 
     // console.log(this.props.tweet);

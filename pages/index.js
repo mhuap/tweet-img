@@ -201,12 +201,18 @@ class IndexPage extends React.Component {
           <meta property="og:url" content="	https://tweet-img.vercel.app"/>
           <meta property="og:site_name" content="tweet-img"/>
           <meta name="twitter:card" content="summary_large_image"/>
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+            integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+            crossOrigin="anonymous"
+          />
         </Head>
 
         <div id='container'>
           <div id='form-wrapper'>
             <h1>tweet-img</h1>
-            <p id='support'>Only tested on some kinds of tweets. <a target='__blank' href='https://github.com/mhuap/tweet-img/blob/master/README.md#tweet-support'>See what kinds of tweets we support.</a></p>
+            <p id='support'>Only tested on <a target='__blank' href='https://github.com/mhuap/tweet-img/blob/master/README.md#tweet-support'>some kinds</a> of tweets.</p>
             <form id='top-form' onSubmit={this.handleSubmit}>
               <label>Enter Tweet URL</label>
               <div id='form-input' className={this.state.error ? 'error' : ''}>

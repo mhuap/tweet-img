@@ -10,17 +10,21 @@ var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
 const verifiedIcon = <img id='badge' src='/verified.png'/>
 
 function Tweet(props){
-  const media = props.tweet.media ? <img crossorigin="*" src={props.tweet.media}/> : null;
+
+  // assuming there is only 1 image
+  const media = (props.tweet.media ?
+    <div className='media'><img crossorigin="*" src={props.tweet.media}/></div>
+    : null);
 
   const iso = new Date(props.tweet.date);
-  const month = monthNames[iso.getMonth()]
-  const date = iso.getDate()
-  const year = iso.getFullYear()
-  const fullDate = `${date} ${month} ${year}`
+  const month = monthNames[iso.getMonth()];
+  const date = iso.getDate();
+  const year = iso.getFullYear();
+  const fullDate = `${date} ${month} ${year}`;
 
-  const verified = props.user.verified ? verifiedIcon : null
+  const verified = props.user.verified ? verifiedIcon : null;
 
-  let tweetText = props.tweet.text
+  let tweetText = props.tweet.text;
 
   if (media){
     const urlIndex = props.tweet.text.lastIndexOf('https://t.co/');
@@ -45,7 +49,6 @@ function Tweet(props){
     }
   }
 
-
   if (blueArr.length){
     const blueStr = blueArr.join('|');
     const regex = new RegExp(blueStr,"g");
@@ -60,16 +63,23 @@ function Tweet(props){
       },
       input: tweetText,
     });
-    console.log(result)
 
-    tweetText = result;
+    let key = 0;
+    tweetText = result.map((item) => {
+      if (typeof item === 'string' || item instanceof String){
+        key = key + 1;
+        return <span dangerouslySetInnerHTML={{__html: `${item}`}} key={key}></span>
+      }
+      else {
+        return item;
+      }
+    })
   }
-
 
   return (
     <div id='tweet'>
       <div>
-        <img className='avatar' crossorigin='*' src={props.user.img} />
+        <img className='avatar' crossOrigin='*' src={props.user.img} />
         <div className='account-group'>
           <div className='name'>
             <span><b>{props.user.name}</b></span>
@@ -79,9 +89,9 @@ function Tweet(props){
         </div>
       </div>
       <div className='tweet-text'>{tweetText}</div>
-      <div className='media'>
-        {media}
-      </div>
+
+      {media}
+
       <div className='date'>{fullDate}</div>
     </div>
   )
