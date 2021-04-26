@@ -19,17 +19,16 @@ $breakpoint-lg: 768px;
 $breakpoint-sm: 532px;
 $breakpoint-xs: 375px;
 
-@import url('https://fonts.googleapis.com/css?family=PT+Sans:700,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
 html {
   font-size: 12px;
-  // border: solid 1px red;
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: 'Inter',Helvetica,Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $color-dark;
@@ -42,13 +41,11 @@ body {
   justify-content: space-between;
 }
 
-h1, h2, h3 {
-  font-family: 'PT Sans', sans-serif;
-}
-
 h1 {
-  font-weight: 900;
-  font-size: 34px;
+  font-weight: 700;
+  font-size: 32px;
+  letter-spacing: -1px;
+  margin-bottom: 0;
 }
 
 h3 {
@@ -56,8 +53,7 @@ h3 {
 }
 
 footer {
-  // width: inherit;
-  margin: 1rem 0;
+  margin: 1rem;
   text-align: center;
   color: $color-grey;
   font-size: 1rem;
@@ -119,8 +115,8 @@ button {
 
 #form-wrapper {
   width: 100%;
-  margin: 0 auto;
-  height: 40vh;
+  margin: 0 auto 8px auto;
+  height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -163,6 +159,15 @@ button {
     padding: 0 0.5rem;
   }
 
+  button:focus {
+    box-shadow: none;
+
+    svg {
+      stroke: rgba(0, 113, 235, 0.25);
+      stroke-width: 8;
+    }
+  }
+
   svg {
     height: 100%;
     fill: $color-darkblue;
@@ -201,8 +206,6 @@ label {
   color: $color-grey;
   text-align: left;
   text-transform: uppercase;
-  padding-top: 16px;
-  margin-bottom: 0.5rem;
 }
 
 #loading {
@@ -220,18 +223,8 @@ label {
 }
 
 .sq-container-container {
-  margin: 0 auto;
+  margin: 0 auto 12px auto;
 }
-
-// .twitter-picker {
-//   box-shadow: none !important;
-//   width: 100% !important;
-//   background: none !important;
-// }
-//
-// .twitter-picker div div {
-//   // clear: left
-// }
 
 #row-color {
   display: flex;
@@ -245,17 +238,10 @@ label {
   }
 }
 
-#tooltip-swatch > .tooltip-inner {
-
-}
-
-#tooltip-swatch > .arrow::before {
-
-}
-
 #colorpicker {
   padding: 0;
   text-align: left;
+  height: auto;
 
   #inputgroup {
     position: relative;
@@ -295,7 +281,7 @@ label {
 
 
   #colorpicker-group {
-    margin: 24px auto;
+    margin: 8px auto 24px auto;
     padding: 8px;
     border-radius: 10px;
     border: $border-extralightgrey;
@@ -470,12 +456,13 @@ label {
   }
 
   #colorpicker {
+    height: 40px;
 
     #colorpicker-group {
       position: relative;
       width: 80%;
       margin-left: auto;
-      bottom: 250px;
+      bottom: 230px;
       box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 20px;
       background: white;
       padding: 8px;
@@ -511,9 +498,6 @@ label {
   }
 
   #form-wrapper p#support {
-    margin-top: 0;
-    margin-bottom: 2rem;
-    color: $color-grey;
     font-size: 0.75rem;
   }
 
