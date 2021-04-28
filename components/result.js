@@ -1,9 +1,10 @@
 import React from "react";
 
-import { TwitterPicker } from 'react-color';
 import { scroller } from 'react-scroll';
-import Tweet from '../components/tweet';
-import ColorPicker from '../components/colorPicker';
+import Overlay from 'react-bootstrap/Overlay';
+
+import Tweet from './tweet';
+import ColorPicker from './colorPicker';
 
 const serverErrorMsg = 'Server Error';
 
@@ -77,6 +78,9 @@ class Result extends React.Component {
   }
 
   render(){
+
+    const ref = React.createRef();
+
     let bgStyle = {backgroundColor: this.state.bg}
 
     // console.log(this.props.tweet);
@@ -84,18 +88,21 @@ class Result extends React.Component {
       return <p>{serverErrorMsg}</p>
     }
 
-    // const color = <>
-    //     <TwitterPicker
-    //       triangle='hide'
-    //       onChangeComplete={this.handleColorChange}
-    //       colors={['#E1E8ED', '#EB144C', '#FF8B00', '#ffd000', '#00D036', '#1DA1F2', '#ff40cf', '#7900f2']}
-    //       color={this.state.bg}/>
-    //   </>
-
     let content;
 
     if (this.state.img){
-      content = <img className='tweet-img' src={this.state.img}/>
+      // content = (<ImageResult src={this.state.img}/>)
+      content =<>
+      <a href={this.state.img} download="tweet">
+        <img
+          id='tweet-img'
+          tabIndex='0'
+          src={this.state.img}
+        />
+      </a>
+
+      <small id='backup-link'><a href={this.state.img} download="tweet">download image</a></small>
+      </>
     } else {
       content = <>
         <div id='preview'>
@@ -128,7 +135,7 @@ class Result extends React.Component {
     return (
       <>
         <div id='result'>
-        {content}
+          {content}
         </div>
       </>
     );

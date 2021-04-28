@@ -52,16 +52,20 @@ h3 {
   text-align: left;
 }
 
+a {
+  color: $color-blue;
+  text-decoration: none;
+}
+
+a {
+  color: $color-darkblue;
+}
+
 footer {
   margin: 1rem;
   text-align: center;
   color: $color-grey;
   font-size: 1rem;
-
-  a, a:visited {
-    color: $color-blue;
-    text-decoration: none;
-  }
 
   a:hover {
     text-decoration: underline;
@@ -203,7 +207,7 @@ label {
   display: block;
   font-size: 12px;
   font-weight: bold;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.1px;
   color: $color-grey;
   text-align: left;
   text-transform: uppercase;
@@ -226,6 +230,7 @@ label {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  // position: relative;
 }
 
 .sq-container-container {
@@ -354,9 +359,19 @@ label {
   box-shadow: inset rgba(0,0,0,.11) 0 0 0 1px;
 }
 
-.tweet-img {
+#tweet-img {
   width: 100%;
+  cursor: pointer;
   // box-shadow: $box-shadow;
+}
+
+#context-menu {
+  position: fixed;
+  background: red;
+}
+
+#backup-link {
+  margin-top: 8px;
 }
 
 // TWEET
@@ -454,6 +469,10 @@ label {
 
   h1 {
     font-size: 44px;
+  }
+
+  label {
+    letter-spacing: 0.25px;
   }
 
   #colorpicker #inputgroup input {
