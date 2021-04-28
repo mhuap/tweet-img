@@ -13,13 +13,13 @@ $box-shadow-light: inset 0 0 0 0.2rem rgba(211, 212, 213, .5);
 $rounded-radius: 10px;
 $rounded-height: 46px;
 
-$width: 600px;
+$width: 550px;
 
 $breakpoint-lg: 768px;
 $breakpoint-sm: 532px;
 $breakpoint-xs: 375px;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
 
 html {
   font-size: 12px;
@@ -116,7 +116,7 @@ button {
 #form-wrapper {
   width: 100%;
   margin: 0 auto 8px auto;
-  height: 50vh;
+  height: 35vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -203,6 +203,7 @@ label {
   display: block;
   font-size: 12px;
   font-weight: bold;
+  letter-spacing: 0.5px;
   color: $color-grey;
   text-align: left;
   text-transform: uppercase;
@@ -212,6 +213,11 @@ label {
   font-size: 1rem;
   font-weight: bold;
   color: $color-grey;
+}
+
+.spinner-border {
+  margin-top: 64px;
+  color: $color-darkblue;
 }
 
 
@@ -497,8 +503,12 @@ label {
     max-width: 550px;
   }
 
-  #form-wrapper p#support {
-    font-size: 0.75rem;
+  #form-wrapper {
+    height: 50vh;
+
+    p#support {
+      font-size: 0.75rem;
+    }
   }
 
   // RESULT

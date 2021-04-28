@@ -1,8 +1,10 @@
 import React from "react";
+
 import axios from 'axios';
 import Head from 'next/head';
 import { scroller } from 'react-scroll';
-// import SEO from "../components/seo"
+import Spinner from 'react-bootstrap/Spinner';
+
 import Result from '../components/result';
 import Arrow from '../components/arrow.js';
 
@@ -179,7 +181,9 @@ class IndexPage extends React.Component {
     if (this.state.blank){
       res = null;
     } else if (this.state.loading){
-      res = <p id="loading">Loading...</p>;
+      res = <Spinner animation="border" role="status">
+              <span className="sr-only">Loading...</span>
+            </Spinner>;
     } else {
       res = <Result blank={this.state.blank} tweet={this.state.tweet} user={this.state.user}/>;
       // res = this.state.tweet.text;
