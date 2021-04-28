@@ -4,26 +4,6 @@ Generate an image from tweet.
 
 Built on Next.js using Twitter API and deployed on Vercel.
 
-## Tweet support
-- [x] Text-only
-- [x] w/ 1 image
-- [x] Links
-- [x] By verified accounts
-- [x] Mentions
-- [ ] Quote Tweets
-- [ ] w/ multiple images
-- [ ] Videos
-- [ ] Polls
-  - [ ] open
-  - [ ] closed
-- [ ] Private accounts
-
-## Features
-- [x] Solid color background
-- [ ] Gradient background
-- [ ] Upload photo background
-- [ ] No white background on tweet (edit background and text color)
-
 ## Development
 ```
 npm run dev
