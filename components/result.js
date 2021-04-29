@@ -37,28 +37,31 @@ class Result extends React.Component {
       {
         allowTaint: false,
         useCORS: true,
-        backgroundColor: null
+        backgroundColor: null,
+        logging: false
       })
     .then((canvas) => {
-      // scroller.scrollTo('result-wrapper', {
-      //   smooth: false,
-      // })
+      scroller.scrollTo('result-wrapper', {
+        smooth: false,
+      })
 
       // Un-hide scrollbar
       document.documentElement.style.overflow = '';
 
-      const src = canvas.toDataURL();
-      return src;
+      // const src = canvas.toDataURL();
+      return canvas.toBlob((blob) => {
+        const href = URL.createObjectURL(blob);
+        this.setState({
+          img: href
+        });
+      },'image/png')
     })
 
 
   }
 
   async imgClick(){
-    const img = await this.genCanvas();
-    this.setState({
-      img: img
-    });
+    await this.genCanvas();
   }
 
 
@@ -91,17 +94,16 @@ class Result extends React.Component {
     let content;
 
     if (this.state.img){
-      // content = (<ImageResult src={this.state.img}/>)
       content =<>
-      <a href={this.state.img} download="tweet">
+      <small>Click image to download</small>
+      <a href={this.state.img} download='tweet'>
         <img
           id='tweet-img'
-          tabIndex='0'
           src={this.state.img}
         />
       </a>
 
-      <small id='backup-link'><a href={this.state.img} download="tweet">download image</a></small>
+        <small id='backup-link'>or <a href={this.state.img} download="tweet">download here</a></small>
       </>
     } else {
       content = <>

@@ -4,7 +4,7 @@ import { circle } from './popoverCSS';
 
 function ColorPointer(props) {
   return (
-    <div className='circle' tabindex='0'>
+    <div className='circle' tabIndex='0'>
     </div>
   )
 }

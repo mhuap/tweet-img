@@ -55,11 +55,17 @@ h3 {
 a {
   color: $color-blue;
   text-decoration: none;
+
+  &:hover {
+    color: $color-blue;
+  }
+
+  &:visited {
+    color: $color-blue;
+  }
 }
 
-a {
-  color: $color-darkblue;
-}
+
 
 footer {
   margin: 1rem;
@@ -73,6 +79,7 @@ footer {
 }
 
 input {
+  color: $color-dark;
   border: $border-extralightgrey;
   border-radius: $rounded-radius;
   width: 100%;
@@ -91,7 +98,7 @@ input {
 button {
   display: block;
   height: $rounded-height;
-  background-color: $color-darkblue;
+  background-color: $color-blue;
   border-radius: $rounded-radius;
   border: none;
   padding: 0 16px;
@@ -104,6 +111,16 @@ button {
     box-shadow: 0 0 0 0.2rem rgba(29, 161, 242, .25);
     outline: none;
   }
+
+  &:hover {
+    background-color: $color-darkblue;
+  }
+}
+
+small {
+  color: $color-grey;
+  font-size: 11px;
+  margin: 8px 0;
 }
 
 #container {
@@ -160,21 +177,22 @@ button {
   }
 
   button {
-    padding: 0 0.5rem;
+    padding: 0 12px;
   }
 
   button:focus {
     box-shadow: none;
 
     svg {
-      stroke: rgba(0, 113, 235, 0.25);
-      stroke-width: 8;
+      // stroke: rgba(29, 161, 242, 0.25);
+      // stroke-width: 8;
+      fill: $color-dark;
     }
   }
 
   svg {
-    height: 100%;
-    fill: $color-darkblue;
+    height: 60%;
+    fill: $color-blue;
   }
 
 }
@@ -221,7 +239,7 @@ label {
 
 .spinner-border {
   margin-top: 64px;
-  color: $color-darkblue;
+  color: $color-blue;
 }
 
 
@@ -370,10 +388,6 @@ label {
   background: red;
 }
 
-#backup-link {
-  margin-top: 8px;
-}
-
 // TWEET
 
 #tweet {
@@ -434,10 +448,6 @@ label {
     height: 1rem;
     padding-left: 0.25rem;
     align-self: center;
-  }
-
-  svg .icon {
-    // put fill here
   }
 
   .media {
