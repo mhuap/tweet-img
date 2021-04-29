@@ -42,7 +42,7 @@ class Result extends React.Component {
       })
     .then((canvas) => {
       scroller.scrollTo('result-wrapper', {
-        smooth: false,
+        smooth: true,
       })
 
       // Un-hide scrollbar
@@ -54,6 +54,7 @@ class Result extends React.Component {
         this.setState({
           img: href
         });
+
       },'image/png')
     })
 
