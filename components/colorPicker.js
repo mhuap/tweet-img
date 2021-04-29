@@ -40,7 +40,7 @@ function ColorPicker(props) {
     panelStyle = {opacity: 1}
   }
 
-
+  const pointerIndex = displayPanel ? '0' : null;
 
   const popover = (
     <div id='colorpicker-group'
@@ -51,6 +51,7 @@ function ColorPicker(props) {
         <Saturation
           { ...props }
           pointer={ ColorPointer }
+          tabIndex={pointerIndex}
         />
       </div>
 
@@ -59,7 +60,8 @@ function ColorPicker(props) {
           {...props}
           onChange={ props.onChange }
           direction={ 'horizontal' }
-          pointer={ ColorPointer } />
+          pointer={ ColorPointer }
+          tabIndex={pointerIndex} />
       </div>
 
     </div>
@@ -81,6 +83,7 @@ function ColorPicker(props) {
           onClick={handleSwatchClick}
           onMouseEnter={handleSwatchHover}
           onMouseLeave={handleSwatchHover}
+          type="button"
         >
           <div ref={target} style={colorStyle}></div>
         </button>

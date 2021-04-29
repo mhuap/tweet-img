@@ -61,8 +61,10 @@ class Result extends React.Component {
 
   }
 
-  async imgClick(){
+  async imgClick(e){
+    e.preventDefault();
     await this.genCanvas();
+    return false
   }
 
 
@@ -120,15 +122,17 @@ class Result extends React.Component {
           </div>
 
           <label>Background Color</label>
-          <div id="row-color">
-            <ColorPicker
-              onChange = {this.handleColorChange}
-              color={this.state.bg}
-            />
+          <form action="#" onSubmit={this.imgClick}>
+            <div id="row-color">
+              <ColorPicker
+                onChange = {this.handleColorChange}
+                color={this.state.bg}
+              />
 
-            <button onClick={this.imgClick}>Create Image</button>
+              <button type="submit">Create Image</button>
 
-          </div>
+            </div>
+          </form>
 
         </div>
 

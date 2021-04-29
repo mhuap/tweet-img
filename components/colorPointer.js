@@ -2,9 +2,9 @@ import React from 'react'
 
 import { circle } from './popoverCSS';
 
-function ColorPointer(props) {
+function ColorPointer({...props}) {
   return (
-    <div className='circle' tabIndex='0'>
+    <div className='circle' {...props}>
     </div>
   )
 }
