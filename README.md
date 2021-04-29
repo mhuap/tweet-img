@@ -1,14 +1,16 @@
 # tweet-img
 
-Generate an image from tweet.
+Generate an image from a tweet.
+Only tested on [some kinds of tweets](https://github.com/mhuap/tweet-img/projects/5).
+
+## Development
 
 Built on Next.js using Twitter API and deployed on Vercel.
 
-## Development
 ```
 npm run dev
 ```
-push to master to update build via vercel
+push to master to update live build
 
 using [npm-check-updates](https://www.npmjs.com/package/npm-check-updates)
 ```
