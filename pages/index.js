@@ -216,7 +216,7 @@ class IndexPage extends React.Component {
         <div id='container'>
           <div id='form-wrapper'>
             <h1>tweet-img</h1>
-            <p id='support'>Only tested on <a target='__blank' href='https://github.com/mhuap/tweet-img/projects/2'>some kinds</a> of tweets.</p>
+            <p id='support'>Only tested on <a target='__blank' href='https://github.com/mhuap/tweet-img/projects/5'>some kinds</a> of tweets.</p>
             <form id='top-form' onSubmit={this.handleSubmit}>
               <label>Enter Tweet URL</label>
               <div id='form-input' className={this.state.error ? 'error' : ''}>
