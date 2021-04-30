@@ -139,13 +139,7 @@ class Result extends React.Component {
       </>
     }
 
-    return (
-      <>
-        <div id='result'>
-          {content}
-        </div>
-      </>
-    );
+    return <div id='result'>{content}</div>;
   }
 }
 

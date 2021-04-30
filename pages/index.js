@@ -7,6 +7,7 @@ import Spinner from 'react-bootstrap/Spinner';
 
 import Result from '../components/result';
 import Arrow from '../components/arrow.js';
+// import diagram from '../public/diagram.png';
 
 const serverErrorMsg = 'Server Error';
 
@@ -179,7 +180,7 @@ class IndexPage extends React.Component {
   render(){
     var res;
     if (this.state.blank){
-      res = null;
+      res = <div id='result'><img id='diagram' src='diagram.png'/></div>;
     } else if (this.state.loading){
       res = <Spinner animation="border" role="status">
               <span className="sr-only">Loading...</span>
@@ -215,12 +216,13 @@ class IndexPage extends React.Component {
 
         <div id='container'>
           <div id='form-wrapper'>
-            <h1>tweet-img</h1>
+            <a id='site-name' href='https://tweet-img.vercel.app/'>tweet-img</a>
+            <h1>Transform tweet links into colorful graphics</h1>
             <p id='support'>Only tested on <a target='__blank' href='https://github.com/mhuap/tweet-img/projects/5'>some kinds</a> of tweets.</p>
             <form id='top-form' onSubmit={this.handleSubmit}>
-              <label>Enter Tweet URL</label>
+              <label>Enter tweet link</label>
               <div id='form-input' className={this.state.error ? 'error' : ''}>
-                <input id='url-input'type='text' ref={this.urlInput} name='url' placeholder='twitter.com/status/tweeturl'/>
+                <input id='url-input'type='text' ref={this.urlInput} name='url' placeholder='twitter.com/status/tweetlink'/>
                 <button className='input-overlay'>
                   <Arrow/>
                 </button>
@@ -228,6 +230,7 @@ class IndexPage extends React.Component {
               <p id='error'>{this.state.error ? 'Not a tweet URL' : ''}</p>
             </form>
           </div>
+
 
           <div id='result-wrapper' ref={this.result}>
             {res}
