@@ -1,7 +1,7 @@
 $color-grey: #657786;
 $color-dark: #14171a;
 $color-blue: #1DA1F2;
-$color-darkblue: #0071EB;
+$color-darkblue: #1a91da;
 $color-extralightgrey: #d3dade;
 $color-red: #dc3545;
 
@@ -412,6 +412,7 @@ label {
   background-color: white;
   padding: 1.5rem;
   position: relative;
+  border-radius: 0.5rem;
 
   .avatar {
     border-radius: 50%;
