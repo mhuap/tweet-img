@@ -220,9 +220,9 @@ class IndexPage extends React.Component {
             <h1>Transform tweet links into colorful graphics</h1>
             <p id='support'>Only tested on <a target='__blank' href='https://github.com/mhuap/tweet-img/projects/5'>some kinds</a> of tweets.</p>
             <form id='top-form' onSubmit={this.handleSubmit}>
-              <label>Enter tweet link</label>
+              <label className='section'>Enter tweet link</label>
               <div id='form-input' className={this.state.error ? 'error' : ''}>
-                <input id='url-input'type='text' ref={this.urlInput} name='url' placeholder='twitter.com/status/tweetlink'/>
+                <input id='url-input' type='text' ref={this.urlInput} name='url' placeholder='twitter.com/status/tweetlink'/>
                 <button className='input-overlay'>
                   <Arrow/>
                 </button>

@@ -32,12 +32,12 @@ function ColorPicker(props) {
 
   let panelStyle;
   if (isBig){
-    panelStyle = {opacity: 0}
+    panelStyle = {display: 'none'}
     if (displayPanel) {
-      panelStyle = {opacity: 1}
+      panelStyle = {display: 'block'}
     }
   } else {
-    panelStyle = {opacity: 1}
+    panelStyle = {display: 'block'}
   }
 
   const pointerIndex = displayPanel ? '0' : null;
@@ -70,33 +70,36 @@ function ColorPicker(props) {
   return (
     <div id='colorpicker'>
 
-      <div id="inputgroup">
-        <EditableInput
-          label=""
-          value={ props.hex.substring(1) }
-          onChange={ props.onChange }
-        />
-
+      <div id="inputgroup" className='soft-outline'>
         <button
           id="swatch"
-          className="input-overlay"
           onClick={handleSwatchClick}
           onMouseEnter={handleSwatchHover}
           onMouseLeave={handleSwatchHover}
           type="button"
+          ref={target} style={colorStyle}
         >
-          <div ref={target} style={colorStyle}></div>
+          <div ></div>
         </button>
 
-        <i className="">#</i>
+        <div>
+
+          <EditableInput
+            label=""
+            value={ props.hex.substring(1) }
+            onChange={ props.onChange }
+          />
+
+          <i className="">#</i>
+        </div>
       </div>
 
       {popover}
 
       <Overlay
-        target={isBig ? target.current : null}
-        show={show}
-        placement='bottom'
+        target={target.current}
+        show={isBig ? show : null}
+        placement='auto'
       >
         {(props) => (
           <Tooltip id={`tooltip-swatch`} {...props}>

@@ -2,15 +2,17 @@ $color-grey: #657786;
 $color-dark: #14171a;
 $color-blue: #1DA1F2;
 $color-darkblue: #1a91da;
-$color-extralightgrey: #d3dade;
+$color-lightgrey: #d3dade;
 $color-red: #dc3545;
+$color-lightblue: #E8F5FE;
+$color-extralightgrey: #F5F8FA;
 
 $border-radius: 0.25rem;
-$border-extralightgrey: solid 1px $color-extralightgrey;
+$border-lightgrey: solid 1px $color-lightgrey;
 
 $box-shadow-light: inset 0 0 0 0.2rem rgba(211, 212, 213, .5);
 
-$rounded-radius: 10px;
+$rounded-radius: 8px;
 $rounded-height: 46px;
 
 $width: 550px;
@@ -77,15 +79,15 @@ footer {
   }
 }
 
-input {
+input[type=text], input[type=url], .soft-outline {
   color: $color-dark;
-  border: $border-extralightgrey;
+  border: $border-lightgrey;
   border-radius: $rounded-radius;
   width: 100%;
   box-sizing: border-box;
   background: none;
   font-size: 1rem;
-  height: 46px;
+  height: $rounded-height;
 
   &:focus {
     border: solid 1px $color-blue;
@@ -225,7 +227,7 @@ button.input-overlay {
 
 #form-input.error {
 
-  input {
+  input[type=text] {
     border: solid 1px $color-red;
 
     &:focus {
@@ -235,7 +237,7 @@ button.input-overlay {
   }
 }
 
-label {
+label.section {
   display: block;
   font-size: 12px;
   font-weight: bold;
@@ -275,7 +277,7 @@ label {
   margin: 0 auto 12px auto;
 }
 
-#row-color {
+.row-color {
   display: flex;
   text-align: left;
   justify-content: space-between;
@@ -287,40 +289,73 @@ label {
   }
 }
 
+form#background-color {
+  button[type=submit] {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .form-check2 {
+    height: $rounded-height;
+    border-radius: $rounded-radius;
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    margin-bottom: 8px;
+    border: $border-lightgrey;
+    cursor: pointer;
+
+    input {
+      margin-right: 8px;
+    }
+
+    &.radio-active {
+      color: $color-blue;
+      background-color: $color-lightblue;
+      border-color: $color-blue;
+    }
+  }
+}
+
 #colorpicker {
   padding: 0;
   text-align: left;
   height: auto;
 
   #inputgroup {
-    position: relative;
     font-size: 1.2rem;
+    height: 2 * $rounded-height + 8;
+    padding: 8px;
 
     input {
-      height: $rounded-height;
       padding: 0 16px 0 28px;
       font-size: 1.2rem;
+      border: none;
+      background: none;
+
+      &:focus {
+        outline: none;
+      }
     }
 
     i {
-      line-height: 0;
       position: absolute;
-      left: 16px;
-      top: 48%;
+      left: 4px;
+      top: 1px;
+      color: $color-blue;
+    }
+
+    & > div {
+      position:relative;
     }
 
     #swatch {
-      padding: 0 8px;
-      height: 100%;
-
-      div {
-        border-radius: 6px;
-        box-shadow: inset rgba(0,0,0,0.11) 0 0 0 1px;
-        top: 8px;
-        height: 30px;
-        width: 30px;
-        right: 10px;
-      }
+      background: none;
+      border-radius: 6px;
+      box-shadow: inset rgba(0,0,0,0.11) 0 0 0 1px;
+      height: 52px;
+      width: inherit;
+      margin-bottom: 4px;
     }
   }
 
@@ -330,16 +365,16 @@ label {
 
 
   #colorpicker-group {
-    margin: 8px auto 24px auto;
+    margin: 8px auto;
     padding: 8px;
-    border-radius: 10px;
-    border: $border-extralightgrey;
+    border-radius: $rounded-radius;
+    border: $border-lightgrey;
   }
 
   #saturation-picker {
     position: relative;
     height: 200px;
-    border-radius: 10px;
+    border-radius: $rounded-radius;
     overflow: hidden;
 
     .circle {
@@ -375,7 +410,44 @@ label {
 
 }
 
+#photo-upload {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  cursor: pointer;
+  border-radius: $border-radius;
+  color: $color-blue;
+  height: 90px;
 
+  background-image: repeating-linear-gradient(0deg, #d3dade, #d3dade 10px, transparent 10px, transparent 24px, #d3dade 24px), repeating-linear-gradient(90deg, #d3dade, #d3dade 10px, transparent 10px, transparent 24px, #d3dade 24px), repeating-linear-gradient(180deg, #d3dade, #d3dade 10px, transparent 10px, transparent 24px, #d3dade 24px), repeating-linear-gradient(270deg, #d3dade, #d3dade 10px, transparent 10px, transparent 24px, #d3dade 24px);
+  background-size: 3px 100%, 100% 3px, 3px 100% , 100% 3px;
+  background-position: 0 0, 0 0, 100% 0, 0 100%;
+  background-repeat: no-repeat;
+
+  input[type=file] {
+    clip-path: inset(50%);
+    height: 0;
+    width: 0;
+  }
+
+  &:hover div {
+    position: absolute;
+    background-color: $color-extralightgrey;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  span {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 70%;
+  }
+}
 
 .sq-container:before {
   content: "";
@@ -390,6 +462,8 @@ label {
   justify-content: center;
   align-items: center;
   box-shadow: inset rgba(0,0,0,.11) 0 0 0 1px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 #tweet-img {
@@ -502,7 +576,7 @@ label {
   }
 
   #colorpicker #inputgroup input {
-    padding: 0 16px 0 32px;
+    padding: 0 16px 0 24px;
     font-size: 1rem;
   }
 
@@ -511,9 +585,8 @@ label {
 
     #colorpicker-group {
       position: relative;
-      width: 80%;
       margin-left: auto;
-      bottom: 230px;
+      bottom: 280px;
       box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 20px;
       background: white;
       padding: 8px;
@@ -544,6 +617,10 @@ label {
     }
   }
 
+  #photo-upload {
+    height: auto;
+  }
+
   #container {
     max-width: 550px;
   }
@@ -557,10 +634,10 @@ label {
   }
 
   // RESULT
-  #row-color {
+  .row-color {
     flex-direction: row;
     & > * {
-      width: 48%;
+      width: 49%;
     }
   }
 }

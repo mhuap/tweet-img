@@ -1,137 +1,156 @@
-import React from "react";
+import React, { useState, useRef, useEffect }from "react";
 
 import { scroller } from 'react-scroll';
 import Overlay from 'react-bootstrap/Overlay';
 
 import Tweet from './tweet';
 import ColorPicker from './colorPicker';
+import PhotoUpload from './photoUpload';
 
 const serverErrorMsg = 'Server Error';
 
-class Result extends React.Component {
+function Result(props){
+    const [bg, setBg] = useState('#E1E8ED');
+    const [resultImg, setResultImg] = useState(null);
+    const [bgImg, setBgImg] = useState(null);
+    const [colorMode, setColorMode] = useState(true);
+    const [selectedFile, setSelectedFile] = useState(null);
 
-  constructor(props){
-    super(props);
+    const ref = useRef();
 
-    this.state = {
-      bg: '#E1E8ED',
-      img: null,
-    }
-
-    this.handleColorChange = this.handleColorChange.bind(this);
-    this.genCanvas = this.genCanvas.bind(this);
-    this.imgClick = this.imgClick.bind(this);
-
-  }
-
-  genCanvas(){
-    const html2canvas = require('html2canvas');
-
-    // necessary for proper image creation with html2canvas
-    // window.scrollTo({ top: 0})
-
-    // Hide scrollbar to fix bug with html2canvas which adds extra whitespace to image if scrollbar is present
-    document.documentElement.style.overflow = 'hidden';
-
-    return html2canvas(document.querySelector("#preview .sq-container"),
-      {
-        allowTaint: false,
-        useCORS: true,
-        backgroundColor: null,
-        logging: false
-      })
-    .then((canvas) => {
+    useEffect(() => {
       scroller.scrollTo('result-wrapper', {
         smooth: true,
       })
-
-      // Un-hide scrollbar
-      document.documentElement.style.overflow = '';
-
-      // const src = canvas.toDataURL();
-      return canvas.toBlob((blob) => {
-        const href = URL.createObjectURL(blob);
-        this.setState({
-          img: href
-        });
-
-      },'image/png')
-    })
-
-
-  }
-
-  async imgClick(e){
-    e.preventDefault();
-    await this.genCanvas();
-    return false
-  }
-
-
-  handleColorChange(color, event){
-    this.setState({
-      bg: color.hex
     });
 
-  }
+    const handleColorChange = (color, event) => setBg(color.hex);
 
-  componentDidMount() {
+    const onFileChange = () => {
+      const file = event.target.files[0];
+      setSelectedFile(file);
 
-    scroller.scrollTo('result-wrapper', {
-      smooth: true,
-    })
+      var reader = new FileReader();
+      reader.onload = function(event) {
+        setBgImg(event.target.result)
+      };;
 
-  }
+      reader.readAsDataURL(file);
+    }
 
-  render(){
+    const genCanvas = () => {
+      const html2canvas = require('html2canvas');
 
-    const ref = React.createRef();
+      // necessary for proper image creation with html2canvas
+      // window.scrollTo({ top: 0})
 
-    let bgStyle = {backgroundColor: this.state.bg}
+      // Hide scrollbar to fix bug with html2canvas which adds extra whitespace to image if scrollbar is present
+      document.documentElement.style.overflow = 'hidden';
 
-    // console.log(this.props.tweet);
-    if (this.props.tweet === serverErrorMsg){
+      return html2canvas(document.querySelector("#preview .sq-container"),
+        {
+          allowTaint: false,
+          useCORS: true,
+          backgroundColor: null,
+          logging: false
+        })
+      .then((canvas) => {
+        scroller.scrollTo('result-wrapper', {
+          smooth: true,
+        })
+
+        // Un-hide scrollbar
+        document.documentElement.style.overflow = '';
+
+        // const src = canvas.toDataURL();
+        return canvas.toBlob((blob) => {
+          const href = URL.createObjectURL(blob);
+          setResultImg(href);
+
+        },'image/png')
+      })
+    }
+
+    const imgClick = async e => {
+      e.preventDefault();
+      await genCanvas();
+      return false
+    }
+
+    // console.log(props.tweet);
+    if (props.tweet === serverErrorMsg){
       return <p>{serverErrorMsg}</p>
     }
 
+    let bgSection;
+    let bgStyle = {backgroundColor: bg};
+
+    if (colorMode){
+      bgSection = <ColorPicker
+        onChange = {handleColorChange}
+        color={bg}
+      />
+    } else {
+      if (bgImg) {
+        bgStyle = {backgroundImage: `url(${bgImg})`};
+      }
+      bgSection = <PhotoUpload
+        onFileChange={onFileChange}
+        fileName={selectedFile ? selectedFile.name : null}
+      />
+    }
+
+
     let content;
 
-    if (this.state.img){
+    if (resultImg){
       content =<>
       <small>Click image to download</small>
-      <a href={this.state.img} download='tweet'>
+      <a href={resultImg} download='tweet'>
         <img
           id='tweet-img'
-          src={this.state.img}
+          src={resultImg}
         />
       </a>
 
-        <small id='backup-link'>or <a href={this.state.img} download="tweet">download here</a></small>
+        <small id='backup-link'>or <a href={resultImg} download="tweet">download here</a></small>
       </>
     } else {
       content = <>
         <div id='preview'>
-          <label>Preview</label>
+          <label className='section'>Preview</label>
           <div className='sq-container-container'>
             <div className='sq-container' style={bgStyle}>
               <Tweet
-                tweet={this.props.tweet}
-                user={this.props.user}
+                tweet={props.tweet}
+                user={props.user}
               />
             </div>
           </div>
 
-          <label>Background Color</label>
-          <form action="#" onSubmit={this.imgClick}>
-            <div id="row-color">
-              <ColorPicker
-                onChange = {this.handleColorChange}
-                color={this.state.bg}
-              />
+          <label className='section'>Background Color</label>
+          <form id="background-color" action="#" onSubmit={imgClick}>
+            <div className="row-color">
+              <div>
+                <label className={'form-check2' + (colorMode ? ' radio-active' : '')}
+                  onClick={(e) => setColorMode(true)}
+                >
+                  <input id='color' type='radio' name='bg' defaultChecked/>
+                  Single color
+                </label>
 
-              <button type="submit">Create Image</button>
+                <label className={'form-check2' + (colorMode ? '' : ' radio-active')}
+                  onClick={(e) => setColorMode(false)}
+                >
+                  <input id='photo' type='radio' name='bg'/>
+                  Photo
+                </label>
 
+              </div>
+
+              {bgSection}
             </div>
+            <button type="submit">Create Image</button>
           </form>
 
         </div>
@@ -140,7 +159,6 @@ class Result extends React.Component {
     }
 
     return <div id='result'>{content}</div>;
-  }
 }
 
 
