@@ -127,34 +127,32 @@ function Result(props){
               />
             </div>
           </div>
-
-          <label className='section'>Background Color</label>
-          <form id="background-color" action="#" onSubmit={imgClick}>
-            <div className="row-color">
-              <div>
-                <label className={'form-check2' + (colorMode ? ' radio-active' : '')}
-                  onClick={(e) => setColorMode(true)}
-                >
-                  <input id='color' type='radio' name='bg' defaultChecked/>
-                  Single color
-                </label>
-
-                <label className={'form-check2' + (colorMode ? '' : ' radio-active')}
-                  onClick={(e) => setColorMode(false)}
-                >
-                  <input id='photo' type='radio' name='bg'/>
-                  Photo
-                </label>
-
-              </div>
-
-              {bgSection}
-            </div>
-            <button type="submit">Create Image</button>
-          </form>
-
         </div>
 
+        <div id='customization'>
+          <label className='section'>Background</label>
+          <form id="background-color" action="#" onSubmit={imgClick}>
+            <div id='segmented'>
+              <label id='color'
+                className={'form-check2' + (colorMode ? ' radio-active' : '')}
+                onClick={(e) => setColorMode(true)}
+              >
+                <input type='radio' name='bg' defaultChecked/>
+                Color
+              </label>
+
+              <label id='photo'
+                className={'form-check2' + (colorMode ? '' : ' radio-active')}
+                onClick={(e) => setColorMode(false)}
+              >
+                <input type='radio' name='bg'/>
+                Photo
+              </label>
+            </div>
+            {bgSection}
+            <button type="submit">Create Image</button>
+          </form>
+        </div>
       </>
     }
 

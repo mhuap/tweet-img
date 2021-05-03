@@ -9,7 +9,7 @@ function PhotoUpload(props) {
       <input type="file" onChange={props.onFileChange} accept="image/jpeg, image/png"/>
       {(props.fileName ?
         <span>{props.fileName}</span> :
-        <>&#8682; <span>{photoMessage}</span></>)}
+        <><span id='icon'>&#8682;</span> <span>{photoMessage}</span></>)}
       <div></div>
     </label>
   )
