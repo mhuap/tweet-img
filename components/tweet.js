@@ -76,8 +76,13 @@ function Tweet(props){
     })
   }
 
+  let boxStyle = {};
+  boxStyle.borderRadius = props.boxRounded ? '0.5rem' : '0';
+  boxStyle.boxShadow = props.boxShadow ? 'rgba(0, 0, 0, 0.15) 0px 0px 24px' : 'none';
+  boxStyle.borderColor = props.boxBorder ? '#14171a' : 'white';
+
   return (
-    <div id='tweet'>
+    <div id='tweet' style={boxStyle}>
       <div>
         <img className='avatar' crossOrigin='*' src={props.user.img} />
         <div className='account-group'>

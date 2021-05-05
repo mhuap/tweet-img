@@ -229,6 +229,7 @@ class IndexPage extends React.Component {
               </div>
               <p id='error'>{this.state.error ? 'Not a tweet URL' : ''}</p>
             </form>
+            <div id='top-line'></div>
           </div>
 
 

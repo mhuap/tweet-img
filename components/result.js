@@ -1,162 +1,156 @@
-import React, { useState, useRef, useEffect }from "react";
+import React, { useState, useEffect }from "react";
 
 import { scroller } from 'react-scroll';
-import Overlay from 'react-bootstrap/Overlay';
 
 import Tweet from './tweet';
-import ColorPicker from './colorPicker';
+import ColorPicker from './colorpicker';
 import PhotoUpload from './photoUpload';
+import SideBar from './sideBar';
 
-const serverErrorMsg = 'Server Error';
+const serverErrorMsg = 'Twitter server error';
 
 function Result(props){
-    const [bg, setBg] = useState('#E1E8ED');
-    const [resultImg, setResultImg] = useState(null);
-    const [bgImg, setBgImg] = useState(null);
-    const [colorMode, setColorMode] = useState(true);
-    const [selectedFile, setSelectedFile] = useState(null);
+  const [colorMode, setColorMode] = useState(true);
+  const [bgColor, setBgColor] = useState('#E1E8ED');
 
-    const ref = useRef();
+  const [bgImg, setBgImg] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [resultImg, setResultImg] = useState(null);
 
-    useEffect(() => {
+  const [boxRounded, setBoxRounded] = useState(true);
+  const [boxBorder, setBoxBorder] = useState(false);
+  const [boxShadow, setBoxShadow] = useState(false);
+
+  useEffect(() => {
+    scroller.scrollTo('result-wrapper', {
+      smooth: true,
+    })
+  });
+
+  const handleColorChange = (color, event) => setBgColor(color.hex);
+
+  const onFileChange = () => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+
+    var reader = new FileReader();
+    reader.onload = function(event) {
+      setBgImg(event.target.result)
+    };;
+
+    reader.readAsDataURL(file);
+  }
+
+  const genCanvas = () => {
+    const html2canvas = require('html2canvas');
+
+    // necessary for proper image creation with html2canvas
+    // window.scrollTo({ top: 0})
+
+    // Hide scrollbar to fix bug with html2canvas which adds extra whitespace to image if scrollbar is present
+    document.documentElement.style.overflow = 'hidden';
+
+    return html2canvas(document.querySelector("#preview .sq-container"),
+      {
+        allowTaint: false,
+        useCORS: true,
+        backgroundColor: null,
+        logging: false,
+      })
+    .then((canvas) => {
       scroller.scrollTo('result-wrapper', {
         smooth: true,
       })
-    });
 
-    const handleColorChange = (color, event) => setBg(color.hex);
+      // Un-hide scrollbar
+      document.documentElement.style.overflow = '';
 
-    const onFileChange = () => {
-      const file = event.target.files[0];
-      setSelectedFile(file);
+      // const src = canvas.toDataURL();
+      return canvas.toBlob((blob) => {
+        const href = URL.createObjectURL(blob);
+        setResultImg(href);
 
-      var reader = new FileReader();
-      reader.onload = function(event) {
-        setBgImg(event.target.result)
-      };;
+      },'image/png')
+    })
+  }
 
-      reader.readAsDataURL(file);
+  const imgClick = async e => {
+    e.preventDefault();
+    await genCanvas();
+    return false
+  }
+
+  // console.log(props.tweet);
+  if (props.tweet === serverErrorMsg){
+    return <p>{serverErrorMsg}</p>
+  }
+
+  let bgSection;
+  let bgStyle = {backgroundColor: bgColor};
+
+  if (colorMode){
+    bgSection = <ColorPicker
+      onChange = {handleColorChange}
+      color={bgColor}
+    />
+  } else {
+    if (bgImg) {
+      bgStyle = {backgroundImage: `url(${bgImg})`};
     }
+    bgSection = <PhotoUpload
+      onFileChange={onFileChange}
+      fileName={selectedFile ? selectedFile.name : null}
+    />
+  }
 
-    const genCanvas = () => {
-      const html2canvas = require('html2canvas');
 
-      // necessary for proper image creation with html2canvas
-      // window.scrollTo({ top: 0})
+  let content;
 
-      // Hide scrollbar to fix bug with html2canvas which adds extra whitespace to image if scrollbar is present
-      document.documentElement.style.overflow = 'hidden';
-
-      return html2canvas(document.querySelector("#preview .sq-container"),
-        {
-          allowTaint: false,
-          useCORS: true,
-          backgroundColor: null,
-          logging: false
-        })
-      .then((canvas) => {
-        scroller.scrollTo('result-wrapper', {
-          smooth: true,
-        })
-
-        // Un-hide scrollbar
-        document.documentElement.style.overflow = '';
-
-        // const src = canvas.toDataURL();
-        return canvas.toBlob((blob) => {
-          const href = URL.createObjectURL(blob);
-          setResultImg(href);
-
-        },'image/png')
-      })
-    }
-
-    const imgClick = async e => {
-      e.preventDefault();
-      await genCanvas();
-      return false
-    }
-
-    // console.log(props.tweet);
-    if (props.tweet === serverErrorMsg){
-      return <p>{serverErrorMsg}</p>
-    }
-
-    let bgSection;
-    let bgStyle = {backgroundColor: bg};
-
-    if (colorMode){
-      bgSection = <ColorPicker
-        onChange = {handleColorChange}
-        color={bg}
+  if (resultImg){
+    content =<div style={{width: '530px', margin: '0 auto'}}>
+    <small>Click image to download</small>
+    <a href={resultImg} download='tweet'>
+      <img
+        id='tweet-img'
+        src={resultImg}
+        alt={`Tweet that says: ${props.tweet.text}`}
       />
-    } else {
-      if (bgImg) {
-        bgStyle = {backgroundImage: `url(${bgImg})`};
-      }
-      bgSection = <PhotoUpload
-        onFileChange={onFileChange}
-        fileName={selectedFile ? selectedFile.name : null}
-      />
-    }
+    </a>
 
-
-    let content;
-
-    if (resultImg){
-      content =<>
-      <small>Click image to download</small>
-      <a href={resultImg} download='tweet'>
-        <img
-          id='tweet-img'
-          src={resultImg}
-        />
-      </a>
-
-        <small id='backup-link'>or <a href={resultImg} download="tweet">download here</a></small>
-      </>
-    } else {
-      content = <>
-        <div id='preview'>
-          <label className='section'>Preview</label>
-          <div className='sq-container-container'>
-            <div className='sq-container' style={bgStyle}>
-              <Tweet
-                tweet={props.tweet}
-                user={props.user}
-              />
-            </div>
+      <small id='backup-link'>or <a href={resultImg} download="tweet">download here</a></small>
+    </div>
+  } else {
+    content = <>
+      <div id='preview'>
+        <label className='section'>Preview</label>
+        <div className='sq-container-container'>
+          <div className='sq-container' style={bgStyle}>
+            <Tweet
+              tweet={props.tweet}
+              user={props.user}
+              boxRounded={boxRounded}
+              boxBorder={boxBorder}
+              boxShadow={boxShadow}
+            />
           </div>
         </div>
+      </div>
 
-        <div id='customization'>
-          <label className='section'>Background</label>
-          <form id="background-color" action="#" onSubmit={imgClick}>
-            <div id='segmented'>
-              <label id='color'
-                className={'form-check2' + (colorMode ? ' radio-active' : '')}
-                onClick={(e) => setColorMode(true)}
-              >
-                <input type='radio' name='bg' defaultChecked/>
-                Color
-              </label>
+      <SideBar
+        onSubmit={imgClick}
+        colorMode={colorMode}
+        onClickColor={() => setColorMode(true)}
+        onClickPhoto={() => setColorMode(false)}
+        onSwitchRounded={() => setBoxRounded(!boxRounded)}
+        onSwitchBorder={() => setBoxBorder(!boxBorder)}
+        onSwitchShadow={() => setBoxShadow(!boxShadow)}
+      >
+        {bgSection}
+      </SideBar>
+    </>
+  }
 
-              <label id='photo'
-                className={'form-check2' + (colorMode ? '' : ' radio-active')}
-                onClick={(e) => setColorMode(false)}
-              >
-                <input type='radio' name='bg'/>
-                Photo
-              </label>
-            </div>
-            {bgSection}
-            <button type="submit">Create Image</button>
-          </form>
-        </div>
-      </>
-    }
-
-    return <div id='result'>{content}</div>;
+  return <div id='result'>{content}</div>;
 }
 
 

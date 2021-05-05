@@ -180,8 +180,18 @@ small {
   }
 }
 
-#top-form {
+#top-line {
+  position: absolute;
+  border-top: $border-lightgrey;
+  height: 1px;
   width: 100%;
+  bottom: 23px + 12 + 16;
+}
+
+#top-form {
+  position: relative;
+  width: 100%;
+  margin-bottom: 16px;
 }
 
 #form-input {
@@ -251,8 +261,8 @@ label.section {
   display: block;
   font-size: 12px;
   font-weight: bold;
-  letter-spacing: 0.1px;
-  color: $color-grey;
+  letter-spacing: 0.6px;
+  color: $color-dark;
   text-align: left;
   text-transform: uppercase;
 }
@@ -306,6 +316,23 @@ label.section {
 }
 
 form#background-color {
+  text-align: left;
+
+  #switches {
+    margin-bottom: 24px;
+  }
+
+  .custom-switch {
+    margin-bottom: 4px;
+  }
+
+  .sub-section {
+    font-size: 12px;
+    display: block;
+    margin-bottom: 4px;
+    color: $color-grey;
+  }
+
   button[type=submit] {
     width: 100%;
     margin-top: 8px;
@@ -514,7 +541,6 @@ form#background-color {
 #tweet-img {
   width: 100%;
   cursor: pointer;
-  // box-shadow: $box-shadow;
 }
 
 #context-menu {
@@ -531,7 +557,9 @@ form#background-color {
   background-color: white;
   padding: 1.5rem;
   position: relative;
-  border-radius: 0.5rem;
+  // border-radius: 0.5rem;
+  // box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 24px;
+  border: solid 1px white;
 
   .avatar {
     border-radius: 50%;
@@ -628,6 +656,7 @@ form#background-color {
 
   #form-wrapper {
     // height: 40vh;
+    position: relative;
 
     p#support {
       font-size: 0.75rem;
@@ -650,7 +679,7 @@ form#background-color {
   }
 
   #top-form {
-    width: 500px;
+    width: 525px;
   }
 
   #diagram {
@@ -664,11 +693,11 @@ form#background-color {
     margin-right: auto;
     flex-direction: row;
 
-    border: $border-lightgrey;
-    border-radius: $rounded-radius;
-    padding: 48px 24px 16px 24px;
-    padding-top: 48px;
-    margin-top: -44px;
+    // border: $border-lightgrey;
+    // border-radius: $rounded-radius;
+    // padding: 48px 24px 16px 24px;
+    // padding-top: 48px;
+    // margin-top: -44px;
   }
 
   #preview {
