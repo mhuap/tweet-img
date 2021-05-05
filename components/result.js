@@ -3,7 +3,7 @@ import React, { useState, useEffect }from "react";
 import { scroller } from 'react-scroll';
 
 import Tweet from './tweet';
-import ColorPicker from './colorpicker';
+import ColorPicker from './colorPicker';
 import PhotoUpload from './photoUpload';
 import SideBar from './sideBar';
 
