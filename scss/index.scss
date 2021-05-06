@@ -138,6 +138,15 @@ small {
   justify-content: center;
 }
 
+.error-text {
+  text-align: left;
+  color: $color-red;
+  margin-bottom: 0;
+  font-size: 12px;
+  margin-top: 8px;
+  height: 12px;
+}
+
 #form-wrapper {
   width: 100%;
   margin: 0 auto 8px auto;
@@ -162,14 +171,6 @@ small {
     text-decoration: underline;
   }
 
-  #error {
-    text-align: left;
-    color: $color-red;
-    margin-bottom: 0;
-    font-size: 0.75rem;
-    height: 0.75rem;
-  }
-
   #site-name {
     font-weight: bold;
     margin-top: 15vh;
@@ -185,7 +186,7 @@ small {
   border-top: $border-lightgrey;
   height: 1px;
   width: 100%;
-  bottom: 23px + 12 + 16;
+  bottom: 58px;
   display: none;
 }
 

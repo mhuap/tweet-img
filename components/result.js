@@ -19,7 +19,6 @@ function Result(props){
 
   const [boxRounded, setBoxRounded] = useState(true);
   const [boxBorder, setBoxBorder] = useState(false);
-  const [boxShadow, setBoxShadow] = useState(false);
 
   useEffect(() => {
     scroller.scrollTo('result-wrapper', {
@@ -86,7 +85,9 @@ function Result(props){
   }
 
   let bgSection;
-  let bgStyle = {backgroundColor: bgColor};
+  let bgStyle = {
+    backgroundColor: bgColor
+  };
 
   if (colorMode){
     bgSection = <ColorPicker
@@ -95,7 +96,7 @@ function Result(props){
     />
   } else {
     if (bgImg) {
-      bgStyle = {backgroundImage: `url(${bgImg})`};
+      bgStyle.backgroundImage = `url(${bgImg})`;
     }
     bgSection = <PhotoUpload
       onFileChange={onFileChange}
@@ -130,7 +131,6 @@ function Result(props){
               user={props.user}
               boxRounded={boxRounded}
               boxBorder={boxBorder}
-              boxShadow={boxShadow}
             />
           </div>
         </div>
@@ -143,7 +143,6 @@ function Result(props){
         onClickPhoto={() => setColorMode(false)}
         onSwitchRounded={() => setBoxRounded(!boxRounded)}
         onSwitchBorder={() => setBoxBorder(!boxBorder)}
-        onSwitchShadow={() => setBoxShadow(!boxShadow)}
       >
         {bgSection}
       </SideBar>

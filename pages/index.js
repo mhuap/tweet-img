@@ -18,7 +18,8 @@ class IndexPage extends React.Component {
     this.state = {
         loading: false,
         blank: true,
-        error: false,
+        inputError: false,
+        serverError: null,
         tweet: {
           text: '',
           date: null,
@@ -54,7 +55,11 @@ class IndexPage extends React.Component {
     })
     .then(response => {
       // console.log('response')
-      const tweet = response.data.data[0];
+      const res = response.data;
+      if (res.errors){
+        throw new Error(res.errors[0].detail);
+      }
+      const tweet = res.data[0];
 
       let media;
       if (tweet.attachments){
@@ -114,7 +119,8 @@ class IndexPage extends React.Component {
           verified: user.verified,
           img: user.profile_image_url,
         },
-        loading: false
+        loading: false,
+        serverError: null
       });
 
       // console.log('not loading')
@@ -122,12 +128,12 @@ class IndexPage extends React.Component {
     })
     .catch(error => {
 
-      this.setState({
-        tweet: serverErrorMsg,
-        loading: false
-      });
+      console.log(error)
 
-      // console.log('not loading')
+      this.setState({
+        loading: false,
+        serverError: error.message
+      });
     })
 
   }
@@ -141,12 +147,12 @@ class IndexPage extends React.Component {
     if (tweetId == 0){
       this.setState({
         blank: true,
-        error: true
+        inputError: true
       });
     } else {
       this.setState({
           blank: false,
-          error: false
+          inputError: false
       }, () => {
         this.createTweet(tweetId);
       });
@@ -185,6 +191,8 @@ class IndexPage extends React.Component {
       res = <Spinner animation="border" role="status">
               <span className="sr-only">Loading...</span>
             </Spinner>;
+    } else if (this.state.serverError){
+      res = <span className='error-text'>{this.state.serverError}</span>
     } else {
       res = <Result blank={this.state.blank} tweet={this.state.tweet} user={this.state.user}/>;
       // res = this.state.tweet.text;
@@ -221,13 +229,13 @@ class IndexPage extends React.Component {
             <p id='support'>Only tested on <a target='__blank' href='https://github.com/mhuap/tweet-img/projects/5'>some kinds</a> of tweets.</p>
             <form id='top-form' onSubmit={this.handleSubmit}>
               <label className='section'>Enter tweet link</label>
-              <div id='form-input' className={this.state.error ? 'error' : ''}>
+              <div id='form-input' className={this.state.inputError ? 'error' : ''}>
                 <input id='url-input' type='text' ref={this.urlInput} name='url' placeholder='twitter.com/status/tweetlink'/>
                 <button className='input-overlay'>
                   <Arrow/>
                 </button>
               </div>
-              <p id='error'>{this.state.error ? 'Not a tweet URL' : ''}</p>
+              <p className='error-text'>{this.state.inputError ? 'Not a tweet URL' : ''}</p>
             </form>
             <div id='top-line'></div>
           </div>

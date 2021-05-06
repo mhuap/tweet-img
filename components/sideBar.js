@@ -24,13 +24,6 @@ function SideBar(props) {
             id='border-switch'
             onClick={props.onSwitchBorder}
           />
-
-          <Form.Check
-            type="switch"
-            label="Shadow"
-            id='shadow-switch'
-            onClick={props.onSwitchShadow}
-          />
         </div>
 
         <span className='sub-section'>Background</span>

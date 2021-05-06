@@ -20,6 +20,7 @@ async function getRequest(tweetId) {
       })
     .then(response => {
       // console.log(response.data);
+      // console.log(response);
       return JSON.stringify(response.data);
     })
     .catch(error => {
