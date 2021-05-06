@@ -107,7 +107,7 @@ function Result(props){
   let content;
 
   if (resultImg){
-    content =<div style={{width: '530px', margin: '0 auto'}}>
+    content =<div style={{maxWidth: '530px', margin: '0 auto'}}>
     <small>Click image to download</small>
     <a href={resultImg} download='tweet'>
       <img
