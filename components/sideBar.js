@@ -7,7 +7,7 @@ function SideBar(props) {
   return (
     <div id='customization'>
       <label className='section'>Customization</label>
-      <form id="background-color" action="#" onSubmit={props.onSubmit}>
+      <div id="background-color">
         <div id="switches">
           <span className='sub-section'>Tweet box</span>
           <Form.Check
@@ -45,8 +45,8 @@ function SideBar(props) {
           </label>
         </div>
         {props.children}
-        <button type="submit">Create Image</button>
-      </form>
+        <button type="submit" onClick={props.onSubmit}>Create Image</button>
+      </div>
     </div>
   )
 }

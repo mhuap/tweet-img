@@ -1,4 +1,4 @@
-import React, { useState, useEffect }from "react";
+import React, { useState, useRef, useEffect }from "react";
 
 import { scroller } from 'react-scroll';
 
@@ -19,6 +19,8 @@ function Result(props){
 
   const [boxRounded, setBoxRounded] = useState(true);
   const [boxBorder, setBoxBorder] = useState(false);
+
+  const imageUrlRef = useRef();
 
   useEffect(() => {
     scroller.scrollTo('result-wrapper', {
@@ -79,6 +81,14 @@ function Result(props){
     return false
   }
 
+  const useImageURL = (e) => {
+    e.preventDefault();
+
+    const src = imageUrlRef.current.value;
+    setSelectedFile(null);
+    setBgImg(src);
+  }
+
   // console.log(props.tweet);
   if (props.tweet === serverErrorMsg){
     return <p>{serverErrorMsg}</p>
@@ -101,6 +111,8 @@ function Result(props){
     bgSection = <PhotoUpload
       onFileChange={onFileChange}
       fileName={selectedFile ? selectedFile.name : null}
+      useImageURL={useImageURL}
+      imgRef={imageUrlRef}
     />
   }
 

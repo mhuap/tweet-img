@@ -29,6 +29,13 @@ html {
   font-size: 16px;
 }
 
+::selection {
+  background: rgba(29, 161, 242, 0.25); /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: rgba(29, 161, 242, 0.25); /* Gecko Browsers */
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -294,10 +301,10 @@ label.section {
 
 #segmented {
   display: flex;
-
-  & > * {
-    width: 50%;
-  }
+  background-color: $color-extralightgrey;
+  padding: 4px;
+  border-radius: $rounded-radius;
+  margin-bottom: 8px;
 }
 
 #preview {
@@ -317,8 +324,9 @@ label.section {
   margin: 0 auto 12px auto;
 }
 
-form#background-color {
+#background-color {
   text-align: left;
+  color: $color-grey;
 
   #switches {
     margin-bottom: 24px;
@@ -326,16 +334,16 @@ form#background-color {
 
   .custom-switch {
     margin-bottom: 4px;
+    color: $color-dark;
   }
 
   .sub-section {
     font-size: 12px;
     display: block;
     margin-bottom: 4px;
-    color: $color-grey;
   }
 
-  button[type=submit] {
+  button {
     width: 100%;
     margin-top: 8px;
   }
@@ -345,10 +353,11 @@ form#background-color {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 8px;
-    border: $border-lightgrey;
+    margin-bottom: 0;
+    // border: $border-lightgrey;
     cursor: pointer;
     color: $color-grey;
+    width: 50%;
 
     input {
       display: none;
@@ -356,29 +365,17 @@ form#background-color {
 
     &.radio-active {
       color: $color-blue;
-      background-color: $color-lightblue;
+      background-color: white;
       border-color: $color-blue;
+      box-shadow: rgba(20, 23, 26, 0.10) 0px 2px 12px;
     }
   }
 
-  #color {
-    border-radius: $rounded-radius 0 0 $rounded-radius;
-    border-right-color: transparent;
-
-    &.radio-active {
-      border-right-color: $color-blue;
-    }
-  }
-
-  #photo {
-    border-radius: 0 $rounded-radius $rounded-radius 0;
-    border-left-color: transparent;
-
-    &.radio-active {
-      border-left-color: $color-blue;
-    }
+  #photo, #color {
+    border-radius: $rounded-radius;
   }
 }
+
 
 #colorpicker {
   padding: 0;
@@ -480,15 +477,16 @@ form#background-color {
 #photo-upload {
   position: relative;
   display: flex;
-  align-items: center;
-  text-align: left;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
   padding: 0 8px;
   cursor: pointer;
   border-radius: $rounded-radius;
-  // border: 1px solid $color-blue;
-  border: $border-lightgrey;
+  border: 1px solid $color-blue;
   color: $color-blue;
-  height: $rounded-height;
+  // background-color: $color-lightblue;
+  height: $rounded-height * 2;
   width: 100%;
 
   // background-image: repeating-linear-gradient(0deg, #d3dade, #d3dade 10px, transparent 10px, transparent 24px, #d3dade 24px), repeating-linear-gradient(90deg, #d3dade, #d3dade 10px, transparent 10px, transparent 24px, #d3dade 24px), repeating-linear-gradient(180deg, #d3dade, #d3dade 10px, transparent 10px, transparent 24px, #d3dade 24px), repeating-linear-gradient(270deg, #d3dade, #d3dade 10px, transparent 10px, transparent 24px, #d3dade 24px);
@@ -520,6 +518,52 @@ form#background-color {
   #icon {
     margin: 0 8px 0 4px;
   }
+}
+
+#image-url {
+  font-size: 12px;
+  height: auto;
+  align-items: baseline;
+  margin-bottom: 1rem;
+
+  input {
+    font-size: inherit;
+    height: inherit;
+    padding-left: 4px;
+    border-radius: 6px 0 0 6px;
+    border-right: transparent;
+  }
+
+  form {
+    display: flex;
+    flex-direction: row;
+    height: 22px;
+  }
+
+  button {
+    height: inherit;
+    font-size: inherit;
+    border-radius: 0 6px 6px 0;
+    width: auto;
+    margin-top: 0;
+  }
+
+}
+
+.photo-labels {
+  font-size: 12px;
+  margin-bottom: 4px;
+  color: $color-grey;
+
+  & + input {
+    padding-left: 12px;
+    margin-bottom: 8px;
+  }
+}
+
+#photo-spacer {
+  color: $color-dark;
+  margin: 0 8px;
 }
 
 .sq-container:before {
