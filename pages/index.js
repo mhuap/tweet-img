@@ -63,9 +63,8 @@ class IndexPage extends React.Component {
 
       let media;
       if (tweet.attachments){
-        media = response.data.includes.media[0].url;
-      } else {
-        media = null;
+        const mediaData = response.data.includes.media;
+        media = mediaData.map((x) => (x.type == 'photo') ? x.url : null);
       }
 
       // console.log(media)

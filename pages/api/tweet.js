@@ -8,7 +8,7 @@ async function getRequest(tweetId) {
     // Edit query parameters below
     const params = {
         'ids': tweetId,
-        'expansions': 'author_id,attachments.media_keys',
+        'expansions': 'author_id,attachments.media_keys,referenced_tweets.id,referenced_tweets.id.author_id',
         'user.fields': 'profile_image_url,verified',
         'tweet.fields': 'created_at,entities',
         'media.fields': 'url',

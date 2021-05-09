@@ -11,10 +11,6 @@ const verifiedIcon = <img id='badge' src='/verified.png'/>
 
 function Tweet(props){
 
-  // assuming there is only 1 image
-  const media = (props.tweet.media ?
-    <div className='media'><img crossorigin="*" src={props.tweet.media}/></div>
-    : null);
 
   const iso = new Date(props.tweet.date);
   const month = monthNames[iso.getMonth()];
@@ -26,16 +22,34 @@ function Tweet(props){
 
   let tweetText = props.tweet.text;
 
-  if (media){
-    const urlIndex = props.tweet.text.lastIndexOf('https://t.co/');
-    tweetText = props.tweet.text.slice(0, urlIndex);
+  let media
+  if (props.tweet.media){
+
+    const imgCount = props.tweet.media.length;
+
+    // remove attachment urls from tweet text
+    for (var i = 0; i < imgCount; i++){
+      const urlIndex = props.tweet.text.lastIndexOf('https://t.co/');
+      tweetText = props.tweet.text.slice(0, urlIndex);
+    }
+
+    if (imgCount == 1){
+      // assuming there is only 1 image
+      media = <div className='tweet-media'><img crossOrigin="*" src={props.tweet.media}/></div>
+    } else if (imgCount == 2){
+      media = <div className='tweet-media media-2'>
+        <img crossOrigin="*" src={props.tweet.media[0]}/>
+        <img crossOrigin="*" src={props.tweet.media[1]}/>
+      </div>;
+    } else {
+      media = 'more than 2 images unsupported'
+    }
   }
 
   let blueArr = [];
 
   if (props.tweet.urls){
     const urls = Object.keys(props.tweet.urls);
-
     for (let i = 0; i < urls.length; i++){
       const escaped = urls[i].replace(/\//g, '\\\/');
       blueArr.push(escaped);
