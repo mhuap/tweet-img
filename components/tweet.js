@@ -38,8 +38,8 @@ function Tweet(props){
       media = <div className='tweet-media'><img crossOrigin="*" src={props.tweet.media}/></div>
     } else if (imgCount == 2){
       media = <div className='tweet-media media-2'>
-        <img crossOrigin="*" src={props.tweet.media[0]}/>
-        <img crossOrigin="*" src={props.tweet.media[1]}/>
+        <div style={{backgroundImage: `url(${props.tweet.media[0]})`}}></div>
+        <div style={{backgroundImage: `url(${props.tweet.media[1]})`}}></div>
       </div>;
     } else {
       media = 'more than 2 images unsupported'

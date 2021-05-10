@@ -594,7 +594,6 @@ label.section {
 }
 
 .sq-container {
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -689,12 +688,11 @@ label.section {
     }
   }
 
-  .media-2 {
-    img {
-      width: 50%;
-      height: 250px;
-      object-fit: cover;
-    }
+  .media-2 div {
+    width: 50%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
   }
 
 }
@@ -755,6 +753,10 @@ label.section {
 
   #diagram {
     width: 80%;
+  }
+
+  #tweet .media-2 div {
+    height: 250px;
   }
 
   // RESULT
