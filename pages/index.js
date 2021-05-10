@@ -142,6 +142,10 @@ class IndexPage extends React.Component {
 
     // console.log('Submitted');
 
+    scroller.scrollTo('result-wrapper', {
+      smooth: true,
+    })
+
     const tweetId = this.validate(this.urlInput.current.value);
     if (tweetId == 0){
       this.setState({

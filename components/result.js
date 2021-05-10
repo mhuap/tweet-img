@@ -22,12 +22,6 @@ function Result(props){
 
   const imageUrlRef = useRef();
 
-  useEffect(() => {
-    scroller.scrollTo('result-wrapper', {
-      smooth: true,
-    })
-  });
-
   const handleColorChange = (color, event) => setBgColor(color.hex);
 
   const onFileChange = () => {

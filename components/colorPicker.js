@@ -28,32 +28,33 @@ function ColorPicker(props) {
           <Hue
             {...props}
             onChange={ props.onChange }
-            direction={ 'horizontal' }
+            direction={ 'vertical' }
             pointer={ ColorPointer }
             tabIndex='0' />
         </div>
 
-        <div id='swatch-group'>
+      </div>
 
-          <TwitterPicker
-            width='162px'
-            colors={['#FCB900', '#56D150', '#8ED1FC', '#EB144C', '#F7B6DB', '#610DC1']}
-            triangle='hide'
-            onChange={props.onChange}/>
+      <div id='swatch-group'>
 
-          <div id="inputgroup">
+        <div id="inputgroup">
 
-            <EditableInput
-              label=""
-              value={ props.hex.substring(1) }
-              onChange={ props.onChange }
-            />
+          <EditableInput
+            id="something"
+            label=""
+            value={ props.hex.substring(1) }
+            onChange={ props.onChange }
+          />
 
-            <i className="">#</i>
-
-          </div>
+          <i className="">#</i>
 
         </div>
+
+        <TwitterPicker
+          width='162px'
+          colors={['#FCB900', '#56D150', '#8ED1FC', '#EB144C', '#F7B6DB', '#610DC1']}
+          triangle='hide'
+          onChange={props.onChange}/>
 
       </div>
 

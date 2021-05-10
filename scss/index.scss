@@ -378,18 +378,26 @@ label.section {
 
 .twitter-picker {
   box-shadow: none !important;
+  // width: auto !important;
 
   div:last-child {
     padding: 0 !important;
+    display: flex;
+    width: auto;
+    justify-content: flex-end;
 
     > div {
       display: none !important;
     }
 
-    span div {
-      height: 21px !important;
-      width: 21px !important;
-      margin-bottom: 0 !important;
+    span {
+      margin-left: 4px !important;
+
+      div {
+        height: 32px !important;
+        width: 32px !important;
+        margin: 0 !important;
+      }
     }
   }
 }
@@ -399,11 +407,16 @@ label.section {
   padding: 0;
   text-align: left;
   height: auto;
+  padding: 8px;
+  border-radius: $rounded-radius;
+  border: $border-lightgrey;
+  margin: 8px auto;
 
   #swatch-group {
     display: flex;
     margin-top: 8px;
     align-items: center;
+    justify-content: space-between;
   }
 
   .swatch {
@@ -423,7 +436,7 @@ label.section {
       padding-left: 18px;
       border: none;
       background: none;
-      width: 84px;
+      width: 86px;
       background: $color-extralightgrey;
       border-radius: 6px;
       display: inline-block;
@@ -449,15 +462,13 @@ label.section {
 
 
   #colorpicker-group {
-    margin: 8px auto;
-    padding: 8px;
-    border-radius: $rounded-radius;
-    border: $border-lightgrey;
+    display: flex;
   }
 
   #saturation-picker {
     position: relative;
-    height: 180px;
+    height: 240px;
+    width: 100%;
     border-radius: 6px;
     overflow: hidden;
 
@@ -467,20 +478,22 @@ label.section {
   }
 
   #hue-picker {
-    height: 24px;
+    height: 240px;
+    width: 24px;
     position: relative;
-    margin-top: 12px;
+    margin-left: 8px;
     border-radius: 12px;
     overflow: hidden;
 
     .circle {
       margin-top: -3px;
+      margin-left: -2.5px;
     }
   }
 
   .circle {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     cursor: pointer;
     border: white solid 6px;
@@ -755,7 +768,7 @@ label.section {
     width: 80%;
   }
 
-  #tweet .media-2 div {
+  #tweet .media-2 img {
     height: 250px;
   }
 
@@ -783,13 +796,19 @@ label.section {
 
   #colorpicker {
 
+    #saturation-picker {
+      height: 150px;
+    }
+
     #hue-picker{
-      height: 16px;
-      margin-top: 8px;
+      height: 150px;
+      width: 16px;
+      // margin-top: 8px;
       border-radius: 8px;
 
       .circle {
         margin-top: -2px;
+        margin-left: -2.5px;
       }
     }
 
@@ -798,6 +817,23 @@ label.section {
       height: 20px;
       border-width: 4px;
     }
+  }
+
+  .twitter-picker {
+    width: 100% !important;
+
+    div:last-child {
+
+      span {
+        width: 15%;
+
+        div {
+          height: 24px !important;
+          width: 100% !important;
+        }
+      }
+    }
+
   }
 
   #tweet .tweet-text {
