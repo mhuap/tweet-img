@@ -376,24 +376,57 @@ label.section {
   }
 }
 
+.twitter-picker {
+  box-shadow: none !important;
+
+  div:last-child {
+    padding: 0 !important;
+
+    > div {
+      display: none !important;
+    }
+
+    span div {
+      height: 21px !important;
+      width: 21px !important;
+      margin-bottom: 0 !important;
+    }
+  }
+}
+
 
 #colorpicker {
   padding: 0;
   text-align: left;
   height: auto;
 
+  #swatch-group {
+    display: flex;
+    margin-top: 8px;
+    align-items: center;
+  }
+
+  .swatch {
+    border-radius: 6px;
+    box-shadow: inset rgba(0,0,0,0.11) 0 0 0 1px;
+    height: 32px;
+    width: 32px;
+    margin-right: 8px;
+  }
+
   #inputgroup {
-    font-size: 1.2rem;
-    height: $rounded-height;
     position: relative;
+    color: $color-grey;
 
     input {
-      padding-left: 28px;
-      font-size: 1.2rem;
+      padding: 4px;
+      padding-left: 18px;
       border: none;
       background: none;
-      height: 100%;
-      width: 100%;
+      width: 84px;
+      background: $color-extralightgrey;
+      border-radius: 6px;
+      display: inline-block;
 
       &:focus {
         outline: none;
@@ -402,26 +435,13 @@ label.section {
 
     i {
       position: absolute;
-      left: 8px;
-      top: 8px;
-      color: $color-blue;
+      left: 4px;
+      top: 4px;
     }
 
-    & > div {
-      height: 100%;
-    }
-
-    #swatch {
-      position: absolute;
-      right: 8px;
-      top: 8px;
-      border-radius: 6px;
-      box-shadow: inset rgba(0,0,0,0.11) 0 0 0 1px;
-      height: 28px;
-      width: 28px;
-      margin-bottom: 4px;
-    }
   }
+
+
 
   .popover {
     width: 150px;
@@ -437,8 +457,8 @@ label.section {
 
   #saturation-picker {
     position: relative;
-    height: 200px;
-    border-radius: $rounded-radius;
+    height: 180px;
+    border-radius: 6px;
     overflow: hidden;
 
     .circle {
@@ -719,11 +739,6 @@ label.section {
     }
   }
 
-  #colorpicker #inputgroup input {
-    padding-left: 28px;
-    font-size: 1rem;
-  }
-
 
 
 }
@@ -766,14 +781,9 @@ label.section {
 
   #colorpicker {
 
-    #saturation-picker {
-      height: 125px;
-      border-radius: 6px;
-    }
-
     #hue-picker{
       height: 16px;
-      margin-top: 10px;
+      margin-top: 8px;
       border-radius: 8px;
 
       .circle {
