@@ -394,8 +394,8 @@ label.section {
       margin-left: 4px !important;
 
       div {
-        height: 32px !important;
-        width: 32px !important;
+        height: 26px !important;
+        width: 26px !important;
         margin: 0 !important;
       }
     }
@@ -715,6 +715,19 @@ label.section {
     font-size: 1rem;
   }
 
+  .twitter-picker {
+
+    div:last-child {
+      span {
+        div {
+          height: 32px !important;
+          width: 32px !important;
+          // width: 100% !important;
+        }
+      }
+    }
+  }
+
 
 }
 
@@ -833,7 +846,6 @@ label.section {
         }
       }
     }
-
   }
 
   #tweet .tweet-text {
