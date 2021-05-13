@@ -710,11 +710,18 @@ label.section {
 
 }
 
-@media (min-width: $breakpoint-xs) {
-  #tweet .tweet-text {
-    font-size: 1rem;
-  }
+#quoted {
+  border: $border-lightgrey;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: $rounded-radius;
 
+  .tweet-text {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: $breakpoint-xs) {
   .twitter-picker {
 
     div:last-child {
@@ -850,6 +857,10 @@ label.section {
 
   #tweet .tweet-text {
     font-size: 1.2rem;
+  }
+
+  #quoted .tweet-text {
+    font-size: 1rem;
   }
 
 }

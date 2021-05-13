@@ -84,7 +84,7 @@ function Result(props){
   }
 
   // console.log(props.tweet);
-  if (props.tweet === serverErrorMsg){
+  if (props.mainTweet === serverErrorMsg){
     return <p>{serverErrorMsg}</p>
   }
 
@@ -120,7 +120,7 @@ function Result(props){
       <img
         id='tweet-img'
         src={resultImg}
-        alt={`Tweet that says: ${props.tweet.text}`}
+        alt={`Tweet that says: ${props.mainTweet.tweet.text}`}
       />
     </a>
 
@@ -133,8 +133,9 @@ function Result(props){
         <div className='sq-container-container'>
           <div className='sq-container' style={bgStyle}>
             <Tweet
-              tweet={props.tweet}
-              user={props.user}
+              tweet={props.mainTweet.tweet}
+              user={props.mainTweet.user}
+              quoted={props.quoted}
               boxRounded={boxRounded}
               boxBorder={boxBorder}
             />

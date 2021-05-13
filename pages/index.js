@@ -9,7 +9,25 @@ import Result from '../components/result';
 import Arrow from '../components/arrow.js';
 // import diagram from '../public/diagram.png';
 
-const serverErrorMsg = 'Server Error';
+const defaultTweet = {
+  text: '',
+  date: null,
+  media: null,
+  urls: null,
+  mentionsAndTags: null,
+};
+const defaultUser = {
+  username: '',
+  name: '',
+  verified: false,
+  img: null,
+};
+
+
+function TweetEntity(tweet = defaultTweet, user = defaultUser) {
+  this.tweet = tweet;
+  this.user = user;
+}
 
 class IndexPage extends React.Component {
 
@@ -20,19 +38,7 @@ class IndexPage extends React.Component {
         blank: true,
         inputError: false,
         serverError: null,
-        tweet: {
-          text: '',
-          date: null,
-          media: null,
-          urls: null,
-          other: null,
-        },
-        user: {
-          username: '',
-          name: '',
-          verified: false,
-          img: null,
-        },
+        mainTweet: new TweetEntity(),
     };
 
     this.result = React.createRef();
@@ -59,10 +65,10 @@ class IndexPage extends React.Component {
       if (res.errors){
         throw new Error(res.errors[0].detail);
       }
-      const tweet = res.data[0];
+      const tweetData = res.data[0];
 
       let media;
-      if (tweet.attachments){
+      if (tweetData.attachments){
         const mediaData = response.data.includes.media;
         media = mediaData.map((x) => (x.type == 'photo') ? x.url : null);
       }
@@ -72,13 +78,13 @@ class IndexPage extends React.Component {
       const user = response.data.includes.users[0];
 
       const tweetUrls = {};
-      const other = [];
+      const mentionsAndTags = [];
 
-      if (tweet.entities){
+      if (tweetData.entities){
 
         // URLs
-        if (tweet.entities.urls){
-          const urls = tweet.entities.urls;
+        if (tweetData.entities.urls){
+          const urls = tweetData.entities.urls;
           for (let i = 0; i < urls.length; i++){
             if (!urls[i].display_url.includes('pic.twitter.com')){
               tweetUrls[urls[i].url] = urls[i].display_url;
@@ -86,43 +92,81 @@ class IndexPage extends React.Component {
           }
         }
 
-        if (tweet.entities.mentions){
-          const mentions = tweet.entities.mentions;
+        // mentions
+        if (tweetData.entities.mentions){
+          const mentions = tweetData.entities.mentions;
           for (let i = 0; i < mentions.length; i++){
-            other.push('@' + mentions[i].username);
+            mentionsAndTags.push('@' + mentions[i].username);
           }
         }
 
-        if (tweet.entities.hashtags){
-          const hashtags = tweet.entities.hashtags;
+        if (tweetData.entities.hashtags){
+          const hashtags = tweetData.entities.hashtags;
           for (let i = 0; i < hashtags.length; i++){
-            other.push('#' + hashtags[i].tag);
+            mentionsAndTags.push('#' + hashtags[i].tag);
           }
         }
 
       }
+      console.log(tweetUrls);
 
-      // console.log(tweetUrls);
-
-      this.setState({
-        tweet: {
-          text: tweet.text,
-          date: tweet.created_at,
+      const mainTweet = new TweetEntity({
+          text: tweetData.text,
+          date: tweetData.created_at,
           media: media,
           urls: tweetUrls,
-          other: other,
-        },
-        user: {
+          mentionsAndTags: mentionsAndTags
+        },{
           username: user.username,
           name: user.name,
           verified: user.verified,
-          img: user.profile_image_url,
-        },
+          img: user.profile_image_url
+      })
+
+      // quoted tweet
+
+      let quotedId;
+      if (tweetData.referenced_tweets && tweetData.referenced_tweets[0].type == "quoted"){
+        quotedId = tweetData.referenced_tweets[0].id;
+      } else {
+        quotedId = 0;
+      }
+
+      let quotedTweet = null;
+      if (quotedId){
+        let quotedTweetData = response.data.includes.tweets[0];
+        quotedTweetData = quotedTweetData.id == quotedId ? quotedTweetData : null;
+
+        const quotedMedia = null;
+        const quotedUrls = null;
+
+        if (quotedTweetData){
+
+          const quotedAuthor = response.data.includes.users.find(x => x.id == quotedTweetData.author_id);
+
+          quotedTweet = new TweetEntity({
+              text: quotedTweetData.text,
+              date: quotedTweetData.created_at,
+              media: quotedMedia, // unsupported
+              urls: quotedUrls, // unsupported
+              mentionsAndTags: null // unneccessary for quoted tweets
+            },{
+              username: quotedAuthor.username,
+              name: quotedAuthor.name,
+              verified: quotedAuthor.verified,
+              img: quotedAuthor.profile_image_url
+          })
+        }
+      }
+
+      this.setState({
+        mainTweet: mainTweet,
+        quoted: quotedTweet,
         loading: false,
         serverError: null
       });
 
-      // console.log('not loading')
+      console.log(this.state.quoted)
 
     })
     .catch(error => {
@@ -197,7 +241,7 @@ class IndexPage extends React.Component {
     } else if (this.state.serverError){
       res = <span className='error-text'>{this.state.serverError}</span>
     } else {
-      res = <Result blank={this.state.blank} tweet={this.state.tweet} user={this.state.user}/>;
+      res = <Result blank={this.state.blank} mainTweet={this.state.mainTweet} quoted={this.state.quoted}/>;
       // res = this.state.tweet.text;
     }
 
