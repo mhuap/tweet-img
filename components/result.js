@@ -4,8 +4,8 @@ import { scroller } from 'react-scroll';
 
 import Tweet from './tweet';
 import ColorPicker from './colorPicker';
-import PhotoUpload from './photoUpload';
 import SideBar from './sideBar';
+import PhotoUpload from './photoUpload';
 
 const serverErrorMsg = 'Twitter server error';
 
@@ -19,6 +19,8 @@ function Result(props){
 
   const [boxRounded, setBoxRounded] = useState(true);
   const [boxBorder, setBoxBorder] = useState(false);
+
+  const [modalShow, setModalShow] = React.useState(false);
 
   const imageUrlRef = useRef();
 
@@ -34,6 +36,18 @@ function Result(props){
     };;
 
     reader.readAsDataURL(file);
+    setModalShow(false);
+  }
+
+  const onClickAddImage = () => {
+    setModalShow(true);
+    setColorMode(false);
+  }
+
+  const onClickTrash = () => {
+    setColorMode(true);
+    setSelectedFile(null);
+    setBgImg(null);
   }
 
   const genCanvas = () => {
@@ -79,8 +93,9 @@ function Result(props){
     e.preventDefault();
 
     const src = imageUrlRef.current.value;
-    setSelectedFile(null);
+    setSelectedFile({name: 'Image from URL'});
     setBgImg(src);
+    setModalShow(false);
   }
 
   // console.log(props.tweet);
@@ -93,21 +108,8 @@ function Result(props){
     backgroundColor: bgColor
   };
 
-  if (colorMode){
-    bgSection = <ColorPicker
-      onChange = {handleColorChange}
-      color={bgColor}
-    />
-  } else {
-    if (bgImg) {
-      bgStyle.backgroundImage = `url(${bgImg})`;
-    }
-    bgSection = <PhotoUpload
-      onFileChange={onFileChange}
-      fileName={selectedFile ? selectedFile.name : null}
-      useImageURL={useImageURL}
-      imgRef={imageUrlRef}
-    />
+  if (bgImg && !colorMode) {
+    bgStyle.backgroundImage = `url(${bgImg})`;
   }
 
 
@@ -145,13 +147,26 @@ function Result(props){
 
       <SideBar
         onSubmit={imgClick}
-        colorMode={colorMode}
-        onClickColor={() => setColorMode(true)}
-        onClickPhoto={() => setColorMode(false)}
         onSwitchRounded={() => setBoxRounded(!boxRounded)}
         onSwitchBorder={() => setBoxBorder(!boxBorder)}
       >
-        {bgSection}
+        <ColorPicker
+          onChange = {handleColorChange}
+          color={bgColor}
+          onFileChange={onFileChange}
+          onClickAddImage={onClickAddImage}
+          onClickTrash={onClickTrash}
+          fileName={selectedFile ? selectedFile.name : null}
+        />
+
+        <PhotoUpload
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          onFileChange={onFileChange}
+          useImageURL={useImageURL}
+          imgRef={imageUrlRef}
+        />
+
       </SideBar>
     </>
   }

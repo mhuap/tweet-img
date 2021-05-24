@@ -5,7 +5,7 @@ $color-darkblue: #1a91da;
 $color-lightgrey: #d3dade;
 $color-red: #dc3545;
 $color-lightblue: #E8F5FE;
-$color-extralightgrey: #F5F8FA;
+$color-extralightgrey: #F2F6F8;
 
 $border-radius: 0.25rem;
 $border-lightgrey: solid 1px $color-lightgrey;
@@ -76,7 +76,9 @@ a {
   }
 }
 
-
+hr {
+  margin: 8px 0;
+}
 
 footer {
   margin: 1rem;
@@ -106,7 +108,7 @@ input[type=text], input[type=url], .soft-outline {
   }
 }
 
-button {
+button:not(.close) {
   display: block;
   height: $rounded-height;
   background-color: $color-blue;
@@ -265,6 +267,9 @@ button.input-overlay {
     }
   }
 }
+label:not(.custom-control-label) {
+  margin: 8px 0;
+}
 
 label.section {
   display: block;
@@ -307,24 +312,71 @@ label.section {
   margin-bottom: 8px;
 }
 
+button.light-button {
+  margin-top: 8px;
+  padding: 4px 8px;
+  background-color: $color-extralightgrey;
+  display: inline-block;
+  cursor: pointer;
+  color: $color-dark;
+  white-space: nowrap;
+  width: 100%;
+  text-align: center;
+
+  &:hover {
+    color: $color-dark;
+    text-decoration: none;
+    background: $color-lightgrey;
+  }
+
+  &:focus {
+    box-shadow: none;
+    border: $border-lightgrey;
+  }
+}
+
+#red-split-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 46px;
+  line-height: 30px;
+  margin: 8px 0;
+
+  div {
+    border-radius: $rounded-radius;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border: $border-lightgrey;
+    padding: 8px;
+    border-right: transparent;
+    margin-top: 0;
+    text-overflow: ellipsis;
+    /* Required for text-overflow to do anything */
+    overflow: hidden;
+    white-space: nowrap;
+    height: inherit;
+    flex-grow: 1;
+  }
+
+  #trash {
+    color: white;
+    background: $color-red;
+    width: 46px;
+    margin-top: 0;
+
+    padding: 8px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
 #preview {
   width: 100%;
 }
 
 #customization {
   width: 100%;
-}
-
-#diagram {
-  width: 100%;
-  margin: 0 auto;
-}
-
-.sq-container-container {
-  margin: 0 auto 12px auto;
-}
-
-#background-color {
   text-align: left;
   color: $color-grey;
 
@@ -369,7 +421,16 @@ label.section {
       border-color: $color-blue;
       box-shadow: rgba(20, 23, 26, 0.10) 0px 2px 12px;
     }
-  }
+}
+
+#diagram {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.sq-container-container {
+  margin: 0 auto 12px auto;
+}
 
   #photo, #color {
     border-radius: $rounded-radius;
@@ -402,68 +463,8 @@ label.section {
   }
 }
 
-
-#colorpicker {
-  padding: 0;
-  text-align: left;
-  height: auto;
-  padding: 8px;
-  border-radius: $rounded-radius;
-  border: $border-lightgrey;
-  margin: 8px auto;
-
-  #swatch-group {
-    display: flex;
-    margin-top: 8px;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .swatch {
-    border-radius: 6px;
-    box-shadow: inset rgba(0,0,0,0.11) 0 0 0 1px;
-    height: 32px;
-    width: 32px;
-    margin-right: 8px;
-  }
-
-  #inputgroup {
-    position: relative;
-    color: $color-grey;
-
-    input {
-      padding: 4px;
-      padding-left: 18px;
-      border: none;
-      background: none;
-      width: 86px;
-      background: $color-extralightgrey;
-      border-radius: 6px;
-      display: inline-block;
-
-      &:focus {
-        outline: none;
-      }
-    }
-
-    i {
-      position: absolute;
-      left: 4px;
-      top: 4px;
-    }
-
-  }
-
-
-
-  .popover {
-    width: 150px;
-  }
-
-
-  #colorpicker-group {
-    display: flex;
-  }
+#colorpicker-group {
+  display: flex;
 
   #saturation-picker {
     position: relative;
@@ -491,6 +492,7 @@ label.section {
     }
   }
 
+
   .circle {
     width: 28px;
     height: 28px;
@@ -504,21 +506,122 @@ label.section {
       outline: none;
     }
   }
+}
+
+.circle-picker {
+
+  span:last-child > div {
+    margin-right: 0 !important;
+  }
+
+  span div span div {
+    border-radius: 4px !important;
+  }
+}
+
+#custom-color {
+  margin-right: 8px;
+}
+
+#popover {
+  width: 100%;
+  background-color: white;
+  padding: 8px;
+  border-radius: $rounded-radius;
+  border: $border-lightgrey;
+  margin-top: 8px;
+}
+
+#inputgroup {
+  position: relative;
+  color: $color-grey;
+  margin-top: 8px;
+  width: 92px;
+
+  input {
+    padding: 4px;
+    padding-left: 22px;
+    border: none;
+    width: 100%;
+    background: none;
+    border-radius: 4px;
+    background-color: $color-extralightgrey;
+    display: inline-block;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  i {
+    position: absolute;
+    left: 8px;
+    top: 4px;
+  }
+
+}
+
+.swatch {
+  display: block;
+  cursor: pointer;
+  position: absolute;
+  top: 4px;
+  right: 0;
+  z-index: 2;
+  border-radius: 4px;
+  box-shadow: inset rgba(0,0,0,0.11) 0 0 0 1px;
+  height: 24px;
+  width: 24px;
+  margin-right: 4px;
+}
+
+
+.sidebar-box {
+  text-align: left;
+  padding: 8px;
+  border-radius: $rounded-radius;
+  border: $border-lightgrey;
+  margin: 8px auto;
+
+}
+
+.modal.show .modal-dialog {
+  max-width: 400px;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.nav-tabs .nav-link{
+  color: $color-grey;
+  border: none;
+  border-bottom: $border-lightgrey;
+
+  &.active {
+    color: $color-blue;
+    border-bottom: 3px solid $color-blue;
+  }
+
+  &.disabled {
+    color: $color-lightgrey;
+  }
 
 }
 
 #photo-upload {
+  margin-top: 16px;
+  margin-bottom: 0;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  padding: 0 8px;
   cursor: pointer;
   border-radius: $rounded-radius;
-  border: 1px solid $color-blue;
-  color: $color-blue;
-  // background-color: $color-lightblue;
+  // border: $border-lightgrey;
+  color: $color-dark;
+  background-color: $color-extralightgrey;
   height: $rounded-height * 2;
   width: 100%;
 
@@ -532,53 +635,20 @@ label.section {
     height: 0;
     width: 0;
   }
-
-  &:hover div {
-    position: absolute;
-    background-color: $color-extralightgrey;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    left: 0;
-  }
-
-  span {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-
-  #icon {
-    margin: 0 8px 0 4px;
-  }
 }
 
 #image-url {
-  font-size: 12px;
-  height: auto;
-  align-items: baseline;
-  margin-bottom: 1rem;
+  margin-top: 16px;
 
   input {
     font-size: inherit;
-    height: inherit;
     padding-left: 4px;
-    border-radius: 6px 0 0 6px;
-    border-right: transparent;
-  }
-
-  form {
-    display: flex;
-    flex-direction: row;
-    height: 22px;
+    margin-bottom: 8px;
   }
 
   button {
-    height: inherit;
     font-size: inherit;
-    border-radius: 0 6px 6px 0;
-    width: auto;
-    margin-top: 0;
+    width: 100%;
   }
 
 }
@@ -814,7 +884,7 @@ label.section {
     width: 33%;
   }
 
-  #colorpicker {
+  #colorpicker-group {
 
     #saturation-picker {
       height: 150px;
