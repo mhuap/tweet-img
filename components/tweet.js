@@ -100,7 +100,6 @@ function Tweet(props){
   }
 
   const quoted = props.quoted;
-  console.log(quoted);
 
   let quotedDiv = null;
   if (quoted){

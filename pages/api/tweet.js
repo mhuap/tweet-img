@@ -1,8 +1,9 @@
+import TweetEntity from '../../components/tweetEntity.js';
+
 const axios = require("axios");
-
 const token = process.env.BEARER_TOKEN;
-
 const endpointUrl = 'https://api.twitter.com/2/tweets'
+
 
 async function getRequest(tweetId) {
     // Edit query parameters below
@@ -21,23 +22,136 @@ async function getRequest(tweetId) {
     .then(response => {
       // console.log(response.data);
       // console.log(response);
-      return JSON.stringify(response.data);
+      return response.data;
     })
     .catch(error => {
       console.log(error);
       return error.data;
     });
+};
 
-}
+// tweet parsing
+
+function parseRes(response) {
+  // console.log(response);
+
+  const res = response.data;
+  const errors = res.errors ? res.errors[0].detail : null;
+
+  const tweetData = res[0];
+
+  let media;
+  if (tweetData.attachments){
+    const mediaData = response.includes.media;
+    media = mediaData.map((x) => (x.type == 'photo') ? x.url : null);
+  }
+
+  // console.log(media)
+
+  const user = response.includes.users[0];
+
+  const tweetUrls = {};
+  const mentionsAndTags = [];
+
+  if (tweetData.entities){
+
+    // URLs
+    if (tweetData.entities.urls){
+      const urls = tweetData.entities.urls;
+      for (let i = 0; i < urls.length; i++){
+        if (!urls[i].display_url.includes('pic.twitter.com')){
+          tweetUrls[urls[i].url] = urls[i].display_url;
+        }
+      }
+    }
+
+    // mentions
+    if (tweetData.entities.mentions){
+      const mentions = tweetData.entities.mentions;
+      for (let i = 0; i < mentions.length; i++){
+        mentionsAndTags.push('@' + mentions[i].username);
+      }
+    }
+
+    if (tweetData.entities.hashtags){
+      const hashtags = tweetData.entities.hashtags;
+      for (let i = 0; i < hashtags.length; i++){
+        mentionsAndTags.push('#' + hashtags[i].tag);
+      }
+    }
+
+  }
+  // console.log(tweetUrls);
+
+  const mainTweet = new TweetEntity({
+      text: tweetData.text,
+      date: tweetData.created_at,
+      media: media,
+      urls: tweetUrls,
+      mentionsAndTags: mentionsAndTags
+    },{
+      username: user.username,
+      name: user.name,
+      verified: user.verified,
+      img: user.profile_image_url
+  });
+
+  // quoted tweet
+
+  let quotedId;
+  if (tweetData.referenced_tweets && tweetData.referenced_tweets[0].type == "quoted"){
+    quotedId = tweetData.referenced_tweets[0].id;
+  } else {
+    quotedId = 0;
+  }
+
+  let quotedTweet = null;
+  if (quotedId){
+    let quotedTweetData = response.includes.tweets[0];
+    quotedTweetData = quotedTweetData.id == quotedId ? quotedTweetData : null;
+
+    const quotedMedia = null;
+    const quotedUrls = null;
+
+    if (quotedTweetData){
+
+      const quotedAuthor = response.includes.users.find(x => x.id == quotedTweetData.author_id);
+
+      quotedTweet = new TweetEntity({
+          text: quotedTweetData.text,
+          date: quotedTweetData.created_at,
+          media: quotedMedia, // unsupported
+          urls: quotedUrls, // unsupported
+          mentionsAndTags: null // unneccessary for quoted tweets
+        },{
+          username: quotedAuthor.username,
+          name: quotedAuthor.name,
+          verified: quotedAuthor.verified,
+          img: quotedAuthor.profile_image_url
+      })
+    }
+
+    // console.log(this.state.quoted)
+  }
+
+  return JSON.stringify({
+    tweet: {
+      main: mainTweet,
+      quoted: quotedTweet,
+    },
+    errors: errors
+  })
+};
 
 
 export default async (req, res) => {
   if (req.method === 'POST') {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
-    const tweet = await getRequest(req.body.tweetId);
+    const twitterRes = await getRequest(req.body.tweetId);
+    const tweet = parseRes(twitterRes);
     res.end(tweet);
   } else {
     res.statusCode = 404;
   }
-}
+};

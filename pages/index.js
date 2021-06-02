@@ -7,26 +7,29 @@ import Spinner from 'react-bootstrap/Spinner';
 
 import Result from '../components/result';
 import Arrow from '../components/arrow.js';
+import TweetEntity from '../components/tweetEntity.js';
 // import diagram from '../public/diagram.png';
 
-const defaultTweet = {
-  text: '',
-  date: null,
-  media: null,
-  urls: null,
-  mentionsAndTags: null,
-};
-const defaultUser = {
-  username: '',
-  name: '',
-  verified: false,
-  img: null,
-};
+function validate(urlInput){
+  const regexMobile = /(https:\/\/)?mobile.twitter.com\/([a-z]|[A-Z]|\d|_){0,15}\/status\/(\d{1,19})/g
+  const regexGen = /(https:\/\/)?(www)?twitter.com\/([a-z]|[A-Z]|\d|_){0,15}\/status\/(\d{1,19})/g
 
+  let newInput;
+  const mobile = regexMobile.exec(urlInput);
+  if (mobile) {
+    newInput = mobile[3];
+  } else {
+    const valid = regexGen.exec(urlInput);
 
-function TweetEntity(tweet = defaultTweet, user = defaultUser) {
-  this.tweet = tweet;
-  this.user = user;
+    if(valid){
+      newInput = valid[4];
+    } else {
+      newInput = 0;
+    }
+  }
+
+  return newInput;
+
 }
 
 class IndexPage extends React.Component {
@@ -44,7 +47,6 @@ class IndexPage extends React.Component {
     this.result = React.createRef();
     this.urlInput = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.validate = this.validate.bind(this);
   }
 
   createTweet(url){
@@ -61,112 +63,20 @@ class IndexPage extends React.Component {
     })
     .then(response => {
       // console.log('response')
+
       const res = response.data;
       if (res.errors){
-        throw new Error(res.errors[0].detail);
-      }
-      const tweetData = res.data[0];
-
-      let media;
-      if (tweetData.attachments){
-        const mediaData = response.data.includes.media;
-        media = mediaData.map((x) => (x.type == 'photo') ? x.url : null);
-      }
-
-      // console.log(media)
-
-      const user = response.data.includes.users[0];
-
-      const tweetUrls = {};
-      const mentionsAndTags = [];
-
-      if (tweetData.entities){
-
-        // URLs
-        if (tweetData.entities.urls){
-          const urls = tweetData.entities.urls;
-          for (let i = 0; i < urls.length; i++){
-            if (!urls[i].display_url.includes('pic.twitter.com')){
-              tweetUrls[urls[i].url] = urls[i].display_url;
-            }
-          }
-        }
-
-        // mentions
-        if (tweetData.entities.mentions){
-          const mentions = tweetData.entities.mentions;
-          for (let i = 0; i < mentions.length; i++){
-            mentionsAndTags.push('@' + mentions[i].username);
-          }
-        }
-
-        if (tweetData.entities.hashtags){
-          const hashtags = tweetData.entities.hashtags;
-          for (let i = 0; i < hashtags.length; i++){
-            mentionsAndTags.push('#' + hashtags[i].tag);
-          }
-        }
-
-      }
-      console.log(tweetUrls);
-
-      const mainTweet = new TweetEntity({
-          text: tweetData.text,
-          date: tweetData.created_at,
-          media: media,
-          urls: tweetUrls,
-          mentionsAndTags: mentionsAndTags
-        },{
-          username: user.username,
-          name: user.name,
-          verified: user.verified,
-          img: user.profile_image_url
-      })
-
-      // quoted tweet
-
-      let quotedId;
-      if (tweetData.referenced_tweets && tweetData.referenced_tweets[0].type == "quoted"){
-        quotedId = tweetData.referenced_tweets[0].id;
-      } else {
-        quotedId = 0;
-      }
-
-      let quotedTweet = null;
-      if (quotedId){
-        let quotedTweetData = response.data.includes.tweets[0];
-        quotedTweetData = quotedTweetData.id == quotedId ? quotedTweetData : null;
-
-        const quotedMedia = null;
-        const quotedUrls = null;
-
-        if (quotedTweetData){
-
-          const quotedAuthor = response.data.includes.users.find(x => x.id == quotedTweetData.author_id);
-
-          quotedTweet = new TweetEntity({
-              text: quotedTweetData.text,
-              date: quotedTweetData.created_at,
-              media: quotedMedia, // unsupported
-              urls: quotedUrls, // unsupported
-              mentionsAndTags: null // unneccessary for quoted tweets
-            },{
-              username: quotedAuthor.username,
-              name: quotedAuthor.name,
-              verified: quotedAuthor.verified,
-              img: quotedAuthor.profile_image_url
-          })
-        }
+        throw new Error(res.errors);
       }
 
       this.setState({
-        mainTweet: mainTweet,
-        quoted: quotedTweet,
+        mainTweet: res.tweet.main,
+        quoted: res.tweet.quoted,
         loading: false,
         serverError: null
       });
 
-      console.log(this.state.quoted)
+      // console.log(this.state.quoted)
 
     })
     .catch(error => {
@@ -190,7 +100,7 @@ class IndexPage extends React.Component {
       smooth: true,
     })
 
-    const tweetId = this.validate(this.urlInput.current.value);
+    const tweetId = validate(this.urlInput.current.value);
     if (tweetId == 0){
       this.setState({
         blank: true,
@@ -204,28 +114,6 @@ class IndexPage extends React.Component {
         this.createTweet(tweetId);
       });
     }
-
-  }
-
-  validate(urlInput){
-    const regexMobile = /(https:\/\/)?mobile.twitter.com\/([a-z]|[A-Z]|\d|_){0,15}\/status\/(\d{1,19})/g
-    const regexGen = /(https:\/\/)?(www)?twitter.com\/([a-z]|[A-Z]|\d|_){0,15}\/status\/(\d{1,19})/g
-
-    let newInput;
-    const mobile = regexMobile.exec(urlInput);
-    if (mobile) {
-      newInput = mobile[3];
-    } else {
-      const valid = regexGen.exec(urlInput);
-
-      if(valid){
-        newInput = valid[4];
-      } else {
-        newInput = 0;
-      }
-    }
-
-    return newInput;
 
   }
 
