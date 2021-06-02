@@ -7,7 +7,10 @@ const endpointUrl = 'https://api.twitter.com/2/tweets'
 
 const cors = Cors({
   methods: ['GET', 'POST'],
-})
+});
+
+const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 function runMiddleware(req, res, fn) {
   return new Promise((resolve, reject) => {
@@ -56,6 +59,12 @@ function parseRes(response) {
 
   const tweetData = res[0];
 
+  const iso = new Date(tweetData.created_at);
+  const month = monthNames[iso.getMonth()];
+  const date = iso.getDate();
+  const year = iso.getFullYear();
+  const fullDate = `${date} ${month} ${year}`;
+
   let media;
   if (tweetData.attachments){
     const mediaData = response.includes.media;
@@ -101,7 +110,7 @@ function parseRes(response) {
 
   const mainTweet = new TweetEntity({
       text: tweetData.text,
-      date: tweetData.created_at,
+      date: fullDate,
       media: media,
       urls: tweetUrls,
       mentionsAndTags: mentionsAndTags
