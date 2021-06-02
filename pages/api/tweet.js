@@ -166,6 +166,7 @@ export default async (req, res) => {
   if (req.method === 'POST') {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     const twitterRes = await getRequest(req.body.tweetId);
     const tweet = parseRes(twitterRes);
     res.end(tweet);
