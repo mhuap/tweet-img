@@ -1,9 +1,25 @@
 import TweetEntity from '../../components/tweetEntity.js';
-
 const axios = require("axios");
+import Cors from 'cors';
+
 const token = process.env.BEARER_TOKEN;
 const endpointUrl = 'https://api.twitter.com/2/tweets'
 
+const cors = Cors({
+  methods: ['GET', 'POST'],
+})
+
+function runMiddleware(req, res, fn) {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result) => {
+      if (result instanceof Error) {
+        return reject(result)
+      }
+
+      return resolve(result)
+    })
+  })
+}
 
 async function getRequest(tweetId) {
     // Edit query parameters below
@@ -145,6 +161,8 @@ function parseRes(response) {
 
 
 export default async (req, res) => {
+  await runMiddleware(req, res, cors)
+
   if (req.method === 'POST') {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');

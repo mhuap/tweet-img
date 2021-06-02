@@ -42,6 +42,7 @@ class IndexPage extends React.Component {
         inputError: false,
         serverError: null,
         mainTweet: new TweetEntity(),
+        quoted: new TweetEntity(),
     };
 
     this.result = React.createRef();
