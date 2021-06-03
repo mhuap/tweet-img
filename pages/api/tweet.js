@@ -176,9 +176,15 @@ export default async (req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Access-Control-Allow-Origin', '*');
-    const twitterRes = await getRequest(req.body.tweetId);
-    const tweet = parseRes(twitterRes);
-    res.end(tweet);
+
+    try {
+      const twitterRes = await getRequest(req.body.tweetId);
+      const tweet = parseRes(twitterRes);
+      res.end(tweet);
+    } catch(err) {
+      return res.status(400).json({ error: error.toString() });
+    }
+
   } else {
     res.statusCode = 404;
   }
