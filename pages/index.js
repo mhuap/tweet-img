@@ -156,6 +156,10 @@ class IndexPage extends React.Component {
             integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
             crossOrigin="anonymous"
           />
+          <link rel="manifest" href="manifest.json"/>
+
+          <link rel='apple-touch-icon' href='/apple-icon.png'></link>
+          <meta name='theme-color' content='#1DA1F2' />
         </Head>
 
         <div id='container'>

@@ -23,6 +23,7 @@
     "html2canvas": "1.0.0-rc.1",
     "jquery": "^3.6.0",
     "next": "^10.0.8",
+    "next-pwa": "^5.2.21",
     "node-sass": "^5.0.0",
     "postcss": "^8.3.0",
     "react": "^17.0.1",

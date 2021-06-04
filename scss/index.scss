@@ -254,6 +254,10 @@ button.input-overlay {
     box-shadow: $box-shadow-light;
     border: none;
   }
+
+  &:hover {
+    background-color: transparent;
+  }
 }
 
 #form-input.error {
