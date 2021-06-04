@@ -38,6 +38,7 @@ function IndexPage() {
   const [blank, setBlank] = useState(true);
   const [inputError, setInputError] = useState(false);
   const [serverError,setServerError] = useState(null);
+  const [urlQuery, setUrlQuery] = useState(null);
   const [mainTweet, setMainTweet] = useState(new TweetEntity());
   const [quoted, setQuoted] = useState(new TweetEntity());
 
@@ -45,8 +46,6 @@ function IndexPage() {
   const urlInput = useRef(null);
 
   const router = useRouter();
-  const { tweetId } = router.query;
-
 
   const createTweet = (url) => {
     // console.log('axios');
@@ -75,8 +74,6 @@ function IndexPage() {
     })
     .catch(error => {
 
-      // console.log(error)
-
       setLoading(false);
       setServerError(error.message);
 
@@ -85,8 +82,6 @@ function IndexPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // console.log('Submitted');
 
     scroller.scrollTo('result-wrapper', {
       smooth: true,
@@ -102,6 +97,11 @@ function IndexPage() {
       createTweet(tweetId);
     }
   }
+
+  // const { tweetId } = router.query;
+  // if (tweetId) {
+  //   createTweet(tweetId);
+  // }
 
   var res;
   if (blank){
@@ -175,9 +175,9 @@ function IndexPage() {
           <div id='top-line'></div>
         </div>
 
-
         <div id='result-wrapper' ref={result}>
           {res}
+          {JSON.stringify(router.query)}
         </div>
 
       </div>
