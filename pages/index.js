@@ -50,6 +50,14 @@ class IndexPage extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    const parsedUrl = new URL(String(window.location));
+
+    console.log('Title shared: ' + parsedUrl.searchParams.get('title'));
+    console.log('Text shared: ' + parsedUrl.searchParams.get('text'));
+    console.log('URL shared: ' + parsedUrl.searchParams.get('url'));
+  }
+
   createTweet(url){
     // console.log('axios');
 
