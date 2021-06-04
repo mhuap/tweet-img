@@ -403,28 +403,6 @@ button.light-button {
     width: 100%;
     margin-top: 8px;
   }
-
-  .form-check2 {
-    height: $rounded-height / 1.5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 0;
-    // border: $border-lightgrey;
-    cursor: pointer;
-    color: $color-grey;
-    width: 50%;
-
-    input {
-      display: none;
-    }
-
-    &.radio-active {
-      color: $color-blue;
-      background-color: white;
-      border-color: $color-blue;
-      box-shadow: rgba(20, 23, 26, 0.10) 0px 2px 12px;
-    }
 }
 
 #diagram {
@@ -433,37 +411,6 @@ button.light-button {
 
 .sq-container-container {
   margin: 0 auto 12px auto;
-}
-
-  #photo, #color {
-    border-radius: $rounded-radius;
-  }
-}
-
-.twitter-picker {
-  box-shadow: none !important;
-  // width: auto !important;
-
-  div:last-child {
-    padding: 0 !important;
-    display: flex;
-    width: auto;
-    justify-content: flex-end;
-
-    > div {
-      display: none !important;
-    }
-
-    span {
-      margin-left: 4px !important;
-
-      div {
-        height: 26px !important;
-        width: 26px !important;
-        margin: 0 !important;
-      }
-    }
-  }
 }
 
 #colorpicker-group {
