@@ -28,7 +28,7 @@
       "method": "GET",
       "params": {
         "title": "title",
-        "text": "text",
+        "text": "tweet",
         "url": "url"
       }
     }

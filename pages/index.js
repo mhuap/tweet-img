@@ -98,11 +98,6 @@ function IndexPage() {
     }
   }
 
-  // const { tweetId } = router.query;
-  // if (tweetId) {
-  //   createTweet(tweetId);
-  // }
-
   var res;
   if (blank){
     res = <div id='result'><img id='diagram' src='diagram.png'/></div>;
@@ -165,7 +160,13 @@ function IndexPage() {
           <form id='top-form' onSubmit={handleSubmit}>
             <label className='section'>Enter tweet link</label>
             <div id='form-input' className={inputError ? 'error' : ''}>
-              <input id='url-input' type='text' ref={urlInput} name='url' placeholder='twitter.com/status/tweetlink'/>
+              <input id='url-input'
+                type='text'
+                ref={urlInput}
+                name='url'
+                placeholder='twitter.com/status/tweetlink'
+                value={router.query.tweet ? router.query.tweet : '' }
+                />
               <button className='input-overlay'>
                 <Arrow/>
               </button>
@@ -177,7 +178,6 @@ function IndexPage() {
 
         <div id='result-wrapper' ref={result}>
           {res}
-          {JSON.stringify(router.query)}
         </div>
 
       </div>
