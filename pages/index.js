@@ -178,7 +178,7 @@ function IndexPage() {
 
         <div id='result-wrapper' ref={result}>
           {res}
-          {JSON.stringify(router.query)}
+          // {JSON.stringify(router.query)}
         </div>
 
       </div>
