@@ -24,8 +24,8 @@
         }
     ],
     "share_target": {
-      "action": "/api/tweet",
-      "method": "POST",
+      "action": "/",
+      "method": "GET",
       "params": {
         "title": "title",
         "text": "text",
