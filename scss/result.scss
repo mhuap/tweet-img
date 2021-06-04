@@ -1,0 +1,69 @@
+@use 'index' as *;
+
+#result {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  border: none;
+  padding: 0;
+  margin-top: 0;
+}
+
+#preview {
+  width: 100%;
+}
+
+#diagram {
+  width: 100%;
+}
+
+.sq-container-container {
+  margin: 0 auto 12px auto;
+}
+
+.sq-container:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+  float: left;
+}
+
+.sq-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset rgba(0,0,0,.11) 0 0 0 1px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+#tweet-img {
+  width: 100%;
+  cursor: pointer;
+}
+
+@media (min-width: $breakpoint-lg) {
+  #result {
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: row;
+  }
+
+  #preview {
+    width: 64%;
+  }
+
+  #diagram {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: $breakpoint-xl) {
+
+  #result {
+    width: $width;
+  }
+}

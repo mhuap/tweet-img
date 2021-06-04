@@ -1,0 +1,108 @@
+@use 'index' as *;
+
+#tweet {
+  text-align: left;
+  min-width: 75%;
+  margin: 1rem;
+  background-color: white;
+  padding: 1.5rem;
+  position: relative;
+  // border-radius: 0.5rem;
+  // box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 24px;
+  border: solid 1px white;
+
+  .avatar {
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    float: left;
+    margin-right: 0.5rem;
+  }
+
+  .name {
+    display: flex;
+  }
+
+  .account-group, .timestamp, .date {
+    font-size: 0.875rem;
+  }
+
+  .account-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tweet-text {
+    margin-top: 1rem;
+    line-height: 1.3;
+    font-size: 1rem;
+    white-space: pre-wrap;
+  }
+
+  .blue {
+    color: $color-blue;
+    text-decoration: none;
+  }
+
+  .username, .timestamp, .date {
+    color: $color-grey;
+  }
+
+  .username:before {
+    content: '@'
+  }
+
+  .date {
+    text-align: right;
+    margin-top: 1.5rem;
+  }
+
+  #badge {
+    height: 1rem;
+    padding-left: 0.25rem;
+    align-self: center;
+  }
+
+  .tweet-media {
+    margin: 1rem -1.5rem 0 -1.5rem;
+    display: flex;
+
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  .media-2 div {
+    width: 50%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+  }
+
+}
+
+#quoted {
+  border: $border-lightgrey;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: $rounded-radius;
+
+  .tweet-text {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: $breakpoint-lg) {
+  #tweet .media-2 img {
+    height: 250px;
+  }
+
+  #tweet .tweet-text {
+    font-size: 1.2rem;
+  }
+
+  #quoted .tweet-text {
+    font-size: 1rem;
+  }
+}
