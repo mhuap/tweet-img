@@ -158,6 +158,19 @@ class IndexPage extends React.Component {
           />
           <link rel="manifest" href="manifest.json"/>
 
+          <link
+            href="/icons/maskable_icon_x48.png"
+            rel="icon"
+            type="image/png"
+            sizes="48x48"
+          />
+          <link
+            href="/icons/maskable_icon_x72.png"
+            rel="icon"
+            type="image/png"
+            sizes="72x72"
+          />
+
           <link rel='apple-touch-icon' href='/apple-icon.png'></link>
           <meta name='theme-color' content='#1DA1F2' />
         </Head>
