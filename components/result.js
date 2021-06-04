@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect }from "react";
 import { scroller } from 'react-scroll';
 
 import Tweet from './tweet';
-import ColorPicker from './colorPicker';
+import BackgroundPicker from './backgroundPicker';
 import SideBar from './sideBar';
 import PhotoUpload from './photoUpload';
 
@@ -150,10 +150,9 @@ function Result(props){
         onSwitchRounded={() => setBoxRounded(!boxRounded)}
         onSwitchBorder={() => setBoxBorder(!boxBorder)}
       >
-        <ColorPicker
+        <BackgroundPicker
           onChange = {handleColorChange}
           color={bgColor}
-          onFileChange={onFileChange}
           onClickAddImage={onClickAddImage}
           onClickTrash={onClickTrash}
           fileName={selectedFile ? selectedFile.name : null}

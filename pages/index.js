@@ -165,7 +165,7 @@ function IndexPage() {
                 ref={urlInput}
                 name='url'
                 placeholder='twitter.com/status/tweetlink'
-                value={router.query.tweet ? router.query.tweet : '' }
+                defaultValue={router.query.tweet ? router.query.tweet : '' }
                 />
               <button className='input-overlay'>
                 <Arrow/>
