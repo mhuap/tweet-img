@@ -172,17 +172,17 @@ function parseRes(response) {
 export default async (req, res) => {
   await runMiddleware(req, res, cors)
 
-  if (req.method === 'POST') {
+  if (req.method === 'GET') {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Access-Control-Allow-Origin', '*');
 
     try {
-      const twitterRes = await getRequest(req.body.tweetId);
+      const twitterRes = await getRequest(req.query.tweetId);
       const tweet = parseRes(twitterRes);
       res.end(tweet);
     } catch(err) {
-      return res.status(400).json({ error: error.toString() });
+      return res.status(400).json({ error: err.toString() });
     }
 
   } else {
