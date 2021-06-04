@@ -1,7 +1,7 @@
 {
     "theme_color": "#1DA1F2",
     "background_color": "#fff",
-    "display": "fullscreen",
+    "display": "standalone",
     "scope": "/",
     "start_url": "/",
     "name": "tweet-img",
@@ -24,7 +24,7 @@
         }
     ],
     "share_target": {
-      "action": "",
+      "action": "#",
       "method": "GET",
       "params": {
         "title": "title",
