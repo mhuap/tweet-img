@@ -21,6 +21,11 @@
             "src": "icons/icon_x96.png",
             "sizes": "96x96",
             "type": "image/png"
+        },
+        {
+            "src": "icons/icon_x144.png",
+            "sizes": "144x144",
+            "type": "image/png"
         }
     ],
     "share_target": {
