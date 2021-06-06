@@ -149,7 +149,7 @@ function IndexPage() {
         />
 
         <link rel='apple-touch-icon' href='/apple-icon.png'></link>
-        <meta name='theme-color' content='#1DA1F2' />
+        <meta name='theme-color' content='#E8F5FE' />
       </Head>
 
       <div id='container'>
