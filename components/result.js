@@ -73,6 +73,7 @@ function Result(props){
 
       // Un-hide scrollbar
       document.documentElement.style.overflow = '';
+      // document.body.appendChild(canvas);
 
       // const src = canvas.toDataURL();
       return canvas.toBlob((blob) => {
@@ -134,6 +135,7 @@ function Result(props){
         <label className='section'>Preview</label>
         <div className='sq-container-container'>
           <div className='sq-container' style={bgStyle}>
+            <div className='before'></div>
             <Tweet
               tweet={props.mainTweet.tweet}
               user={props.mainTweet.user}

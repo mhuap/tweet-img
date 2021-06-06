@@ -2,6 +2,7 @@
 
 Generate an image from a tweet.
 Only tested on [some kinds of tweets](https://github.com/mhuap/tweet-img/projects/5).
+Works best on Chrome.
 
 ## Development
 
