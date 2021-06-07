@@ -19,6 +19,8 @@ function Result(props){
 
   const [boxRounded, setBoxRounded] = useState(true);
   const [boxBorder, setBoxBorder] = useState(false);
+  const [boxBackground, setBoxBackground] = useState(false);
+  const [boxTextColor, setBoxTextColor] = useState('#000');
 
   const [modalShow, setModalShow] = React.useState(false);
 
