@@ -120,7 +120,7 @@ function IndexPage() {
         <meta name="description" content="Generate image from tweets"/>
         <meta name="keywords" content="Twitter,Image,Background,Tweet,Instagram,Social,Media"/>
         <meta name="author" content="Matias Huapaya"/>
-        <link rel="shortcut icon" href="https://tweet-img.vercel.app/twitterlogoblue.png"/>
+        <link rel="shortcut icon" href="https://tweet-img.vercel.app/icons/icon_x72.png"/>
         <meta property="og:title" content="tweet-img"/>
         <meta property="og:description" content="Generate images from tweets."/>
         <meta property="og:image" content="	https://tweet-img.vercel.app/example.png"/>
@@ -136,13 +136,13 @@ function IndexPage() {
         <link rel="manifest" href="manifest.json"/>
 
         <link
-          href="/icons/maskable_icon_x48.png"
+          href="/icons/icon_x48.png"
           rel="icon"
           type="image/png"
           sizes="48x48"
         />
         <link
-          href="/icons/maskable_icon_x72.png"
+          href="/icons/icon_x72.png"
           rel="icon"
           type="image/png"
           sizes="72x72"
