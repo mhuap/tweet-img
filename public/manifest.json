@@ -29,7 +29,7 @@
             "src": "icons/icon_x144.png",
             "sizes": "144x144",
             "type": "image/png",
-            "purpose": "maskable"
+            "purpose": "any"
         }
     ],
     "share_target": {
