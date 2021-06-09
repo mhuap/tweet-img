@@ -73,7 +73,6 @@ function IndexPage() {
 
     })
     .catch(error => {
-
       setLoading(false);
       setServerError(error.message);
 

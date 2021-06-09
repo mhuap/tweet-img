@@ -55,7 +55,11 @@ function parseRes(response) {
   // console.log(response);
 
   const res = response.data;
-  const errors = res.errors ? res.errors[0].detail : null;
+  const res_err = response.errors;
+
+  if (res_err){
+    return JSON.stringify({errors: res_err[0].detail});
+  }
 
   const tweetData = res[0];
 
@@ -163,8 +167,7 @@ function parseRes(response) {
     tweet: {
       main: mainTweet,
       quoted: quotedTweet,
-    },
-    errors: errors
+    }
   })
 };
 
@@ -182,7 +185,8 @@ export default async (req, res) => {
       const tweet = parseRes(twitterRes);
       res.end(tweet);
     } catch(err) {
-      return res.status(400).json({ error: err.toString() });
+      res.status(400);
+      res.end(err);
     }
 
   } else {

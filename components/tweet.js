@@ -86,7 +86,7 @@ function Tweet(props){
 
   let boxStyle = {
     borderRadius: props.boxRounded ? '0.5rem' : '0',
-    borderColor: props.boxBorder ? '#14171a' : 'white'
+    border: props.boxBorder ? 'solid 1px #14171a' : 'none'
   }
 
   const quoted = props.quoted;
