@@ -1,10 +1,11 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import axios from 'axios';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { scroller } from 'react-scroll';
 import Spinner from 'react-bootstrap/Spinner';
+import ReactGA from 'react-ga';
 
 import Result from '../components/result';
 import Arrow from '../components/arrow.js';
@@ -46,6 +47,11 @@ function IndexPage() {
   const urlInput = useRef(null);
 
   const router = useRouter();
+
+  ReactGA.initialize('UA-199320414-1'); // add your tracking id here.
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  });
 
   const createTweet = (url) => {
     // console.log('axios');
@@ -110,6 +116,7 @@ function IndexPage() {
     res = <Result blank={blank} mainTweet={mainTweet} quoted={quoted}/>;
   }
 
+
   return (
     <>
       <Head>
@@ -149,6 +156,7 @@ function IndexPage() {
 
         <link rel='apple-touch-icon' href='/apple-icon.png'></link>
         <meta name='theme-color' content='#E8F5FE' />
+
       </Head>
 
       <div id='container'>
