@@ -6,12 +6,17 @@ import Tweet from './tweet';
 import BackgroundPicker from './backgroundPicker';
 import SideBar from './sideBar';
 import PhotoUpload from './photoUpload';
+import { GRADIENTS } from './gradientColor';
 
 const serverErrorMsg = 'Twitter server error';
 
 function Result(props){
-  const [colorMode, setColorMode] = useState(true);
+  const [colorMode, setColorMode] = useState(0);
+  // 0 = solid, 1 = gradient, 2 = image
+
+  const [bgGradient, setBgGradient] = useState(`linear-gradient(to bottom right, #00FF8F, #60EFFF)`);
   const [bgColor, setBgColor] = useState('#E1E8ED');
+  const [gradient, setGradient] = useState('g1');
 
   const [bgImg, setBgImg] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -20,7 +25,6 @@ function Result(props){
   const [boxRounded, setBoxRounded] = useState(true);
   const [boxBorder, setBoxBorder] = useState(false);
   const [boxBackground, setBoxBackground] = useState(false);
-  const [boxTextColor, setBoxTextColor] = useState('#000');
 
   const [modalShow, setModalShow] = React.useState(false);
 
@@ -43,11 +47,11 @@ function Result(props){
 
   const onClickAddImage = () => {
     setModalShow(true);
-    setColorMode(false);
+    setColorMode(2);
   }
 
   const onClickTrash = () => {
-    setColorMode(true);
+    // setSolidColorMode(true);
     setSelectedFile(null);
     setBgImg(null);
   }
@@ -101,18 +105,30 @@ function Result(props){
     setModalShow(false);
   }
 
+  const onClickGradient = (a, b) => {
+    setSelectedFile(null);
+    setBgImg(null);
+  }
+
+  const handleGradientChange = (e) => {
+    const g = e.target.value;
+
+    setGradient(g);
+    setBgGradient(`linear-gradient(to bottom right, ${GRADIENTS[g][0]}, ${GRADIENTS[g][1]})`);
+  }
+
   // console.log(props.tweet);
   if (props.mainTweet === serverErrorMsg){
     return <p>{serverErrorMsg}</p>
   }
 
   let bgSection;
-  let bgStyle = {
-    backgroundColor: bgColor
-  };
+  let bgStyle = {background: bgColor};
 
-  if (bgImg && !colorMode) {
-    bgStyle.backgroundImage = `url(${bgImg})`;
+  if (bgImg && colorMode == 2) {
+    bgStyle.background = `url(${bgImg}) ${bgColor}`;
+  } else if (colorMode == 1) {
+    bgStyle.background = bgGradient;
   }
 
 
@@ -160,6 +176,11 @@ function Result(props){
           onClickAddImage={onClickAddImage}
           onClickTrash={onClickTrash}
           fileName={selectedFile ? selectedFile.name : null}
+          colorMode={colorMode}
+          setColorMode={setColorMode}
+          onClickGradient={onClickGradient}
+          handleGradientChange={handleGradientChange}
+          gradient={gradient}
         />
 
         <PhotoUpload

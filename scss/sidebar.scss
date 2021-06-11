@@ -58,7 +58,7 @@
 
   button {
     width: 100%;
-    margin-top: 8px;
+    margin-top: 32px;
   }
 }
 
@@ -108,6 +108,7 @@
 }
 
 .circle-picker {
+  margin-top: 8px;
 
   span:last-child > div {
     margin-right: 0 !important;
@@ -120,15 +121,28 @@
 
 #custom-color {
   margin-right: 8px;
+  margin-top: 8px !important;
+
+  svg {
+    height: 24px;
+    width: 24px;
+    float: right;
+  }
 }
 
 #popover {
   width: 100%;
-  background-color: white;
-  padding: 8px;
-  border-radius: $rounded-radius;
-  border: $border-lightgrey;
-  margin-top: 8px;
+  background-color: $color-extralightgrey;
+  height: 0;
+  border-radius: 0 0 $rounded-radius $rounded-radius;
+  overflow: hidden;
+  transition: all 1s;
+  padding: 0 8px 0 8px;
+
+  &.popoverShow {
+    height: 198px;
+    padding-bottom: 8px;
+  }
 }
 
 #inputgroup {
@@ -144,7 +158,7 @@
     width: 100%;
     background: none;
     border-radius: 4px;
-    background-color: $color-extralightgrey;
+    background-color: white;
     display: inline-block;
 
     &:focus {
@@ -172,6 +186,44 @@
   height: 24px;
   width: 24px;
   margin-right: 4px;
+}
+
+.segmented {
+  padding: 4px;
+  display: flex;
+  justify-content: space-between;
+  background-color: $color-extralightgrey;
+  height: 46px;
+  align-items: center;
+  border-radius: $rounded-radius;
+
+
+  input {
+    display: none;
+  }
+
+  .custom-control-label {
+    width: 50%;
+    margin: 0;
+    border-radius: $rounded-radius;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &:before {
+      display: none;
+    }
+
+    &:after {
+      left: 2rem;
+    }
+  }
+  input:checked + label {
+    background-color: white;
+    box-shadow: rgba(0,0,0,0.15) 0px 0px 4px 1px;
+  }
 }
 
 
@@ -206,6 +258,10 @@
     color: $color-lightgrey;
   }
 
+}
+
+button#add-image {
+  margin-top: 8px;
 }
 
 #photo-upload {
@@ -250,6 +306,31 @@
     width: 100%;
   }
 
+}
+
+.gradient-tab {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  // margin-top: 8px;
+
+  input {
+    display: none;
+  }
+
+  input:checked + label {
+    box-shadow: inset rgba(0,0,0,0.3) 0px 0px 4px 2px;
+  }
+}
+
+.gradient-swatch {
+  display: block;
+  height: 28px;
+  width: 56px;
+  border-radius: 4px;
+  margin-right: 8px !important;
+  margin-bottom: 0 !important;
+  cursor: pointer;
 }
 
 @media (min-width: $breakpoint-lg) {

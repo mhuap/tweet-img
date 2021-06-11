@@ -116,12 +116,12 @@ function IndexPage() {
         <title>tweet-img</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" key="viewport"/>
-        <meta name="description" content="Generate image from tweets"/>
+        <meta name="description" content="Transform tweets into colorful graphics"/>
         <meta name="keywords" content="Twitter,Image,Background,Tweet,Instagram,Social,Media"/>
         <meta name="author" content="Matias Huapaya"/>
         <link rel="shortcut icon" href="https://tweet-img.vercel.app/icons/icon_x72.png"/>
         <meta property="og:title" content="tweet-img"/>
-        <meta property="og:description" content="Generate images from tweets."/>
+        <meta property="og:description" content="Transform tweets into colorful graphics"/>
         <meta property="og:image" content="	https://tweet-img.vercel.app/example.png"/>
         <meta property="og:url" content="	https://tweet-img.vercel.app"/>
         <meta property="og:site_name" content="tweet-img"/>
@@ -154,7 +154,7 @@ function IndexPage() {
       <div id='container'>
         <div id='form-wrapper'>
           <a id='site-name' href='https://tweet-img.vercel.app/'>tweet-img</a>
-          <h1>Transform tweet links into colorful graphics</h1>
+          <h1>Transform tweets into colorful graphics</h1>
           <p id='support'>Only tested on <a target='__blank' href='https://github.com/mhuap/tweet-img/projects/5'>some kinds</a> of tweets.</p>
           <form id='top-form' onSubmit={handleSubmit}>
             <label className='section'>Enter tweet link</label>

@@ -1,30 +1,23 @@
 import React, { useState, useRef } from 'react';
 
-import { CustomPicker, TwitterPicker, CirclePicker } from 'react-color';
-import { EditableInput, Saturation, Hue } from 'react-color/lib/components/common';
-import { BiImageAdd, BiTrash } from "react-icons/bi";
+import { BiImageAdd, BiTrash, BiChevronDown, BiChevronUp } from "react-icons/bi";
+import SolidColor from "./solidColor.js";
+import GradientColor from "./gradientColor.js";
 // import { useMediaQuery } from 'react-responsive'
 // import Popover from 'react-bootstrap/Popover';
 
 
-import ColorPointer from './colorPointer';
-
 
 function BackgroundPicker(props) {
-  const [show, setShow] = useState(false);
-
-  const { onClickTrash, onClickAddImage, ...rest} = props;
-
-  const handleShow = () => {
-    setShow(!show);
-  }
-
-  let pickerStyle = {display: 'none'};
-  if (show) {
-    pickerStyle.display = 'block';
-  }
+  const { onClickTrash, onClickAddImage, colorMode, setColorMode, onClickGradient, handleGradientChange, gradient, ...rest} = props;
 
   let imageButton;
+
+  const checkEnter = (e, i) => {
+    if (e.key == "Enter") {
+      return setColorMode(i)
+    }
+  }
 
   if (props.fileName) {
     imageButton = <div id='red-split-button'>
@@ -34,70 +27,52 @@ function BackgroundPicker(props) {
       </button>
     </div>;
   } else {
-    imageButton = <button className='light-button' onClick={onClickAddImage}>
+    imageButton = <button id='add-image' className='light-button' onClick={onClickAddImage}>
       Add background image
     </button>
+  }
+
+  let content;
+  if (colorMode == 0) {
+    content = <SolidColor {...rest}/>;
+  } else if (colorMode == 1) {
+    content = <GradientColor onClickGradient={onClickGradient} handleGradientChange={handleGradientChange} gradient={gradient}/>;
+  } else if (colorMode == 2) {
+    content = imageButton;
   }
 
   return (
     <>
 
-    <div>
-      <CirclePicker
-        width='100%'
-        circleSpacing={6}
-        colors={['#EB144C', '#FF7C00', '#FCD600', '#50D175', '#71C7FE', '#7871FE', '#FEA5DD']}
-        onChange={ {...rest}.onChange }
-      />
-
-      <button id='custom-color' className='light-button' onClick={handleShow}>
-        Custom color
-      </button>
-
-      <div id='popover' style={pickerStyle}>
-
-        <div id='colorpicker-group'>
-
-          <div id='saturation-picker'>
-            <Saturation
-              { ...rest }
-              pointer={ ColorPointer }
-              tabIndex='0'
-            />
-          </div>
-
-          <div id='hue-picker'>
-            <Hue
-              {...rest}
-              direction={ 'vertical' }
-              pointer={ ColorPointer }
-              tabIndex='0' />
-          </div>
-
-        </div>
-
-        <div id="inputgroup">
-
-          <EditableInput
-            id="something"
-            label=""
-            value={ {...rest}.hex.substring(1) }
-          />
-
-          <i className="">#</i>
-
-        </div>
-
-      </div>
-
-      {imageButton}
-
+    <div className='segmented'>
+      <input type='radio' name='color-mode' id='solid' checked={colorMode == 0}/><label
+        tabIndex='0'
+        className='custom-control-label'
+        htmlFor='solid'
+        onClick={() => setColorMode(0)}
+        onKeyDown={(e) => checkEnter(e, 0)}
+        >Solid</label>
+      <input type='radio' name='color-mode' id='gradient' checked={colorMode == 1}/><label
+        tabIndex='0'
+        className='custom-control-label'
+        htmlFor='gradient'
+        onClick={() => setColorMode(1)}
+        onKeyDown={(e) => checkEnter(e, 1)}
+        >Gradient</label>
+      <input type='radio' name='color-mode' id='radio-image' checked={colorMode == 2}/><label
+        tabIndex='0'
+        className='custom-control-label'
+        htmlFor='radio-image'
+        onClick={() => setColorMode(2)}
+        onKeyDown={(e) => checkEnter(e, 2)}
+        >Image</label>
     </div>
 
+    {content}
 
     </>
   )
 }
 
 
-export default CustomPicker(BackgroundPicker);
+export default BackgroundPicker;
