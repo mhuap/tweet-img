@@ -6,7 +6,9 @@ const GRADIENTS = {
   'g3': ['#00ddff', '#e81cff'],
   'g4': ['#ff930f', '#fff95b'],
   'g5': ['#ff0f7b', '#f89b29'],
-  'g6': ['#ab47bc', '#ff0f7b']
+  'g6': ['#BD19ED', '#ff0f7b'],
+  'g7': ['#fed1c7', '#fe8dc6'],
+  'g8': ['#7f00ff', '#E75BFF']
 }
 
 function GradientColor(props) {

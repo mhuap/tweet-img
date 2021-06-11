@@ -9,8 +9,6 @@ import ColorPointer from './colorPointer';
 function SolidColor(props) {
   const [show, setShow] = useState(false);
 
-  const roundedStyle = show ? {borderRadius: '8px 8px 0 0'} : null;
-
   return (
     <>
       <CirclePicker
@@ -20,45 +18,47 @@ function SolidColor(props) {
         onChange={ props.onChange }
       />
 
-      <button id='custom-color' style={roundedStyle}className='light-button' onClick={() => setShow(!show)}>
-        Custom color
-        {show ? <BiChevronUp /> : <BiChevronDown />}
-      </button>
+      <div id='custom-color'>
+        <button className='light-button' onClick={() => setShow(!show)}>
+          Custom color
+          {show ? <BiChevronUp /> : <BiChevronDown />}
+        </button>
 
-      <div id='popover' className={show ? 'popoverShow' : ''}>
+        <div id='popover' className={show ? 'popoverShow' : ''}>
 
-        <div id='colorpicker-group'>
+          <div id='colorpicker-group'>
 
-          <div id='saturation-picker'>
-            <Saturation
-              { ...props}
-              pointer={ ColorPointer }
-              tabIndex='0'
+            <div id='saturation-picker'>
+              <Saturation
+                { ...props}
+                pointer={ ColorPointer }
+                tabIndex='0'
+              />
+            </div>
+
+            <div id='hue-picker'>
+              <Hue
+                {...props}
+                direction={ 'vertical' }
+                pointer={ ColorPointer }
+                tabIndex='0' />
+            </div>
+
+          </div>
+
+          <div id="inputgroup">
+
+            <EditableInput
+              id="something"
+              label=""
+              value={ props.hex.substring(1) }
+              onChange={props.onChange}
             />
+
+            <i className="">#</i>
+
           </div>
-
-          <div id='hue-picker'>
-            <Hue
-              {...props}
-              direction={ 'vertical' }
-              pointer={ ColorPointer }
-              tabIndex='0' />
-          </div>
-
         </div>
-
-        <div id="inputgroup">
-
-          <EditableInput
-            id="something"
-            label=""
-            value={ props.hex.substring(1) }
-          />
-
-          <i className="">#</i>
-
-        </div>
-
       </div>
     </>
   )
