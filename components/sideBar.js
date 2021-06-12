@@ -24,6 +24,14 @@ function SideBar(props) {
           id='border-switch'
           onClick={props.onSwitchBorder}
         />
+
+        <Form.Check
+          type="switch"
+          label="White background"
+          id='background-switch'
+          onClick={props.onSwitchBoxBackground}
+          defaultChecked
+        />
       </div>
 
       <span className='sub-section'>Background</span>

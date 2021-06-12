@@ -84,10 +84,17 @@ function Tweet(props){
     })
   }
 
+
+
   let boxStyle = {
     borderRadius: props.boxRounded ? '0.5rem' : '0',
-    border: props.boxBorder ? 'solid 1px #14171a' : 'none'
+    borderStyle: props.boxBorder ? 'solid': 'none',
+    background: props.boxBackground ? 'white' : 'none',
+    color: props.boxText ? props.boxText.color : '#000',
+    borderColor: props.boxText ? props.boxText.color : '#14171a'
   }
+
+
 
   const quoted = props.quoted;
 
@@ -118,7 +125,7 @@ function Tweet(props){
             <span><b>{props.user.name}</b></span>
             {verified}
           </div>
-          <span className='username'>{props.user.username}</span>
+          <span className='username' style={props.boxText ? {color: props.boxText.color} : '' }>{props.user.username}</span>
         </div>
       </div>
       <div className='tweet-text'>{tweetText}</div>
@@ -127,7 +134,7 @@ function Tweet(props){
       {quotedDiv}
 
 
-      <div className='date'>{props.tweet.date}</div>
+      <div className='date' style={props.boxText ? {color: props.boxText.color} : '' }>{props.tweet.date}</div>
     </div>
   )
 }

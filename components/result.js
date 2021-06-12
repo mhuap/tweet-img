@@ -10,6 +10,15 @@ import { GRADIENTS } from './gradientColor';
 
 const serverErrorMsg = 'Twitter server error';
 
+function luminosity(color) {
+  const colorRegex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color)
+  const r = parseInt(colorRegex[1], 16)
+  const g = parseInt(colorRegex[2], 16)
+  const b = parseInt(colorRegex[3], 16)
+
+  return Math.round(r*0.299 + g*0.587 + b*0.114);
+}
+
 function Result(props){
   const [colorMode, setColorMode] = useState(0);
   // 0 = solid, 1 = gradient, 2 = image
@@ -24,7 +33,8 @@ function Result(props){
 
   const [boxRounded, setBoxRounded] = useState(true);
   const [boxBorder, setBoxBorder] = useState(false);
-  const [boxBackground, setBoxBackground] = useState(false);
+  const [boxBackground, setBoxBackground] = useState(true);
+  const [boxText, setBoxText] = useState(null);
 
   const [modalShow, setModalShow] = React.useState(false);
 
@@ -124,8 +134,17 @@ function Result(props){
 
   let bgSection;
   let bgStyle = {background: bgColor};
+  let textStyle = {color: null};
 
-  if (bgImg && colorMode == 2) {
+  if (colorMode == 0 && !boxBackground){
+    const l = luminosity(bgColor);
+    if (l >= 135){
+      textStyle.color = '#000';
+    } else {
+      textStyle.color = '#fff';
+      console.log('white')
+    }
+  } else if (bgImg && colorMode == 2) {
     bgStyle.background = `url(${bgImg}) ${bgColor}`;
   } else if (colorMode == 1) {
     bgStyle.background = bgGradient;
@@ -160,6 +179,8 @@ function Result(props){
               quoted={props.quoted}
               boxRounded={boxRounded}
               boxBorder={boxBorder}
+              boxBackground={boxBackground}
+              boxText={textStyle}
             />
           </div>
         </div>
@@ -169,6 +190,7 @@ function Result(props){
         onSubmit={imgClick}
         onSwitchRounded={() => setBoxRounded(!boxRounded)}
         onSwitchBorder={() => setBoxBorder(!boxBorder)}
+        onSwitchBoxBackground={() => setBoxBackground(!boxBackground)}
       >
         <BackgroundPicker
           onChange = {handleColorChange}
