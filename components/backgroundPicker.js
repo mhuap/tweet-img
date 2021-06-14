@@ -64,7 +64,7 @@ function BackgroundPicker(props) {
         tabIndex='0'
         className='custom-control-label'
         htmlFor='radio-image'
-        onClick={() => setColorMode(2)}
+        onClick={() => {setColorMode(2); setBoxBackground(true);}}
         onKeyDown={(e) => checkEnter(e, 2)}
         >Image</label>
     </div>
