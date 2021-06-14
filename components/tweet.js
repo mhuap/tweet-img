@@ -85,8 +85,6 @@ function Tweet(props){
     })
   }
 
-
-
   let boxStyle = {
     borderRadius: props.boxRounded ? '0.5rem' : '0',
     borderStyle: props.boxBorder ? 'solid': 'none',

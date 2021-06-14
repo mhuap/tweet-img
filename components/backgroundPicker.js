@@ -9,7 +9,8 @@ import GradientColor from "./gradientColor.js";
 
 
 function BackgroundPicker(props) {
-  const { onClickTrash, onClickAddImage, colorMode, setColorMode, onClickGradient, handleGradientChange, gradient, ...rest} = props;
+  const { onClickTrash, onClickAddImage, colorMode, setColorMode, onClickGradient,
+    handleGradientChange, gradient, setBoxBackground, ...rest} = props;
 
   let imageButton;
 
@@ -56,7 +57,7 @@ function BackgroundPicker(props) {
         tabIndex='0'
         className='custom-control-label'
         htmlFor='gradient'
-        onClick={() => setColorMode(1)}
+        onClick={() => {setColorMode(1); setBoxBackground(true);}}
         onKeyDown={(e) => checkEnter(e, 1)}
         >Gradient</label>
       <input type='radio' name='color-mode' id='radio-image' checked={colorMode == 2}/><label

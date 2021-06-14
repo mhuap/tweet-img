@@ -191,6 +191,8 @@ function Result(props){
         onSwitchRounded={() => setBoxRounded(!boxRounded)}
         onSwitchBorder={() => setBoxBorder(!boxBorder)}
         onSwitchBoxBackground={() => setBoxBackground(!boxBackground)}
+        solid={colorMode === 0}
+        boxBackground={boxBackground}
       >
         <BackgroundPicker
           onChange = {handleColorChange}
@@ -200,6 +202,7 @@ function Result(props){
           fileName={selectedFile ? selectedFile.name : null}
           colorMode={colorMode}
           setColorMode={setColorMode}
+          setBoxBackground={setBoxBackground}
           onClickGradient={onClickGradient}
           handleGradientChange={handleGradientChange}
           gradient={gradient}
