@@ -101,6 +101,17 @@ function Tweet(props){
 
   let quotedDiv = null;
   if (quoted){
+
+    let quotedText = quoted.tweet.text;
+    let quotedMedia = null;
+    if (quoted.tweet.media){
+      // remove attachment urls from tweet text
+      const urlIndex = quoted.tweet.text.lastIndexOf('https://t.co/');
+      quotedText = quoted.tweet.text.slice(0, urlIndex);
+
+      quotedMedia = <div className='tweet-media quoted-tweet-media'><img crossOrigin="*" src={quoted.tweet.media}/></div>
+    }
+
     quotedDiv = <div id='quoted'>
       <div>
         <img className='avatar' crossOrigin='*' src={quoted.user.img} />
@@ -113,8 +124,8 @@ function Tweet(props){
         </div>
       </div>
 
-      <div className='tweet-text'>{quoted.tweet.text}</div>
-      {quoted.tweet.media ? <div className='tweet-media quoted-tweet-media'><img crossOrigin="*" src={quoted.tweet.media}/></div> : null}
+      <div className='tweet-text'>{quotedText}</div>
+      {quotedMedia}
 
     </div>
   }
