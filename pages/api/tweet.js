@@ -28,7 +28,7 @@ async function getRequest(tweetId) {
     // Edit query parameters below
     const params = {
         'ids': tweetId,
-        'expansions': 'author_id,attachments.media_keys,referenced_tweets.id,referenced_tweets.id.author_id',
+        'expansions': 'author_id,attachments.media_keys,referenced_tweets.id,referenced_tweets.id.author_id,attachments.poll_ids',
         'user.fields': 'profile_image_url,verified',
         'tweet.fields': 'created_at,entities',
         'media.fields': 'url',
@@ -70,7 +70,7 @@ function parseRes(response) {
   const fullDate = `${date} ${month} ${year}`;
 
   let media;
-  if (tweetData.attachments){
+  if (tweetData.attachments && tweetData.attachments.media){
     const mediaData = response.includes.media;
     media = mediaData.map((x) => (x.type == 'photo') ? x.url : null);
   }
@@ -112,12 +112,32 @@ function parseRes(response) {
   }
   // console.log(tweetUrls);
 
+  // polls
+
+  let poll = {}
+
+  const pollData = response.includes.polls;
+  if (pollData) {
+    const options = pollData[0].options;
+    const totalVotes = options.map(x => x.votes).reduce((a, b) => a + b, 0);
+    poll = {
+      total: totalVotes,
+      options: options.map(x => {
+        const percentage = x.votes / totalVotes * 100;
+        x.percentage = Math.round(percentage * 10) / 10;
+        return x;
+      })
+    }
+    console.log(poll)
+  }
+
   const mainTweet = new TweetEntity({
       text: tweetData.text,
       date: fullDate,
       media: media,
       urls: tweetUrls,
-      mentionsAndTags: mentionsAndTags
+      mentionsAndTags: mentionsAndTags,
+      poll: poll
     },{
       username: user.username,
       name: user.name,
@@ -185,8 +205,9 @@ export default async (req, res) => {
       const tweet = parseRes(twitterRes);
       res.end(tweet);
     } catch(err) {
+      console.log(err);
       res.status(400);
-      res.end(err);
+      res.end("oops tweet-img server error");
     }
 
   } else {
