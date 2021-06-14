@@ -1,10 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 
-import { CustomPicker, TwitterPicker, CirclePicker } from 'react-color';
-import { BiChevronDown, BiChevronUp } from "react-icons/bi";
-import { EditableInput, Saturation, Hue } from 'react-color/lib/components/common';
-
-import ColorPointer from './colorPointer';
+import { CustomPicker, CirclePicker } from 'react-color';
+import { HexColorPicker, HexColorInput } from "react-colorful";
+import { IoColorPaletteSharp } from "react-icons/io5";
 
 function SolidColor(props) {
   const [show, setShow] = useState(false);
@@ -19,50 +17,24 @@ function SolidColor(props) {
       />
 
       <div id='custom-color'>
-        <button className='light-button' onClick={() => setShow(!show)}>
-          Custom color
-          {show ? <BiChevronUp /> : <BiChevronDown />}
-        </button>
+        <div id='top-button'>
+          <div id='inputgroup'>
+            <HexColorInput color={props.hex} onChange={props.onChange} />
+            <i className="">#</i>
+          </div>
+          <button className='chevron' onClick={() => setShow(!show)}>
+            <IoColorPaletteSharp />
+          </button>
+        </div>
 
         <div id='popover' className={show ? 'popoverShow' : ''}>
+          <HexColorPicker color={props.hex} onChange={props.onChange} />
 
-          <div id='colorpicker-group'>
-
-            <div id='saturation-picker'>
-              <Saturation
-                { ...props}
-                pointer={ ColorPointer }
-                tabIndex='0'
-              />
-            </div>
-
-            <div id='hue-picker'>
-              <Hue
-                {...props}
-                direction={ 'vertical' }
-                pointer={ ColorPointer }
-                tabIndex='0' />
-            </div>
-
-          </div>
-
-          <div id="inputgroup">
-
-            <EditableInput
-              id="something"
-              label=""
-              value={ props.hex.substring(1) }
-              onChange={props.onChange}
-            />
-
-            <i className="">#</i>
-
-          </div>
         </div>
       </div>
     </>
   )
 }
-
+// {show ? <BiChevronUp /> : <BiChevronDown />}
 
 export default CustomPicker(SolidColor);

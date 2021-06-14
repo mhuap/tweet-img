@@ -62,53 +62,9 @@
   }
 }
 
-#colorpicker-group {
-  display: flex;
-
-  #saturation-picker {
-    position: relative;
-    height: 240px;
-    width: 100%;
-    border-radius: 6px;
-    overflow: hidden;
-
-    .circle {
-      margin-top: -10px;
-    }
-  }
-
-  #hue-picker {
-    height: 240px;
-    width: 24px;
-    position: relative;
-    margin-left: 8px;
-    border-radius: 12px;
-    overflow: hidden;
-
-    .circle {
-      margin-top: -3px;
-      margin-left: -2.5px;
-    }
-  }
-
-
-  .circle {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    cursor: pointer;
-    border: white solid 6px;
-    margin-left: -10px;
-
-    &:focus {
-      box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 0px 1px;
-      outline: none;
-    }
-  }
-}
-
 .circle-picker {
   margin-top: 8px;
+  justify-content: center;
 
   span:last-child > div {
     margin-right: 0 !important;
@@ -120,19 +76,38 @@
 }
 
 #custom-color {
+  width: 100%;
   margin-right: 8px;
   margin-top: 8px;
   border-radius: $rounded-radius;
   background-color: $color-extralightgrey;
 
-  button {
-    margin-top: 0 !important;
+  #top-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 46px;
+    padding: 0 8px;
+  }
+
+  button.chevron {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    color: $color-dark;
+    border: solid 1px $color-blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   svg {
     height: 24px;
     width: 24px;
-    float: right;
+    fill: $color-blue;
   }
 }
 
@@ -146,15 +121,18 @@
   padding: 0 8px 0 8px;
 
   &.popoverShow {
-    height: 198px;
+    height: 208px;
     padding-bottom: 8px;
+  }
+
+  .react-colorful {
+    width: 100%;
   }
 }
 
 #inputgroup {
   position: relative;
   color: $color-grey;
-  margin-top: 8px;
   width: 92px;
 
   input {
@@ -344,28 +322,8 @@ button#add-image {
     width: 33%;
   }
 
-  #colorpicker-group {
-
-    #saturation-picker {
-      height: 150px;
-    }
-
-    #hue-picker{
-      height: 150px;
-      width: 16px;
-      // margin-top: 8px;
-      border-radius: 8px;
-
-      .circle {
-        margin-top: -2px;
-        margin-left: -2.5px;
-      }
-    }
-
-    .circle {
-      width: 20px;
-      height: 20px;
-      border-width: 4px;
-    }
+  .circle-picker {
+    justify-content: flex-start;
   }
+
 }
