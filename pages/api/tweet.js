@@ -49,9 +49,31 @@ async function getRequest(tweetId) {
     });
 };
 
+async function getQuotedMedia(tweetId) {
+  const params = {
+    'ids': tweetId,
+    'expansions': 'attachments.media_keys',
+    'media.fields': 'url',
+  }
+
+  return axios.get(endpointUrl,
+    { headers: {"authorization": `Bearer ${token}`},
+      params,
+    })
+  .then(response => {
+    // console.log(response.data.includes.media[0]);
+    // console.log(response);
+    return response.data.includes.media[0];
+  })
+  .catch(error => {
+    console.log(error);
+    return error.data;
+  });
+}
+
 // tweet parsing
 
-function parseRes(response) {
+async function parseRes(response) {
   // console.log(response);
 
   const res = response.data;
@@ -70,12 +92,12 @@ function parseRes(response) {
   const fullDate = `${date} ${month} ${year}`;
 
   let media;
-  if (tweetData.attachments && tweetData.attachments.media){
+  if (tweetData.attachments && tweetData.attachments.media_keys){
     const mediaData = response.includes.media;
     media = mediaData.map((x) => (x.type == 'photo') ? x.url : null);
   }
 
-  // console.log(media)
+  console.log(media)
 
   const user = response.includes.users[0];
 
@@ -128,7 +150,7 @@ function parseRes(response) {
         return x;
       })
     }
-    console.log(poll)
+    // console.log(poll)
   }
 
   const mainTweet = new TweetEntity({
@@ -159,7 +181,15 @@ function parseRes(response) {
     let quotedTweetData = response.includes.tweets[0];
     quotedTweetData = quotedTweetData.id == quotedId ? quotedTweetData : null;
 
-    const quotedMedia = null;
+    let quotedMedia = null;
+    if (quotedTweetData.attachments){
+      if (quotedTweetData.attachments.media_keys) {
+        // make query with quotedTweetData.id
+        const quotedMediaResponse = await getQuotedMedia(quotedTweetData.id);
+        quotedMedia = quotedMediaResponse.url;
+      }
+    }
+
     const quotedUrls = null;
 
     if (quotedTweetData){
@@ -169,7 +199,7 @@ function parseRes(response) {
       quotedTweet = new TweetEntity({
           text: quotedTweetData.text,
           date: quotedTweetData.created_at,
-          media: quotedMedia, // unsupported
+          media: quotedMedia,
           urls: quotedUrls, // unsupported
           mentionsAndTags: null // unneccessary for quoted tweets
         },{
@@ -202,7 +232,7 @@ export default async (req, res) => {
 
     try {
       const twitterRes = await getRequest(req.query.tweetId);
-      const tweet = parseRes(twitterRes);
+      const tweet = await parseRes(twitterRes);
       res.end(tweet);
     } catch(err) {
       console.log(err);
