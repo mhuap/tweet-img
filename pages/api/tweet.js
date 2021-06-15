@@ -31,7 +31,7 @@ async function getRequest(tweetId) {
         'expansions': 'author_id,attachments.media_keys,referenced_tweets.id,referenced_tweets.id.author_id,attachments.poll_ids',
         'user.fields': 'profile_image_url,verified',
         'tweet.fields': 'created_at,entities',
-        'media.fields': 'url',
+        'media.fields': 'url,preview_image_url',
     }
 
     return axios.get(endpointUrl,
@@ -94,10 +94,19 @@ async function parseRes(response) {
   let media;
   if (tweetData.attachments && tweetData.attachments.media_keys){
     const mediaData = response.includes.media;
-    media = mediaData.map((x) => (x.type == 'photo') ? x.url : null);
+    // console.log(mediaData);
+    media = mediaData.map((x) => {
+      if (x.type == 'photo'){
+        return x.url;
+      } else if (x.type == 'video'){
+        return x.preview_image_url;
+      } else {
+        return null;
+      }
+    });
   }
 
-  console.log(media)
+  // console.log(media)
 
   const user = response.includes.users[0];
 
