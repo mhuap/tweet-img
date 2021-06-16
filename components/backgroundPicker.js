@@ -4,7 +4,6 @@ import { BiImageAdd, BiTrash, BiChevronDown, BiChevronUp } from "react-icons/bi"
 
 import SolidColor from "./solidColor.js";
 import GradientColor from "./gradientColor.js";
-import TwoLabelSwitch from "./twoLabelSwitch.js";
 
 
 function BackgroundPicker(props) {
