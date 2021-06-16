@@ -34,9 +34,9 @@
   justify-content: center;
   align-items: center;
   box-shadow: inset rgba(0,0,0,.11) 0 0 0 1px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: cover !important;
 }
 
 #tweet-img {

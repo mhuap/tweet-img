@@ -10,6 +10,15 @@ import { GRADIENTS } from './gradientColor';
 
 const serverErrorMsg = 'Twitter server error';
 
+const blackFilter = `linear-gradient(
+          rgba(0, 0, 0, 0.7),
+          rgba(0, 0, 0, 0.7)
+        ), `
+const whiteFilter = `linear-gradient(
+          rgba(255, 255, 255, 0.85),
+          rgba(255, 255, 255, 0.85)
+        ), `
+
 function luminosity(color) {
   const colorRegex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color)
   const r = parseInt(colorRegex[1], 16)
@@ -30,6 +39,7 @@ function Result(props){
   const [bgImg, setBgImg] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [resultImg, setResultImg] = useState(null);
+  const [imgFilter, setImgFilter] = useState('default');
 
   const [boxRounded, setBoxRounded] = useState(true);
   const [boxBorder, setBoxBorder] = useState(false);
@@ -64,6 +74,7 @@ function Result(props){
     // setSolidColorMode(true);
     setSelectedFile(null);
     setBgImg(null);
+    setImgFilter('default');
   }
 
   const genCanvas = () => {
@@ -142,10 +153,19 @@ function Result(props){
       textStyle.color = '#000';
     } else {
       textStyle.color = '#fff';
-      console.log('white')
     }
   } else if (bgImg && colorMode == 2) {
-    bgStyle.background = `url(${bgImg}) ${bgColor}`;
+    const defString = `url(${bgImg}) ${bgColor}`
+    if (imgFilter == 'default'){
+      bgStyle.background = defString;
+    } else if (imgFilter == 'dark'){
+      bgStyle.background = blackFilter + defString;
+      textStyle.color = '#fff';
+    } else {
+      // light
+      bgStyle.background = whiteFilter + defString;
+      textStyle.color = '#000';
+    }
   } else if (colorMode == 1) {
     bgStyle.background = bgGradient;
   }
@@ -191,7 +211,7 @@ function Result(props){
         onSwitchRounded={() => setBoxRounded(!boxRounded)}
         onSwitchBorder={() => setBoxBorder(!boxBorder)}
         onSwitchBoxBackground={() => setBoxBackground(!boxBackground)}
-        solid={colorMode === 0}
+        solid={colorMode != 1}
         boxBackground={boxBackground}
       >
         <BackgroundPicker
@@ -206,6 +226,8 @@ function Result(props){
           onClickGradient={onClickGradient}
           handleGradientChange={handleGradientChange}
           gradient={gradient}
+          imgFilter={imgFilter}
+          setImgFilter={setImgFilter}
         />
 
         <PhotoUpload

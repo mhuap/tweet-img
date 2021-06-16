@@ -207,9 +207,22 @@
   input:checked + label {
     background-color: white;
     box-shadow: rgba(0,0,0,0.15) 0px 0px 4px 1px;
+    color: $color-dark;
   }
 }
 
+#dark-light-radio {
+  display: flex;
+  flex-direction: column;
+  color: $color-dark;
+  margin-left: 4px;
+  margin-top: 8px;
+
+  label {
+    margin: 0;
+  }
+
+}
 
 .sidebar-box {
   text-align: left;

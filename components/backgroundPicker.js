@@ -1,16 +1,15 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 
 import { BiImageAdd, BiTrash, BiChevronDown, BiChevronUp } from "react-icons/bi";
+
 import SolidColor from "./solidColor.js";
 import GradientColor from "./gradientColor.js";
-// import { useMediaQuery } from 'react-responsive'
-// import Popover from 'react-bootstrap/Popover';
-
+import TwoLabelSwitch from "./twoLabelSwitch.js";
 
 
 function BackgroundPicker(props) {
   const { onClickTrash, onClickAddImage, colorMode, setColorMode, onClickGradient,
-    handleGradientChange, gradient, setBoxBackground, ...rest} = props;
+    handleGradientChange, gradient, setBoxBackground, setImgFilter, imgFilter, ...rest} = props;
 
   let imageButton;
 
@@ -21,16 +20,24 @@ function BackgroundPicker(props) {
   }
 
   if (props.fileName) {
-    imageButton = <div id='red-split-button'>
+    imageButton = <><div id='red-split-button'>
       <div>{props.fileName}</div>
       <button id='trash' onClick={onClickTrash}>
         <BiTrash/>
       </button>
-    </div>;
+    </div>
+    <div id='dark-light-radio'>
+      <label><input type='radio' name='dark-light' onClick={() => setImgFilter('default')} checked={imgFilter === 'default'}/> Default</label>
+      <label><input type='radio' name='dark-light' onClick={() => {setImgFilter('dark'); setBoxBackground(false)}} checked={imgFilter === 'dark'}/> Dark</label>
+      <label><input type='radio' name='dark-light' onClick={() => {setImgFilter('light'); setBoxBackground(false)}} checked={imgFilter === 'light'}/> Light</label>
+    </div>
+    </>;
   } else {
-    imageButton = <button id='add-image' className='light-button' onClick={onClickAddImage}>
-      Add background image
-    </button>
+    imageButton = <>
+      <button id='add-image' className='light-button' onClick={onClickAddImage}>
+        Add background image
+      </button>
+    </>
   }
 
   let content;
