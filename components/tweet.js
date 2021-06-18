@@ -146,7 +146,7 @@ function Tweet(props){
 
       {media}
       {quotedDiv}
-      {JSON.stringify(props.tweet.poll) === JSON.stringify({}) ? null : <Poll poll={props.tweet.poll}/>}
+      {(props.tweet.poll === undefined) || (JSON.stringify(props.tweet.poll) === JSON.stringify({})) ? null : <Poll poll={props.tweet.poll}/>}
 
 
       <div className='date' style={props.boxText ? {color: props.boxText.color} : '' }>{props.tweet.date}</div>
