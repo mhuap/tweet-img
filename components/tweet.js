@@ -13,7 +13,7 @@ function Tweet(props){
   let tweetText = props.tweet.text;
 
   let media;
-  console.log(props.tweet.media);
+
   if (props.tweet.media){
 
 
@@ -69,7 +69,7 @@ function Tweet(props){
             content = props.tweet.urls[match];
           }
         }
-        return <span className='blue' key={index}>{content}</span>;
+        return <span className='blue' key={"blue " + index}>{content}</span>;
       },
       input: tweetText,
     });

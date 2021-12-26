@@ -26,9 +26,9 @@ function BackgroundPicker(props) {
       </button>
     </div>
     <div id='dark-light-radio'>
-      <label><input type='radio' name='dark-light' onClick={() => setImgFilter('default')} checked={imgFilter === 'default'}/> Default</label>
-      <label><input type='radio' name='dark-light' onClick={() => {setImgFilter('dark'); setBoxBackground(false)}} checked={imgFilter === 'dark'}/> Dark</label>
-      <label><input type='radio' name='dark-light' onClick={() => {setImgFilter('light'); setBoxBackground(false)}} checked={imgFilter === 'light'}/> Light</label>
+      <label><input type='radio' name='dark-light' onClick={() => setImgFilter('default')} defaultChecked={imgFilter === 'default'}/> Default</label>
+      <label><input type='radio' name='dark-light' onClick={() => {setImgFilter('dark'); setBoxBackground(false)}} defaultChecked={imgFilter === 'dark'}/> Dark</label>
+      <label><input type='radio' name='dark-light' onClick={() => {setImgFilter('light'); setBoxBackground(false)}} defaultChecked={imgFilter === 'light'}/> Light</label>
     </div>
     </>;
   } else {
@@ -52,21 +52,21 @@ function BackgroundPicker(props) {
     <>
 
     <div className='segmented'>
-      <input type='radio' name='color-mode' id='solid' checked={colorMode == 0}/><label
+      <input type='radio' name='color-mode' id='solid' defaultChecked={colorMode == 0}/><label
         tabIndex='0'
         className='custom-control-label'
         htmlFor='solid'
         onClick={() => setColorMode(0)}
         onKeyDown={(e) => checkEnter(e, 0)}
         >Solid</label>
-      <input type='radio' name='color-mode' id='gradient' checked={colorMode == 1}/><label
+      <input type='radio' name='color-mode' id='gradient' defaultChecked={colorMode == 1}/><label
         tabIndex='0'
         className='custom-control-label'
         htmlFor='gradient'
         onClick={() => {setColorMode(1); setBoxBackground(true);}}
         onKeyDown={(e) => checkEnter(e, 1)}
         >Gradient</label>
-      <input type='radio' name='color-mode' id='radio-image' checked={colorMode == 2}/><label
+      <input type='radio' name='color-mode' id='radio-image' defaultChecked={colorMode == 2}/><label
         tabIndex='0'
         className='custom-control-label'
         htmlFor='radio-image'

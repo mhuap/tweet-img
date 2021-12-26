@@ -234,7 +234,7 @@
 }
 
 .modal.show .modal-dialog {
-  max-width: 400px;
+  // max-width: 400px;
 }
 
 .modal-header {
@@ -303,6 +303,58 @@ button#add-image {
     width: 100%;
   }
 
+}
+
+#unsplash-tab {
+  input {
+    font-size: inherit;
+    padding-left: 4px;
+    margin: 8px 0;
+  }
+
+  #unsplash-results {
+    overflow-y: auto;
+    height: 400px;
+
+    .masonry-grid {
+      display: -webkit-box; /* Not needed if autoprefixing */
+      display: -ms-flexbox; /* Not needed if autoprefixing */
+      display: flex;
+      margin-left: -8px; /* gutter size offset */
+      width: auto;
+    }
+    .masonry-grid_column {
+      padding-left: 8px; /* gutter size */
+      background-clip: padding-box;
+    }
+
+    .unsplash-photo {
+      position: relative;
+      margin-bottom: 8px;
+
+      img {
+        display: block;
+        width: 100%;
+      }
+
+      span {
+        font-size: 12px;
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        color: white;
+        padding: 4px 8px;
+
+
+        a {
+          color: white;
+        }
+      }
+    }
+
+
+  }
 }
 
 .gradient-tab {

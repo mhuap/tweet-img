@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect }from "react";
-
+import axios from 'axios';
 import { scroller } from 'react-scroll';
 
 import Tweet from './tweet';
@@ -126,6 +126,19 @@ function Result(props){
     setModalShow(false);
   }
 
+  const unsplashPhotoClick = (e, download_location) => {
+    e.preventDefault()
+
+    const src = e.target.src;
+    setSelectedFile({name: 'Unsplash image'});
+    setBgImg(src);
+    setModalShow(false);
+    axios.post('/api/unsplash', {
+      downloadLocation: download_location
+    })
+    .catch(error => console.log(error))
+  }
+
   const onClickGradient = (a, b) => {
     setSelectedFile(null);
     setBgImg(null);
@@ -236,6 +249,7 @@ function Result(props){
           onFileChange={onFileChange}
           useImageURL={useImageURL}
           imgRef={imageUrlRef}
+          unsplashPhotoClick={unsplashPhotoClick}
         />
 
       </SideBar>

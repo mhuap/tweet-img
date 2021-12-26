@@ -31,9 +31,11 @@
     "react-dom": "^17.0.2",
     "react-ga": "^3.3.0",
     "react-icons": "^4.2.0",
+    "react-masonry-css": "^1.0.16",
     "react-scroll": "^1.8.2",
     "regexify-string": "^1.0.16",
     "sass": "^1.34.1",
+    "unsplash-js": "^7.0.15",
     "webpack": "^5.38.1"
   }
 }

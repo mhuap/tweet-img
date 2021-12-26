@@ -51,12 +51,11 @@ function IndexPage() {
   ReactGA.initialize('UA-199320414-1'); // add your tracking id here.
   useEffect(() => {
     ReactGA.pageview(window.location.pathname + window.location.search);
-  });
+  }, []);
 
   const createTweet = (url) => {
     // console.log('axios');
     setLoading(true);
-    // console.log('loading')
 
     // SERVER-SIDE
     axios.get('/api/tweet', {

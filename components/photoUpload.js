@@ -3,6 +3,7 @@ import React, { useState, useRef } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
+import UnsplashTab from './unsplashTab.js';
 
 function PhotoUpload(props) {
 
@@ -11,7 +12,6 @@ function PhotoUpload(props) {
       {...props}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
-      dialogClassName="modal-20w"
       centered
     >
       <Modal.Header closeButton>
@@ -33,8 +33,10 @@ function PhotoUpload(props) {
               </form>
             </div>
           </Tab>
-          <Tab eventKey="unsplash" title="Search" disabled>
-            Coming soon!
+          <Tab eventKey="unsplash" title="Unsplash">
+            <UnsplashTab
+              handlePhotoClick={props.unsplashPhotoClick}
+            />
           </Tab>
         </Tabs>
       </Modal.Body>

@@ -30,7 +30,7 @@ function SideBar(props) {
           label="White background"
           id='background-switch'
           onClick={props.onSwitchBoxBackground}
-          checked={props.solid ? props.boxBackground : true}
+          defaultChecked={props.solid ? props.boxBackground : true}
           disabled={!props.solid}
         />
       </div>
