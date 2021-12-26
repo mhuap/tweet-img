@@ -67,7 +67,7 @@ function Tweet(props){
             content = '';
           } else {
             content = props.tweet.urls[match];
-          }
+          } 
         }
         return <span className='blue' key={"blue " + index}>{content}</span>;
       },
