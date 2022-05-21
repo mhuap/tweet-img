@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect }from "react";
 import axios from 'axios';
 import { scroller } from 'react-scroll';
+import * as htmlToImage from 'html-to-image';
 
 import Tweet from './tweet';
 import BackgroundPicker from './backgroundPicker';
@@ -78,37 +79,67 @@ function Result(props){
   }
 
   const genCanvas = () => {
-    const html2canvas = require('html2canvas');
+    const node = document.querySelector("#preview .sq-container");
+    // const node = document.getElementByID('form-input');
+    const exportSize = 2;
 
-    // necessary for proper image creation with html2canvas
-    // window.scrollTo({ top: 0})
+    const width = node.offsetWidth * exportSize
+    const height = node.offsetHeight * exportSize
 
-    // Hide scrollbar to fix bug with html2canvas which adds extra whitespace to image if scrollbar is present
-    document.documentElement.style.overflow = 'hidden';
+    const config = {
+      style: {
+        transform: `scale(${exportSize})`,
+        transformOrigin: 'top-left',
+        width: 512 + "px",
+        height: 512 + "px"
+      },
+      width,
+      height,
+    }
 
-    return html2canvas(document.querySelector("#preview .sq-container"),
-      {
-        allowTaint: false,
-        useCORS: true,
-        backgroundColor: null,
-        logging: false,
-      })
-    .then((canvas) => {
-      scroller.scrollTo('result-wrapper', {
-        smooth: true,
-      })
-
-      // Un-hide scrollbar
-      document.documentElement.style.overflow = '';
-      // document.body.appendChild(canvas);
-
-      // const src = canvas.toDataURL();
-      return canvas.toBlob((blob) => {
-        const href = URL.createObjectURL(blob);
-        setResultImg(href);
-
-      },'image/png')
+    htmlToImage.toPng(node)
+    .then(function (dataUrl) {
+        // var img = new Image();
+        // img.src = dataUrl;
+        // document.body.appendChild(img);
+        setResultImg(dataUrl);
     })
+    .catch(function (error) {
+        console.error('dom-to-image: oops, something went wrong!', error);
+    });
+
+
+    // const html2canvas = require('html2canvas');
+    //
+    // // necessary for proper image creation with html2canvas
+    // // window.scrollTo({ top: 0})
+    //
+    // // Hide scrollbar to fix bug with html2canvas which adds extra whitespace to image if scrollbar is present
+    // document.documentElement.style.overflow = 'hidden';
+    //
+    // return html2canvas(document.querySelector("#preview .sq-container"),
+    //   {
+    //     allowTaint: false,
+    //     useCORS: true,
+    //     backgroundColor: null,
+    //     logging: false,
+    //   })
+    // .then((canvas) => {
+    //   scroller.scrollTo('result-wrapper', {
+    //     smooth: true,
+    //   })
+    //
+    //   // Un-hide scrollbar
+    //   document.documentElement.style.overflow = '';
+    //   // document.body.appendChild(canvas);
+    //
+    //   // const src = canvas.toDataURL();
+    //   return canvas.toBlob((blob) => {
+    //     const href = URL.createObjectURL(blob);
+    //     setResultImg(href);
+    //
+    //   },'image/png')
+    // })
   }
 
   const imgClick = async e => {
