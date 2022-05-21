@@ -5,7 +5,6 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { scroller } from 'react-scroll';
 import Spinner from 'react-bootstrap/Spinner';
-import ReactGA from 'react-ga';
 
 import Result from '../components/result';
 import Arrow from '../components/arrow.js';
@@ -47,11 +46,6 @@ function IndexPage() {
   const urlInput = useRef(null);
 
   const router = useRouter();
-
-  ReactGA.initialize('UA-199320414-1'); // add your tracking id here.
-  useEffect(() => {
-    ReactGA.pageview(window.location.pathname + window.location.search);
-  }, []);
 
   const createTweet = (url) => {
     // console.log('axios');
@@ -134,9 +128,9 @@ function IndexPage() {
         <meta name="twitter:card" content="summary_large_image"/>
         <link
           rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
-          crossOrigin="anonymous"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossorigin="anonymous"
         />
         <link rel="manifest" href="manifest.json"/>
 

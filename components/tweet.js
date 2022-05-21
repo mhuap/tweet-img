@@ -67,7 +67,7 @@ function Tweet(props){
             content = '';
           } else {
             content = props.tweet.urls[match];
-          } 
+          }
         }
         return <span className='blue' key={"blue " + index}>{content}</span>;
       },
@@ -87,13 +87,13 @@ function Tweet(props){
   }
 
   let boxStyle = {
-    borderRadius: props.boxRounded ? '0.5rem' : '0',
+    borderRadius: props.boxRounded ? '0.75rem' : '0',
     borderStyle: props.boxBorder ? 'solid': 'none',
     background: props.boxBackground ? 'white' : 'none',
     color: props.boxText ? props.boxText.color : '#000',
-    borderColor: props.boxText ? props.boxText.color : '#14171a'
+    borderColor: props.boxText ? props.boxText.color : '#14171a',
+    boxShadow: props.boxShadow ? 'rgba(0,0,0,0.1) 0px 8px 24px 0px' : 'none',
   }
-
 
   // console.log(props.tweet.poll);
 

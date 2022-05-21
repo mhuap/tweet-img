@@ -45,6 +45,7 @@ function Result(props){
   const [boxRounded, setBoxRounded] = useState(true);
   const [boxBorder, setBoxBorder] = useState(false);
   const [boxBackground, setBoxBackground] = useState(true);
+  const [boxShadow, setBoxShadow] = useState(true);
   const [boxText, setBoxText] = useState(null);
 
   const [modalShow, setModalShow] = React.useState(false);
@@ -244,6 +245,7 @@ function Result(props){
               boxRounded={boxRounded}
               boxBorder={boxBorder}
               boxBackground={boxBackground}
+              boxShadow={boxShadow}
               boxText={textStyle}
             />
           </div>
@@ -255,6 +257,7 @@ function Result(props){
         onSwitchRounded={() => setBoxRounded(!boxRounded)}
         onSwitchBorder={() => setBoxBorder(!boxBorder)}
         onSwitchBoxBackground={() => setBoxBackground(!boxBackground)}
+        onSwitchShadow={() => setBoxShadow(!boxShadow)}
         solid={colorMode != 1}
         boxBackground={boxBackground}
       >

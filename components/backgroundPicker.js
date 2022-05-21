@@ -56,7 +56,7 @@ function BackgroundPicker(props) {
         tabIndex='0'
         className='custom-control-label'
         htmlFor='solid'
-        onClick={() => setColorMode(0)}
+        onClick={() => {setColorMode(0);}}
         onKeyDown={(e) => checkEnter(e, 0)}
         >Solid</label>
       <input type='radio' name='color-mode' id='gradient' defaultChecked={colorMode == 1}/><label

@@ -9,29 +9,34 @@ function SideBar(props) {
     <div id='customization'>
       <label className='section'>Customization</label>
       <div id="switches">
-        <span className='sub-section'>Tweet box</span>
-        <Form.Check
-          type="switch"
+        <span className='sub-section'>Tweet card</span>
+
+        <Form.Switch
           label="Rounded corners"
           id='corner-switch'
           onClick={props.onSwitchRounded}
           defaultChecked
         />
 
-        <Form.Check
-          type="switch"
+        <Form.Switch
           label="Border"
           id='border-switch'
           onClick={props.onSwitchBorder}
         />
 
-        <Form.Check
-          type="switch"
+        <Form.Switch
           label="White background"
           id='background-switch'
           onClick={props.onSwitchBoxBackground}
           defaultChecked={props.solid ? props.boxBackground : true}
           disabled={!props.solid}
+        />
+
+        <Form.Switch
+          label="Shadow"
+          id='shadow-switch'
+          onClick={props.onSwitchShadow}
+          defaultChecked
         />
       </div>
 
