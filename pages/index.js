@@ -179,7 +179,6 @@ function IndexPage() {
             </div>
             <p className='error-text'>{inputError ? 'Not a tweet URL' : ''}</p>
           </form>
-          <div id='top-line'></div>
         </div>
 
         <div id='result-wrapper' ref={result}>
