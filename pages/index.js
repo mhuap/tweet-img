@@ -158,7 +158,7 @@ function IndexPage() {
           <h1>Transform tweets into colorful graphics</h1>
           <p id='support'>Supports <a target='__blank' href='https://github.com/mhuap/tweet-img/projects/5'>most</a> tweets.</p>
           <form id='top-form' onSubmit={handleSubmit}>
-            <label className='section'>Enter tweet link</label>
+            <label className='section'>Paste tweet link</label>
             <div id='form-input' className={inputError ? 'error' : ''}>
               <input id='url-input'
                 type='text'

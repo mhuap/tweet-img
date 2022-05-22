@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect }from "react";
 import axios from 'axios';
 import { scroller } from 'react-scroll';
 import * as htmlToImage from 'html-to-image';
+import FileSaver from 'file-saver';
 
 import Tweet from './tweet';
 import BackgroundPicker from './backgroundPicker';
@@ -79,7 +80,8 @@ function Result(props){
     setImgFilter('default');
   }
 
-  const genCanvas = () => {
+  const onCopy = e => {
+    e.preventDefault();
     const node = document.querySelector("#preview .sq-container");
     // const node = document.getElementByID('form-input');
     const exportSize = 2;
@@ -98,55 +100,51 @@ function Result(props){
       height,
     }
 
-    htmlToImage.toPng(node)
-    .then(function (dataUrl) {
-        // var img = new Image();
-        // img.src = dataUrl;
-        // document.body.appendChild(img);
-        setResultImg(dataUrl);
+    htmlToImage.toBlob(node)
+    .then(async function (blob) {
+      if ('clipboard' in navigator) {
+        await navigator.clipboard.write([
+          new ClipboardItem({'image/png': blob})
+        ]);
+        console.log('copied to clipboard')
+      }
     })
     .catch(function (error) {
         console.error('dom-to-image: oops, something went wrong!', error);
     });
-
-
-    // const html2canvas = require('html2canvas');
-    //
-    // // necessary for proper image creation with html2canvas
-    // // window.scrollTo({ top: 0})
-    //
-    // // Hide scrollbar to fix bug with html2canvas which adds extra whitespace to image if scrollbar is present
-    // document.documentElement.style.overflow = 'hidden';
-    //
-    // return html2canvas(document.querySelector("#preview .sq-container"),
-    //   {
-    //     allowTaint: false,
-    //     useCORS: true,
-    //     backgroundColor: null,
-    //     logging: false,
-    //   })
-    // .then((canvas) => {
-    //   scroller.scrollTo('result-wrapper', {
-    //     smooth: true,
-    //   })
-    //
-    //   // Un-hide scrollbar
-    //   document.documentElement.style.overflow = '';
-    //   // document.body.appendChild(canvas);
-    //
-    //   // const src = canvas.toDataURL();
-    //   return canvas.toBlob((blob) => {
-    //     const href = URL.createObjectURL(blob);
-    //     setResultImg(href);
-    //
-    //   },'image/png')
-    // })
   }
 
-  const imgClick = async e => {
+  const onDownload = e => {
     e.preventDefault();
-    await genCanvas();
-    return false
+    const node = document.querySelector("#preview .sq-container");
+    // const node = document.getElementByID('form-input');
+    const exportSize = 2;
+
+    const width = node.offsetWidth * exportSize
+    const height = node.offsetHeight * exportSize
+
+    const config = {
+      style: {
+        transform: `scale(${exportSize})`,
+        transformOrigin: 'top-left',
+        width: 512 + "px",
+        height: 512 + "px"
+      },
+      width,
+      height,
+    }
+
+    htmlToImage.toBlob(node)
+    .then(async function (blob) {
+      if (window.saveAs) {
+        window.saveAs(blob, 'tweet.png');
+      } else {
+        FileSaver.saveAs(blob, 'tweet.png');
+      }
+    })
+    .catch(function (error) {
+        console.error('dom-to-image: oops, something went wrong!', error);
+    });
   }
 
   const useImageURL = (e) => {
@@ -253,7 +251,8 @@ function Result(props){
       </div>
 
       <SideBar
-        onSubmit={imgClick}
+        onCopy={onCopy}
+        onDownload={onDownload}
         onSwitchRounded={() => setBoxRounded(!boxRounded)}
         onSwitchBorder={() => setBoxBorder(!boxBorder)}
         onSwitchBoxBackground={() => setBoxBackground(!boxBackground)}

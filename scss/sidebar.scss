@@ -55,10 +55,15 @@
     display: block;
     margin-bottom: 4px;
   }
+}
+
+.customization-buttons {
+  margin-top: 32px;
+  display: flex;
+  justify-content: space-between;
 
   button {
-    width: 100%;
-    margin-top: 32px;
+    width: 48%;
   }
 }
 

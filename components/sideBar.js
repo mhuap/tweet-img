@@ -43,7 +43,12 @@ function SideBar(props) {
       <span className='sub-section'>Background</span>
 
       {props.children}
-      <button type="submit" onClick={props.onSubmit}>Generate</button>
+
+      <div className='customization-buttons'>
+        <button onClick={props.onCopy}>Copy</button>
+        <button onClick={props.onDownload}>Download</button>
+      </div>
+
     </div>
   )
 }
