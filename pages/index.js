@@ -101,7 +101,7 @@ function IndexPage() {
     res = <div id='result'><img id='diagram' src='diagram.png'/></div>;
   } else if (loading){
     res = <Spinner animation="border" role="status">
-            <span className="sr-only">Loading...</span>
+            <span className="visually-hidden">Loading...</span>
           </Spinner>;
   } else if (serverError){
     res = <span className='error-text'>{serverError}</span>
