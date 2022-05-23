@@ -44,10 +44,7 @@ function SideBar(props) {
 
       {props.children}
 
-      <div className='customization-buttons'>
-        <button onClick={props.onCopy}>Copy</button>
-        <button onClick={props.onDownload}>Download</button>
-      </div>
+      <button onClick={props.onGenerate}>Generate</button>
 
     </div>
   )

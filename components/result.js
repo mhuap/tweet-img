@@ -80,7 +80,7 @@ function Result(props){
     setImgFilter('default');
   }
 
-  const onCopy = e => {
+  const onGenerate = e => {
     e.preventDefault();
     const node = document.querySelector("#preview .sq-container");
     // const node = document.getElementByID('form-input');
@@ -100,47 +100,9 @@ function Result(props){
       height,
     }
 
-    htmlToImage.toBlob(node)
-    .then(async function (blob) {
-      if ('clipboard' in navigator) {
-        await navigator.clipboard.write([
-          new ClipboardItem({'image/png': blob})
-        ]);
-        console.log('copied to clipboard')
-      }
-    })
-    .catch(function (error) {
-        console.error('dom-to-image: oops, something went wrong!', error);
-    });
-  }
-
-  const onDownload = e => {
-    e.preventDefault();
-    const node = document.querySelector("#preview .sq-container");
-    // const node = document.getElementByID('form-input');
-    const exportSize = 2;
-
-    const width = node.offsetWidth * exportSize
-    const height = node.offsetHeight * exportSize
-
-    const config = {
-      style: {
-        transform: `scale(${exportSize})`,
-        transformOrigin: 'top-left',
-        width: 512 + "px",
-        height: 512 + "px"
-      },
-      width,
-      height,
-    }
-
-    htmlToImage.toBlob(node)
-    .then(async function (blob) {
-      if (window.saveAs) {
-        window.saveAs(blob, 'tweet.png');
-      } else {
-        FileSaver.saveAs(blob, 'tweet.png');
-      }
+    htmlToImage.toPng(node)
+    .then(async function (dataUrl) {
+      setResultImg(dataUrl)
     })
     .catch(function (error) {
         console.error('dom-to-image: oops, something went wrong!', error);
@@ -218,16 +180,14 @@ function Result(props){
 
   if (resultImg){
     content =<div style={{maxWidth: '530px', margin: '0 auto'}}>
-    <small>Click image to download</small>
-    <a href={resultImg} download='tweet'>
-      <img
-        id='tweet-img'
-        src={resultImg}
-        alt={`Tweet that says: ${props.mainTweet.tweet.text}`}
-      />
-    </a>
 
-      <small id='backup-link'>or <a href={resultImg} download="tweet">download here</a></small>
+    <img
+      id='tweet-img'
+      src={resultImg}
+      alt={`Tweet that says: ${props.mainTweet.tweet.text}`}
+    />
+
+      <small id='backup-link'><a href={resultImg} download={`tweet by ${props.mainTweet.user.username}`}>download here</a></small>
     </div>
   } else {
     content = <>
@@ -251,8 +211,7 @@ function Result(props){
       </div>
 
       <SideBar
-        onCopy={onCopy}
-        onDownload={onDownload}
+        onGenerate={onGenerate}
         onSwitchRounded={() => setBoxRounded(!boxRounded)}
         onSwitchBorder={() => setBoxBorder(!boxBorder)}
         onSwitchBoxBackground={() => setBoxBackground(!boxBackground)}
