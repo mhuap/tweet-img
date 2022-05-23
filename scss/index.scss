@@ -108,7 +108,7 @@ input[type=text], input[type=url], .soft-outline {
   }
 }
 
-button:not(.close) {
+button:not(.close, .nav-link) {
   display: block;
   height: $rounded-height;
   background-color: $color-blue;

@@ -104,6 +104,8 @@ async function parseRes(response) {
         return null;
       }
     });
+  } else {
+    media = false
   }
 
   // console.log(media)
@@ -133,6 +135,7 @@ async function parseRes(response) {
       }
     }
 
+    // hashtags
     if (tweetData.entities.hashtags){
       const hashtags = tweetData.entities.hashtags;
       for (let i = 0; i < hashtags.length; i++){

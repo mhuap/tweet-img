@@ -40,6 +40,7 @@ function Result(props){
 
   const [bgImg, setBgImg] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [genLoading, setGenLoading] = useState(false);
   const [resultImg, setResultImg] = useState(null);
   const [imgFilter, setImgFilter] = useState('default');
 
@@ -47,6 +48,7 @@ function Result(props){
   const [boxBorder, setBoxBorder] = useState(false);
   const [boxBackground, setBoxBackground] = useState(true);
   const [boxShadow, setBoxShadow] = useState(true);
+  const [imageCrop, setImageCrop] = useState(false);
   const [boxText, setBoxText] = useState(null);
 
   const [modalShow, setModalShow] = React.useState(false);
@@ -82,6 +84,7 @@ function Result(props){
 
   const onGenerate = e => {
     e.preventDefault();
+    setGenLoading(true)
     const node = document.querySelector("#preview .sq-container");
     // const node = document.getElementByID('form-input');
     const exportSize = 2;
@@ -101,7 +104,7 @@ function Result(props){
     }
 
     htmlToImage.toPng(node)
-    .then(async function (dataUrl) {
+    .then(function (dataUrl) {
       setResultImg(dataUrl)
     })
     .catch(function (error) {
@@ -204,6 +207,7 @@ function Result(props){
               boxBorder={boxBorder}
               boxBackground={boxBackground}
               boxShadow={boxShadow}
+              imageCrop={imageCrop}
               boxText={textStyle}
             />
           </div>
@@ -216,8 +220,11 @@ function Result(props){
         onSwitchBorder={() => setBoxBorder(!boxBorder)}
         onSwitchBoxBackground={() => setBoxBackground(!boxBackground)}
         onSwitchShadow={() => setBoxShadow(!boxShadow)}
+        imageCropDisabled={props.mainTweet.tweet.media && props.mainTweet.tweet.media.length == 1}
+        onSwitchImageCrop={() => setImageCrop(!imageCrop)}
         solid={colorMode != 1}
         boxBackground={boxBackground}
+        genLoading={genLoading}
       >
         <BackgroundPicker
           onChange = {handleColorChange}
@@ -228,6 +235,7 @@ function Result(props){
           colorMode={colorMode}
           setColorMode={setColorMode}
           setBoxBackground={setBoxBackground}
+          setBoxShadow={setBoxShadow}
           onClickGradient={onClickGradient}
           handleGradientChange={handleGradientChange}
           gradient={gradient}

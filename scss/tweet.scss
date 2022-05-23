@@ -7,8 +7,6 @@
   background-color: white;
   padding: 1.5rem;
   position: relative;
-  // border-radius: 0.5rem;
-  // box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 24px;
   border: none;
   border-width: 1px;
 
@@ -65,7 +63,7 @@
   }
 
   .tweet-media {
-    margin: 1rem -1.5rem 0 -1.5rem;
+    margin-top: 1rem;
     display: flex;
 
     img {
@@ -78,11 +76,38 @@
     margin: 1rem 0 0 0;
   }
 
-  .media-2 div {
-    width: 50%;
-    height: 200px;
-    background-size: cover;
+  .media-1 {
+    padding-bottom: 56.25%;
     background-position: center;
+    background-size: cover;
+  }
+
+  .media-2, .media-3, .media-4 {
+    padding-bottom: 50%;
+    position: relative;
+
+    .media-grid {
+      display: grid;
+      gap: 0.125rem;
+      height: 100%;
+      position: absolute;
+    }
+
+    div {
+      background-size: cover;
+      background-position: center;
+      width: 100%;
+    }
+  }
+
+  .media-2 .media-grid {
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .media-4 .media-grid, .media-3 .media-grid {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
 }

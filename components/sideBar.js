@@ -1,6 +1,7 @@
 import React from "react";
 
 import Form from 'react-bootstrap/Form';
+import Spinner from 'react-bootstrap/Spinner';
 
 
 function SideBar(props) {
@@ -14,37 +15,50 @@ function SideBar(props) {
         <Form.Switch
           label="Rounded corners"
           id='corner-switch'
-          onClick={props.onSwitchRounded}
+          onChange={props.onSwitchRounded}
           defaultChecked
         />
 
         <Form.Switch
           label="Border"
           id='border-switch'
-          onClick={props.onSwitchBorder}
+          onChange={props.onSwitchBorder}
         />
 
         <Form.Switch
           label="White background"
           id='background-switch'
-          onClick={props.onSwitchBoxBackground}
-          defaultChecked={props.solid ? props.boxBackground : true}
+          onChange={props.onSwitchBoxBackground}
+          checked={props.solid ? props.boxBackground : true}
           disabled={!props.solid}
         />
 
         <Form.Switch
           label="Shadow"
           id='shadow-switch'
-          onClick={props.onSwitchShadow}
+          onChange={props.onSwitchShadow}
           defaultChecked
         />
+
+        <Form.Switch
+          label="Image crop"
+          id='crop-switch'
+          onChange={props.onSwitchImageCrop}
+          disabled={!props.imageCropDisabled}
+        />
+
       </div>
 
       <span className='sub-section'>Background</span>
 
       {props.children}
 
-      <button onClick={props.onGenerate}>Generate</button>
+      <button onClick={props.onGenerate}>
+        Generate
+        {props.genLoading && <Spinner className="gen-spinner" animation="border" role="status" variant="light" size="sm">
+                <span className="visually-hidden">Loading...</span>
+              </Spinner>}
+      </button>
 
     </div>
   )

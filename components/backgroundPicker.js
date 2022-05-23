@@ -8,7 +8,7 @@ import GradientColor from "./gradientColor.js";
 
 function BackgroundPicker(props) {
   const { onClickTrash, onClickAddImage, colorMode, setColorMode, onClickGradient,
-    handleGradientChange, gradient, setBoxBackground, setImgFilter, imgFilter, ...rest} = props;
+    handleGradientChange, gradient, setBoxBackground, setBoxShadow, setImgFilter, imgFilter, ...rest} = props;
 
   let imageButton;
 
@@ -27,8 +27,8 @@ function BackgroundPicker(props) {
     </div>
     <div id='dark-light-radio'>
       <label><input type='radio' name='dark-light' onClick={() => setImgFilter('default')} defaultChecked={imgFilter === 'default'}/> Default</label>
-      <label><input type='radio' name='dark-light' onClick={() => {setImgFilter('dark'); setBoxBackground(false)}} defaultChecked={imgFilter === 'dark'}/> Dark</label>
-      <label><input type='radio' name='dark-light' onClick={() => {setImgFilter('light'); setBoxBackground(false)}} defaultChecked={imgFilter === 'light'}/> Light</label>
+      <label><input type='radio' name='dark-light' onClick={() => {setImgFilter('dark'); setBoxBackground(false); setBoxShadow(false);}} defaultChecked={imgFilter === 'dark'}/> Dark</label>
+      <label><input type='radio' name='dark-light' onClick={() => {setImgFilter('light'); setBoxBackground(false); setBoxShadow(false);}} defaultChecked={imgFilter === 'light'}/> Light</label>
     </div>
     </>;
   } else {
@@ -56,21 +56,21 @@ function BackgroundPicker(props) {
         tabIndex='0'
         className='custom-control-label'
         htmlFor='solid'
-        onClick={() => {setColorMode(0);}}
+        onClick={() => {setBoxBackground(true); setColorMode(0);}}
         onKeyDown={(e) => checkEnter(e, 0)}
         >Solid</label>
       <input type='radio' name='color-mode' id='gradient' defaultChecked={colorMode == 1}/><label
         tabIndex='0'
         className='custom-control-label'
         htmlFor='gradient'
-        onClick={() => {setColorMode(1); setBoxBackground(true);}}
+        onClick={() => {setBoxBackground(true); setColorMode(1);}}
         onKeyDown={(e) => checkEnter(e, 1)}
         >Gradient</label>
       <input type='radio' name='color-mode' id='radio-image' defaultChecked={colorMode == 2}/><label
         tabIndex='0'
         className='custom-control-label'
         htmlFor='radio-image'
-        onClick={() => {setColorMode(2); setBoxBackground(true);}}
+        onClick={() => {setBoxBackground(true); setColorMode(2); setImgFilter('default');}}
         onKeyDown={(e) => checkEnter(e, 2)}
         >Image</label>
     </div>

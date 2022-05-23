@@ -43,11 +43,15 @@
 
   #switches {
     margin-bottom: 24px;
-  }
 
-  .custom-switch {
-    margin-bottom: 4px;
-    color: $color-dark;
+    .form-check-input:disabled {
+      opacity: 0.2;
+    }
+
+    .form-check-input:checked {
+      background-color: $color-blue;
+      border-color: $color-blue;
+    }
   }
 
   .sub-section {
@@ -59,6 +63,11 @@
   button {
     margin-top: 32px;
     width: 100%;
+
+    .gen-spinner {
+      margin-top: 0;
+      margin-left: 8px;
+    }
   }
 }
 
@@ -244,7 +253,6 @@
 .nav-tabs .nav-link{
   color: $color-grey;
   border: none;
-  border-bottom: $border-lightgrey;
 
   &.active {
     color: $color-blue;
