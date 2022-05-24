@@ -35,6 +35,5 @@ function SolidColor(props) {
     </>
   )
 }
-// {show ? <BiChevronUp /> : <BiChevronDown />}
 
 export default CustomPicker(SolidColor);

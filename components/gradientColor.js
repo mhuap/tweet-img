@@ -42,4 +42,3 @@ function GradientSwatch({id, onClickGradient, isSelected, changed}) {
 
 export default GradientColor;
 export { GRADIENTS };
-//onClickGradient(colorA, colorB)

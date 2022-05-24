@@ -14,8 +14,6 @@ function Tweet(props){
   let media;
 
   if (props.tweet.media){
-
-
     const imgCount = props.tweet.media.length;
 
     // remove attachment urls from tweet text
@@ -58,6 +56,10 @@ function Tweet(props){
     }
   }
 
+  // unencode html entities
+  const doc = new DOMParser().parseFromString(tweetText, "text/html");
+  tweetText = doc.documentElement.textContent;
+
   let blueArr = [];
 
   if (props.tweet.urls){
@@ -75,11 +77,7 @@ function Tweet(props){
     }
   }
 
-  // unencode html entities
-  const doc = new DOMParser().parseFromString(tweetText, "text/html");
-  tweetText = doc.documentElement.textContent;
-
-  if (blueArr.length){
+  if (blueArr.length && props.boxBackground){
     const blueStr = blueArr.join('|');
     const regex = new RegExp(blueStr,"g");
     const result = regexifyString({
