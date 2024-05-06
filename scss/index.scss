@@ -1,16 +1,16 @@
 $color-grey: #657786;
 $color-dark: #14171a;
-$color-blue: #1DA1F2;
+$color-blue: #1da1f2;
 $color-darkblue: #1a91da;
 $color-lightgrey: #d3dade;
 $color-red: #dc3545;
-$color-lightblue: #E8F5FE;
-$color-extralightgrey: #F2F6F8;
+$color-lightblue: #e8f5fe;
+$color-extralightgrey: #f2f6f8;
 
 $border-radius: 0.25rem;
 $border-lightgrey: solid 1px $color-lightgrey;
 
-$box-shadow-light: inset 0 0 0 0.2rem rgba(211, 212, 213, .5);
+$box-shadow-light: inset 0 0 0 0.2rem rgba(211, 212, 213, 0.5);
 
 $rounded-radius: 8px;
 $rounded-height: 46px;
@@ -23,7 +23,7 @@ $breakpoint-lg: 768px;
 $breakpoint-sm: 532px;
 $breakpoint-xs: 375px;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap");
 
 html {
   font-size: 16px;
@@ -39,7 +39,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Inter',Helvetica,Arial,sans-serif;
+  font-family: "Inter", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $color-dark;
@@ -91,7 +91,9 @@ footer {
   }
 }
 
-input[type=text], input[type=url], .soft-outline {
+input[type="text"],
+input[type="url"],
+.soft-outline {
   color: $color-dark;
   border: $border-lightgrey;
   border-radius: $rounded-radius;
@@ -103,7 +105,7 @@ input[type=text], input[type=url], .soft-outline {
 
   &:focus {
     border: solid 1px $color-blue;
-    box-shadow: 0 0 0 0.2rem rgba(29, 161, 242, .25);
+    box-shadow: 0 0 0 0.2rem rgba(29, 161, 242, 0.25);
     outline: none;
   }
 }
@@ -121,7 +123,7 @@ button:not(.close, .nav-link) {
   cursor: pointer;
 
   &:focus {
-    box-shadow: 0 0 0 0.2rem rgba(29, 161, 242, .25);
+    box-shadow: 0 0 0 0.2rem rgba(29, 161, 242, 0.25);
     outline: none;
   }
 
@@ -134,6 +136,10 @@ small {
   color: $color-grey;
   font-size: 11px;
   margin: 8px 0;
+}
+
+#sadge {
+  color: $color-red;
 }
 
 #container {
@@ -171,7 +177,8 @@ small {
     font-size: 1rem;
   }
 
-  a, a:visited {
+  a,
+  a:visited {
     color: $color-blue;
     text-decoration: none;
   }
@@ -210,7 +217,6 @@ small {
     &:focus {
       border-color: $color-blue;
     }
-
   }
 
   button {
@@ -231,7 +237,6 @@ small {
     height: 60%;
     fill: $color-blue;
   }
-
 }
 
 button.input-overlay {
@@ -274,12 +279,11 @@ button.light-button {
 }
 
 #form-input.error {
-
-  input[type=text] {
+  input[type="text"] {
     border: solid 1px $color-red;
 
     &:focus {
-      box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, .25);
+      box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
       outline: none;
     }
   }
@@ -310,7 +314,6 @@ label.section {
 }
 
 @media (min-width: $breakpoint-sm) {
-
   button {
     font-size: 1rem;
   }
@@ -339,11 +342,9 @@ label.section {
       font-size: 0.75rem;
     }
   }
-
 }
 
 @media (min-width: $breakpoint-lg) {
-
   #container {
     max-width: $width;
   }
@@ -351,11 +352,9 @@ label.section {
   #top-form {
     width: 525px;
   }
-
 }
 
 @media (min-width: $breakpoint-xl) {
-
   #container {
     max-width: none;
   }
