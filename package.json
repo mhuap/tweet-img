@@ -37,6 +37,6 @@
     "regexify-string": "^1.0.17",
     "sass": "^1.52.1",
     "unsplash-js": "^7.0.15",
-    "webpack": "^5.72.1"
+    "webpack": "^5.76.0"
   }
 }
